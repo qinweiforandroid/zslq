@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="gridview" type="id" />
+    <item name="webview" type="id" />
+    <item name="scrollview" type="id" />
+    <!-- ids -->
+    <item name="generalPullToRefreshLsv" type="id"></item>
+    <item name="generalRecyclerView" type="id"></item>
+    <item name="generalSwipeRefreshLayout" type="id"></item>
+    <item name="generalPullToRefreshGridView" type="id"></item>
+    <item name="generalPullToRefreshWaterFallLsv" type="id"></item>
+    <item name="generalFragmentPager" type="id"></item>
+    <item name="generalViewPager" type="id"></item>
+    <item name="generalSlidingpaneLayout" type="id"></item>
+    <item name="generalContent" type="id"></item>
+    <item name="generalMenu" type="id"></item>
+    <item name="generalTabIndicator" type="id"></item>
+    <!-- emptyView-->
+    <item name="mEmptyView" type="id"></item>
+    <item name="mViewSwitcher" type="id"></item>
+    <!-- title id -->
+    <item name="generalTitleLabel" type="id"></item>
+    <item name="generalTitleBackImg" type="id"></item>
+    <item name="generalTitleEdt" type="id"></item>
+
+    <!-- login id -->
+    <item name="mLoginUserNameEdt" type="id"></item>
+    <item name="mLoginPasswordEdt" type="id"></item>
+    <item name="mLoginBtn" type="id"></item>
+
+</resources>

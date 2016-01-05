@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="clarity">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="yellow">#FFFF00</color>
+    <!-- 金色 -->
+    <color name="gold">#FFD700</color>
+    <!-- 粉红色 -->
+    <color name="pink">#FFC0CB</color>
+    <color name="red">#FF0000</color>
+
+    <!-- 灰色分割线 -->
+    <color name="divider_gray">#C8C7CC</color>
+    <!-- 浅灰色分割线 -->
+    <color name="divider_gray_light">#f5f5f5</color>
+    <!-- app title -->
+    <color name="title_color">#DC143C</color>
+
+    <!-- 日历颜色 -->
+    <color name="normal_day">#ff999999</color>
+    <color name="selected_day_background">#E75F49</color>
+    <color name="selected_day_text">#fff2f2f2</color>
+    <!-- tab indicator color -->
+    <color name="tab_gray">#C8C7CC</color>
+    <color name="tab_green">#8FBC8F</color>
+    <color name="tab_indicator_gray">#fffcfcfc</color>
+</resources>

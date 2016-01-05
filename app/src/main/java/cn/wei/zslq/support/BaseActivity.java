@@ -1,0 +1,173 @@
+package cn.wei.zslq.support;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.umeng.analytics.MobclickAgent;
+
+import cn.wei.zslq.MyApplication;
+import cn.wei.zslq.R;
+import cn.wei.zslq.activity.HomeActivity;
+import cn.wei.zslq.utils.Constants;
+
+/**
+ * 结构化activity的代码
+ * 方法调用顺序为setContentView()->initializeView()->recoveryState(saveInstance)-> initializeData();
+ */
+public abstract class BaseActivity extends AppCompatActivity {
+    protected String TAG = this.getClass().getSimpleName();
+
+    @Override
+    protected void onCreate(Bundle saveInstance) {
+        super.onCreate(saveInstance);
+        if (!MyApplication.getInstance().isAppKilled()) {
+            setContentView();
+            initializeView();
+            if (saveInstance != null) {
+                recoveryState(saveInstance);
+            } else {
+                initializeData();
+            }
+        } else {
+            protectApp();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    public void protectApp() {
+        Log.e(TAG, "protectApp:class=" + this.getClass().getSimpleName());
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra(Constants.KEY_PROTECT_APP, true);
+        startActivity(intent);
+        finish();
+    }
+
+    /**
+     * 1. 设置布局
+     */
+    protected abstract void setContentView();
+
+    /**
+     * 2. 初始化布局
+     */
+    protected void initializeView() {
+        if (findViewById(R.id.toolbar) != null) {
+            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            if (isCanBack()) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }
+            mToolBarTitleLabel = (TextView) findViewById(R.id.mToolBarTitleLabel);
+        }
+    }
+
+
+    /**
+     * 界面被系统强杀 数据状态恢复
+     *
+     * @param saveInstance 状态数据
+     */
+    protected void recoveryState(Bundle saveInstance) {
+        if (findViewById(R.id.toolbar) != null) {
+            setTitle(saveInstance.getString(Constants.KEY_TITLE));
+        }
+    }
+
+    /**
+     * 3. 初始化ui数据
+     */
+    protected abstract void initializeData();
+
+    protected TextView mToolBarTitleLabel;
+    protected Toolbar toolbar;
+    private CharSequence title;
+
+
+    @Override
+    public void setTitle(CharSequence title) {
+        this.title = title;
+        if (mToolBarTitleLabel != null && isCenter()) {
+            mToolBarTitleLabel.setText(title);
+            super.setTitle("");
+        } else {
+            super.setTitle(title);
+        }
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (title != null)
+            outState.putString(Constants.KEY_TITLE, title.toString());
+        super.onSaveInstanceState(outState);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home && isCanFinish()) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 是否有回退功能
+     *
+     * @return
+     */
+    protected boolean isCanBack() {
+        return true;
+    }
+
+    /**
+     * 是否可以关闭当前界面
+     *
+     * @return
+     */
+    protected boolean isCanFinish() {
+        return true;
+    }
+
+    /**
+     * 标题是否居中
+     *
+     * @return
+     */
+    protected boolean isCenter() {
+        return false;
+    }
+
+}
+
