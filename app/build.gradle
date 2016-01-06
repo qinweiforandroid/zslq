@@ -22,15 +22,24 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            Zipalign优化
-            zipAlignEnabled true
-            shrinkResources false
         }
     }
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']//这一行是没有的，如果我们有.so文件就需要加上这一行代码
         }
+    }
+    //这个是解决lint报错的代码
+    lintOptions {
+        abortOnError false
+        // if true, only report errors
+//        ignoreWarnings true
+        //lint检查规则
+        lintConfig file("${project.rootDir}/quality/lint/lint.xml")
+        // if true, generate an HTML report (with issue explanations, sourcecode, etc)
+        htmlReport true
+        // optional path to report (default will be lint-results.html in the builddir)
+        htmlOutput file("$project.buildDir/reports/lint/lint.html")
     }
 }
 

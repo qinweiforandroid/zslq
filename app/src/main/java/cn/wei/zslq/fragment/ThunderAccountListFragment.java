@@ -59,6 +59,7 @@ public class ThunderAccountListFragment extends BaseRecyclerRefreshViewFragment 
         bmobQuery.findObjects(getActivity(), new FindListener<ThunderAccount>() {
             @Override
             public void onSuccess(List<ThunderAccount> list) {
+                modules.clear();
                 modules.addAll(list);
                 adapter.notifyDataSetChanged();
                 if (refresh) {
