@@ -11,6 +11,8 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import java.io.File;
 
+import cn.bmob.v3.Bmob;
+
 public class MyApplication extends Application {
     public static final int APP_STATE_STARTED = 1;//app 开启
     public static final int APP_STATE_LOGINED = 2;//app 登陆
@@ -29,6 +31,7 @@ public class MyApplication extends Application {
         app_state = -1;//-1 app未开启 或者 被强杀导致
         mInstance = this;
         initializeImageloader();
+        Bmob.initialize(this, "23cef32eb5b6f7cf7c6dfb88d7def740");
     }
 
     public int getAppState() {

@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-
+    <!-- bmob配置-->
+    <uses-permission android:name="android.permission.READ_LOGS"/>
     <!--umeng 权限配置-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -55,6 +56,9 @@
         </activity>
         <meta-data android:value="568a1cfd67e58e5f3e000739" android:name="UMENG_APPKEY"></meta-data>
         <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>
+
+
+
     </application>
 
 </manifest>

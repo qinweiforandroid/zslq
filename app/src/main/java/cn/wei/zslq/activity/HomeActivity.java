@@ -8,10 +8,10 @@ import android.view.MenuItem;
 
 import com.umeng.update.UmengUpdateAgent;
 
-import cn.wei.zslq.support.BaseActivity;
 import cn.wei.zslq.R;
-import cn.wei.zslq.fragment.InformationListFragment;
+import cn.wei.zslq.fragment.IndexFragment;
 import cn.wei.zslq.fragment.MenuFragment;
+import cn.wei.zslq.support.BaseActivity;
 
 /**
  * Created by qinwei on 2015/11/3 22:44
@@ -40,7 +40,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void initializeData() {
         setTitle("首页");
-        getSupportFragmentManager().beginTransaction().replace(R.id.mContentContainer, new InformationListFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mContentContainer, new IndexFragment()).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.drawer_menu, new MenuFragment(), "menu").commit();
     }
 
