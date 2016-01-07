@@ -45,8 +45,8 @@ public class BmobManager {
             String str = null;
             ThunderAccount account = null;
             while ((str = reader.readLine()) != null) {
-                str = str.replace("迅雷会员账号", "");
-                String[] split = str.split("分享密码");
+                str = str.replace("爱密码迅雷账号", "");
+                String[] split = str.split("密码");
                 account = new ThunderAccount();
                 account.setAccountType(ThunderAccount.account_type_xunlei);
                 account.setAccount(split[0]);

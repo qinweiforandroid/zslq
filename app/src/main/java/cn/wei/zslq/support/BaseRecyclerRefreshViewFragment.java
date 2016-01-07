@@ -35,12 +35,13 @@ public abstract class BaseRecyclerRefreshViewFragment extends BaseFragment imple
     protected ArrayList<Object> modules = new ArrayList<>();
     protected DataAdapter adapter;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
-
+    protected int headerCount;
+    protected int footerCount;
 
     @Override
     protected void initializeView(View v) {
         mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.generalSwipeRefreshLayout);
-        mSwipeRefreshLayout.setColorSchemeColors(R.color.gold, R.color.red, R.color.pink, R.color.black);
+        mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.red), getResources().getColor(R.color.red), getResources().getColor(R.color.red), getResources().getColor(R.color.gold));
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.generalRecyclerView);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -208,6 +209,7 @@ public abstract class BaseRecyclerRefreshViewFragment extends BaseFragment imple
     }
 
     public int getAdapterItemViewType(int position) {
+
         return 0;
     }
 
@@ -217,6 +219,7 @@ public abstract class BaseRecyclerRefreshViewFragment extends BaseFragment imple
 
     /**
      * 重写此方法即可添加头部View
+     *
      * @return
      */
     public int getHeaderViewLayoutId() {
