@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/widget_general_row_padding" >
+
+    <ImageView
+        android:id="@+id/mWidgetRowIconImg"
+        android:layout_width="@dimen/widget_general_row_icon_size_width"
+        android:layout_height="@dimen/widget_general_row_icon_size_height"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/mWidgetRowLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1.0"
+        android:text="注销" />
+
+    <CheckBox
+        android:id="@+id/mWidgetRowCheckedCb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@null" />
+
+</LinearLayout>

@@ -41,7 +41,7 @@ public abstract class BaseRecyclerRefreshViewFragment extends BaseFragment imple
     @Override
     protected void initializeView(View v) {
         mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.generalSwipeRefreshLayout);
-        mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.red), getResources().getColor(R.color.red), getResources().getColor(R.color.red), getResources().getColor(R.color.gold));
+        mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.red), getResources().getColor(R.color.red), getResources().getColor(R.color.red), getResources().getColor(R.color.colorAccent));
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.generalRecyclerView);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {

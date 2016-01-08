@@ -133,22 +133,4 @@ public class ThunderAccountListFragment extends BaseRecyclerRefreshViewFragment 
         Toast.makeText(getActivity(), "复制成功", Toast.LENGTH_SHORT).show();
     }
 
-    private void setGridLayoutManager() {
-        //初始化布局管理器
-        final GridLayoutManager lm = new GridLayoutManager(getActivity(), 2);
-        /*
-        *设置SpanSizeLookup，它将决定view会横跨多少列。这个方法是为RecyclerView添加Header和Footer的关键。
-        *当判断position指向的View为Header或者Footer时候，返回总列数（ lm.getSpanCount()）,即可让其独占一行。
-        */
-        lm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                if (position == 0 || adapter.getItemCount() == position + 1) {
-                    return lm.getSpanCount();
-                }
-                return 1;
-            }
-        });
-        setLayoutManager(lm);
-    }
 }

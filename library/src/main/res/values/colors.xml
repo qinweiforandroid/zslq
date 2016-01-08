@@ -1,23 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- app title -->
+    <color name="title_color">#DC143C</color>
+    <color name="windowBg">#EBEBEB</color>
 
     <color name="clarity">#00000000</color>
-    <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
-    <color name="white">#ffffff</color>
     <color name="yellow">#FFFF00</color>
-    <!-- 金色 -->
-    <color name="gold">#FFD700</color>
+    <!-- 灰色 -->
+    <color name="gray_04">#333333</color>
+    <color name="gray_06">#666666</color>
+    <color name="gray_08">#999999</color>
+    <color name="gray_10">#c2c2c2</color>
+    <color name="gray_12">#d9d9d9</color>
+    <color name="gray_14">#f3f5f7</color>
+    <color name="gray_16">#f9fbfc</color>
+    <!-- 蓝色 -->
+    <color name="blue_04">#20a3ff</color>
+    <color name="blue_06">#dcf1ff</color>
+    <color name="blue_08">#2574ce</color>
+    <color name="blue_10">#2668c1</color>
+    <color name="blue_16">#4c98cd</color>
+    <!-- 橙色 -->
+    <color name="orange_08">#ff690e</color>
+    <!-- 红色 -->
+    <color name="red_06">#eb3d3d</color>
+    <color name="red_08">#f43425</color>
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+    <color name="white_06">#f7f7f7</color>
+    <!-- 白色 带透明度-->
+    <color name="white_trans10">#e6ffffff</color>
+    <color name="white_trans40">#99ffffff</color>
+
+    <!-- 黑色 -->
+    <color name="black">#000000</color>
+    <color name="black_04">#1a1d1f</color>
+    <color name="black_06">#8d8e8f</color>
+    <color name="black_12">#90979c</color>
+    <color name="black_14">#9fb1be</color>
+    <!-- 半透明黑色 -->
+    <color name="black_trans">#cc000000</color>
+    <color name="black_trans_1">#B0000000</color>
+
     <!-- 粉红色 -->
     <color name="pink">#FFC0CB</color>
     <color name="red">#FF0000</color>
 
     <!-- 灰色分割线 -->
-    <color name="divider_gray">#C8C7CC</color>
+    <color name="line_gray">#C3C3C3</color>
     <!-- 浅灰色分割线 -->
-    <color name="divider_gray_light">#f5f5f5</color>
-    <!-- app title -->
-    <color name="title_color">#DC143C</color>
+    <color name="line_gray_light">#f5f5f5</color>
 
     <!-- 日历颜色 -->
     <color name="normal_day">#ff999999</color>
@@ -27,4 +64,7 @@
     <color name="tab_gray">#C8C7CC</color>
     <color name="tab_green">#8FBC8F</color>
     <color name="tab_indicator_gray">#fffcfcfc</color>
+    <color name="widgets_general_row_pressed">#D9D9D9</color>
+    <color name="widgets_general_row_normal">#ffffff</color>
+    <color name="widgets_general_row_line">#e5e5e5</color>
 </resources>

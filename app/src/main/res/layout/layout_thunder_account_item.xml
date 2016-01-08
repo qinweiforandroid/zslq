@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="2dp"
-    app:cardElevation="2dp"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
     app:cardPreventCornerOverlap="false"
     app:cardUseCompatPadding="true">
 

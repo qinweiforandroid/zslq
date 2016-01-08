@@ -39,7 +39,7 @@ public abstract class BaseRecyclerRefreshViewActivity extends BaseActivity imple
     @Override
     protected void initializeView() {
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.generalSwipeRefreshLayout);
-        mSwipeRefreshLayout.setColorSchemeColors(R.color.gold, R.color.red, R.color.pink, R.color.black);
+        mSwipeRefreshLayout.setColorSchemeColors(R.color.colorAccent, R.color.red, R.color.pink, R.color.colorAccent);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.generalRecyclerView);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {

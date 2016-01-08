@@ -28,6 +28,7 @@ public class IndexFragment extends BaseFragment {
     @Override
     protected void initializeView(View v) {
         mViewPager = (ViewPager) v.findViewById(R.id.mViewPager);
+        mViewPager.setOffscreenPageLimit(3);
         mTabLayout = (TabLayout) v.findViewById(R.id.mTabLayout);
         adapter = new DataAdapter(getChildFragmentManager());
         mViewPager.setAdapter(adapter);
@@ -35,7 +36,7 @@ public class IndexFragment extends BaseFragment {
     }
 
     class DataAdapter extends FragmentStatePagerAdapter {
-        String[] titles = {"资讯", "迅雷会员"};
+        String[] titles = {"资讯", "迅雷", "发现", "个人"};
 
         public DataAdapter(FragmentManager fm) {
             super(fm);
@@ -48,13 +49,17 @@ public class IndexFragment extends BaseFragment {
                     return new InformationListFragment();
                 case 1:
                     return new ThunderAccountListFragment();
+                case 2:
+                    return new FindFragment();
+                case 3:
+                    return new ProfileFragment();
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 4;
         }
 
         @Override

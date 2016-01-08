@@ -19,35 +19,35 @@ import cn.wei.zslq.utils.BmobManager;
  * Created by qinwei on 2015/11/3 23:30
  * email:qinwei_it@163.com
  */
-public class MenuFragment extends BaseFragment implements View.OnClickListener, OnRowClickListener {
+public class FindFragment extends BaseFragment implements View.OnClickListener, OnRowClickListener {
     private ContainerView mWidgetContainerView;
 
     @Override
     protected int getFragmentLayoutId() {
-        return R.layout.fragment_menu;
+        return R.layout.fragment_find;
     }
 
     @Override
     protected void initializeView(View v) {
-//        RowViewFactory.LINE_IS_MATCH_PARENT = false;
         mWidgetContainerView = (ContainerView) v.findViewById(R.id.mWidgetContainerView);
         ArrayList<GroupDescriptor> groupDescriptors = new ArrayList<GroupDescriptor>();
         ArrayList<BaseRowDescriptor> rowDescriptors1 = new ArrayList<BaseRowDescriptor>();
-        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.icon_profile_remaining, "共享 ", "80", RowActionEnum.MY_FIRST));
-        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.icon_profile_zone, "动态", "20", RowActionEnum.MY_FIRST));
-
-
+        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.more_my_album, "朋友圈", "20", RowActionEnum.MY_FIRST));
         GroupDescriptor groupDescriptor1 = new GroupDescriptor("", rowDescriptors1);
 
         ArrayList<BaseRowDescriptor> rowDescriptors2 = new ArrayList<BaseRowDescriptor>();
-
-        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "反馈", RowActionEnum.MY_FIRST));
-        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.icon_profile_setting, "设置", RowActionEnum.MY_FIRST));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_album, "扫一扫", RowActionEnum.MY_FIRST));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_favorite, "摇一摇", RowActionEnum.MY_FIRST));
         GroupDescriptor groupDescriptor2 = new GroupDescriptor("", rowDescriptors2);
 
+        ArrayList<BaseRowDescriptor> rowDescriptors3 = new ArrayList<BaseRowDescriptor>();
+        rowDescriptors3.add(new GeneralRowDescriptor(R.drawable.more_emoji_store, "附近的人", RowActionEnum.MY_FIRST));
+        rowDescriptors3.add(new GeneralRowDescriptor(R.drawable.more_my_bank_card, "漂流瓶", RowActionEnum.MY_FIRST));
+        GroupDescriptor groupDescriptor3 = new GroupDescriptor("", rowDescriptors3);
 
         groupDescriptors.add(groupDescriptor1);
         groupDescriptors.add(groupDescriptor2);
+        groupDescriptors.add(groupDescriptor3);
         ContainerDescriptor containerDescriptor = new ContainerDescriptor(groupDescriptors);
         mWidgetContainerView.initializeData(containerDescriptor, this);
         mWidgetContainerView.notifyDataChanged();

@@ -10,6 +10,58 @@
     <dimen name="header_footer_left_right_padding">24dp</dimen>
     <dimen name="header_footer_top_bottom_padding">12dp</dimen>
 
+
+    <!-- 卡片高度 -->
+    <dimen name="common_card_height">140dp</dimen>
+    <!-- listItem 的高度 -->
+    <dimen name="common_list_item_height_30">30dp</dimen>
+    <dimen name="common_list_item_height_40">40dp</dimen>
+    <dimen name="common_list_item_height_48">48dp</dimen>
+    <dimen name="common_list_item_height_50">50dp</dimen>
+    <dimen name="common_list_item_height_60">60dp</dimen>
+    <dimen name="common_list_item_height_80">80dp</dimen>
+    <dimen name="common_list_item_height_90">90dp</dimen>
+    <dimen name="common_list_item_height_100">100dp</dimen>
+    <dimen name="common_list_item_height_120">120dp</dimen>
+    <dimen name="common_listview_divider_height">1px</dimen>
+    <!-- listview 的分割线的高度 -->
+
+    <dimen name="btn_goto_find_room">150dp</dimen>
+
+
+    <!-- 字体大小 -->
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_13">13sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_26">26sp</dimen>
+    <dimen name="text_size_30">30sp</dimen>
+    <dimen name="text_size_36">36sp</dimen>
+    <dimen name="text_size_40">40sp</dimen>
+    <!-- 弹出框尺寸 -->
+    <dimen name="grape_alert_dialogue_width">300dp</dimen>
+    <dimen name="grape_alert_dialogue_height">230dp</dimen>
+    <dimen name="grape_alert_dialogue_top_height">50dp</dimen>
+    <dimen name="dialog_customer_padding">20dp</dimen>
+    <dimen name="line_height">0.4dp</dimen>
+    <dimen name="dialog_image_height">30dp</dimen>
+    <dimen name="dialog_image_width">30dp</dimen>
+    <dimen name="size_avatar">50dp</dimen>
+    <dimen name="margin_chat_activity">5dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="common_activity_padding_16">16dp</dimen>
+    <dimen name="common_activity_padding_8">8dp</dimen>
+    <dimen name="common_activity_padding_5">5dp</dimen>
+    <dimen name="common_activity_padding_0.5">0.5dp</dimen>
+    <dimen name="common_activity_padding_1">1dp</dimen>
+    <dimen name="common_activity_padding_1.2">1.2dp</dimen>
+    <dimen name="common_activity_padding_1.5">1.5dp</dimen>
+
     <!-- 日历控件 -->
     <dimen name="text_size_day">16sp</dimen>
     <dimen name="text_size_month">16sp</dimen>
@@ -17,5 +69,12 @@
     <dimen name="header_month_height">50dip</dimen>
     <dimen name="selected_day_radius">16dip</dimen>
     <dimen name="calendar_height">270dip</dimen>
+
+    <!-- generalRowView start -->
+    <dimen name="widget_general_row_padding">12dp</dimen>
+    <dimen name="widget_general_row_icon_size_width">28dp</dimen>
+    <dimen name="widget_general_row_icon_size_height">28dp</dimen>
+    <dimen name="widget_general_row_lable_margin_left">16dp</dimen>
+    <!-- generalRowView end -->
 
 </resources>

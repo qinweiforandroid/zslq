@@ -1,0 +1,382 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- <item name="android:actionBarStyle">@style/my_actionbar_style</item> -->
+    </style>
+
+
+
+
+    <!-- 基本页面跳转的动画 -->
+    <style name="AnimationActivity" mce_bogus="1" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/push_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/push_left_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/push_left_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/push_right_out</item>
+    </style>
+
+    <!-- app引导页面的动画 -->
+    <style name="AnimationActivity_Splash" mce_bogus="1" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:activityOpenExitAnimation">@android:anim/fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="popwindow_anim_from_fade_style">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <!-- 指定显示的动画xml -->
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+        <!-- 指定消失的动画xml -->
+    </style>
+
+
+    <style name="InputTextField" parent="AppBaseTheme">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColorHint">@color/gray_10</item>
+        <item name="android:textColor">@color/gray_04</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="InputTextName_blue">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/blue_06</item>
+    </style>
+
+    <style name="InputTextName_black">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/black_04</item>
+    </style>
+
+
+
+
+
+
+
+    <style name="DialogActivity" parent="android:style/Theme.Dialog">
+        <!-- 是否浮动在activity上-->
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <!--<item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 背景昏暗是否启用 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- dialog背景1 -->
+        <item name="android:windowBackground">@color/transparent</item>
+        <!-- dialog背景2 -->
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+    <style name="Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 背景昏暗是否启用 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- dialog背景1 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- dialog背景2 -->
+        <!-- <item name="android:background">@anim/list_single_selector</item> -->
+    </style>
+
+    <style name="DialogWindowAnim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit_anim</item>
+    </style>
+
+
+    <style name="TextStyle_SingleLine">
+        <item name="android:shadowDx">-0.5</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.5</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+    </style>
+
+    <style name="TextStyle">
+        <item name="android:shadowDx">-0.5</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.5</item>
+    </style>
+
+    <style name="TextTitle_HOME" parent="TextStyle">
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextTitle_12" parent="TextStyle">
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textColor">@color/gray_04</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextTitle_14" parent="TextStyle">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/gray_04</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextTitle_16" parent="TextStyle">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/gray_04</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextTitle_18" parent="TextStyle">
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:textColor">@color/gray_04</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MarqueeTextStyle" parent="TextStyle_SingleLine">
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+
+    <style name="CalendarCell">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+    <!-- 文字样式 -->
+    <style name="TextViewText_20">
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textColor">@color/gray_04</item>
+    </style>
+
+    <style name="TextViewWhiteText_20">
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextViewText_18">
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:textColor">@color/gray_04</item>
+    </style>
+
+    <style name="TextViewOrangeText_18">
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:textColor">@color/orange_08</item>
+    </style>
+
+    <style name="TextViewWhiteText_18">
+        <item name="android:textSize">@dimen/text_size_18</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextViewText_16">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/gray_04</item>
+    </style>
+
+    <style name="TextViewBlueText_16">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/blue_04</item>
+    </style>
+
+    <style name="TextViewOrangeText_16">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/orange_08</item>
+    </style>
+
+    <style name="TextViewWhiteText_16">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextViewDarkGrayText_16">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/gray_06</item>
+    </style>
+
+    <style name="TextViewLightGrayText_16">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/gray_10</item>
+    </style>
+
+    <style name="TextViewDarkBlackText_16">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/black_06</item>
+    </style>
+
+    <style name="TextViewDarkBlackText_14">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/black_06</item>
+    </style>
+
+    <style name="TextViewText_15">
+        <item name="android:textSize">@dimen/text_size_15</item>
+        <item name="android:textColor">@color/gray_04</item>
+    </style>
+
+    <style name="TextViewText_14">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/gray_04</item>
+    </style>
+
+    <style name="TextViewBlueText_14">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/blue_04</item>
+    </style>
+
+    <style name="TextViewSkyBlueText_14">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/blue_16</item>
+    </style>
+
+    <style name="TextViewOrangeText_14">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/orange_08</item>
+    </style>
+
+    <style name="TextViewWhiteText_14">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextViewDarkGrayText_14">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/gray_06</item>
+    </style>
+
+    <style name="TextViewLightGrayText_14">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/gray_08</item>
+    </style>
+
+    <style name="TextViewText_13">
+        <item name="android:textSize">@dimen/text_size_13</item>
+        <item name="android:textColor">@color/gray_04</item>
+    </style>
+
+    <style name="TextViewBlueText_13">
+        <item name="android:textSize">@dimen/text_size_13</item>
+        <item name="android:textColor">@color/blue_04</item>
+    </style>
+
+    <style name="TextViewOrangeText_13">
+        <item name="android:textSize">@dimen/text_size_13</item>
+        <item name="android:textColor">@color/orange_08</item>
+    </style>
+
+    <style name="TextViewDarkGrayText_13">
+        <item name="android:textSize">@dimen/text_size_13</item>
+        <item name="android:textColor">@color/gray_06</item>
+    </style>
+
+    <style name="TextViewLightGrayText_13">
+        <item name="android:textSize">@dimen/text_size_13</item>
+        <item name="android:textColor">@color/gray_08</item>
+    </style>
+
+    <style name="TextViewText_12">
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textColor">@color/gray_04</item>
+    </style>
+
+    <style name="TextViewBlueText_12">
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textColor">@color/blue_04</item>
+    </style>
+
+
+    <style name="TextViewWhiteText_12">
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextViewDarkGrayText_10">
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textColor">@color/gray_06</item>
+    </style>
+
+    <style name="TextViewDarkGrayText_12">
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textColor">@color/gray_06</item>
+    </style>
+
+    <style name="TextViewLightGrayText_12">
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textColor">@color/gray_08</item>
+    </style>
+
+    <style name="TextViewText_10">
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textColor">@color/gray_04</item>
+    </style>
+
+    <style name="TextViewBlueText_10">
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textColor">@color/blue_04</item>
+    </style>
+
+    <style name="TextViewSkyBlueText_10">
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textColor">@color/blue_16</item>
+    </style>
+
+    <style name="TextViewWhiteText_10">
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextViewLightGrayText_10">
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textColor">@color/gray_08</item>
+    </style>
+
+    <style name="TextViewLightBlackText_10">
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:textColor">@color/black_12</item>
+    </style>
+
+    <style name="GridPasswordView" />
+
+    <style name="GridPasswordView.TextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="GridPasswordView.EditText" parent="GridPasswordView.TextView">
+        <item name="android:cursorVisible">false</item>
+    </style>
+
+    <style name="GridPasswordView.Divider">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:layout_marginBottom">1dp</item>
+    </style>
+</resources>
