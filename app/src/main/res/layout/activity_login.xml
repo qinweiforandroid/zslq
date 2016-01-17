@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".LoginActivity">
@@ -11,48 +12,33 @@
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingTop="16dp">
 
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/common_activity_padding_8"
+            android:layout_marginRight="@dimen/common_activity_padding_8"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <android.support.design.widget.TextInputLayout
+            <cn.wei.library.widget.input.AccountView
+                android:id="@+id/mLoginAccount"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_activity_padding_8"
+                android:layout_marginRight="@dimen/common_activity_padding_8"
+                android:layout_marginTop="@dimen/common_activity_padding_8"
+                app:label="登录账号:" />
 
-                <AutoCompleteTextView
-                    android:id="@+id/account"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_account"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+            <cn.wei.library.widget.input.AccountView
+                android:id="@+id/mLoginPwd"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_activity_padding_8"
+                android:layout_marginRight="@dimen/common_activity_padding_8"
+                android:layout_marginTop="@dimen/common_activity_padding_8"
+                app:label="登录密码:" />
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
@@ -62,13 +48,14 @@
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 
-
-            <TextView
+            <Button
+                android:id="@+id/mLoginGoRegisterBtn"
+                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="register"
-                android:textSize="18sp" />
+                android:text="注册" />
         </LinearLayout>
     </ScrollView>
+    <include layout="@layout/third_login"/>
 </LinearLayout>

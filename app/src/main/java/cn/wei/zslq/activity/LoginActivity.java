@@ -2,38 +2,29 @@ package cn.wei.zslq.activity;
 
 import android.content.Intent;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.library.widget.input.AccountView;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.model.impl.LoginModel;
+import cn.wei.zslq.support.BaseActivity;
 import cn.wei.zslq.utils.CommonUtil;
+import cn.wei.zslq.utils.TextUtil;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends BaseActivity implements Controller {
-
-
+public class LoginActivity extends BaseActivity implements Controller, OnClickListener {
     // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-    private View mLoginFormView;
+    private AccountView mEmailView;
+    private AccountView mLoginPwd;
     private Button mEmailSignInButton;
     private LoginModel viewMode;
+    private Button mLoginGoRegisterBtn;
 
     @Override
     protected void setContentView() {
@@ -43,81 +34,79 @@ public class LoginActivity extends BaseActivity implements Controller {
     @Override
     protected void initializeView() {
         super.initializeView();
-        mLoginFormView = findViewById(R.id.login_form);
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.account);
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mEmailView = (AccountView) findViewById(R.id.mLoginAccount);
+        mLoginPwd = (AccountView) findViewById(R.id.mLoginPwd);
         mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mLoginGoRegisterBtn = (Button) findViewById(R.id.mLoginGoRegisterBtn);
+        mLoginGoRegisterBtn.setOnClickListener(this);
+        mEmailSignInButton.setEnabled(false);
+        mEmailView.setOnTextChangedListener(new AccountView.OnTextChangedListener() {
+            @Override
+            public void onTextChanged(CharSequence c) {
+                changedCommitState();
+            }
+        });
+        mLoginPwd.setOnTextChangedListener(new AccountView.OnTextChangedListener() {
+            @Override
+            public void onTextChanged(CharSequence c) {
+                changedCommitState();
+            }
+        });
     }
-
+    public void changedCommitState(){
+        if(TextUtil.isValidate(mEmailView.getText().toString(),mLoginPwd.getText().toString())){
+            mEmailSignInButton.setEnabled(true);
+        }else{
+            mEmailSignInButton.setEnabled(false);
+        }
+    }
 
     @Override
     protected void initializeData() {
         setTitle("login");
         viewMode = new LoginModel(this);
         viewMode.setController(this);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                CommonUtil.hideInput(LoginActivity.this);
                 attemptLogin();
             }
         });
-        List<String> acounts = new ArrayList<>();
-        acounts.add("qinwei_it@163.com");
-        acounts.add("qinmi@163.com");
-        addEmailsToAutoComplete(acounts);
     }
 
 
     private void attemptLogin() {
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String password = mLoginPwd.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !viewMode.isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
+            focusView = mLoginPwd;
             cancel = true;
         }
 
         if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
         } else if (!viewMode.isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
         }
-
+        CommonUtil.hideInput(LoginActivity.this);
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
             focusView.requestFocus();
         } else {
-//            goHome();
             doLogin(email, password);
         }
     }
 
     private void doLogin(String email, String password) {
+        if (!viewMode.checkNetworkConnected()) {
+            return;
+        }
+        viewMode.showProgress("");
         viewMode.login(email, password);
     }
 
@@ -127,19 +116,10 @@ public class LoginActivity extends BaseActivity implements Controller {
         finish();
     }
 
-
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-        mEmailView.setAdapter(adapter);
-    }
-
-
     @Override
     public void onSuccess(String tag) {
         if (tag.equals(LoginModel.ACTION_LOGIN)) {
-//TODO: Replace this with your own logic
+            viewMode.closeProgress();
             goHome();
             Toast.makeText(this, viewMode.user, Toast.LENGTH_LONG).show();
         }
@@ -148,13 +128,24 @@ public class LoginActivity extends BaseActivity implements Controller {
     @Override
     public void onFailure(String tag, int errorCode, String errorMsg) {
         if (tag.equals(LoginModel.ACTION_LOGIN)) {
+            viewMode.closeProgress();
             Toast.makeText(this, "errorCode-----" + errorMsg, Toast.LENGTH_LONG).show();
         }
     }
 
-    @Override
-    public void onProgressUpdated(String tag, long curPos, long contentLength) {
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.mLoginGoRegisterBtn:
+                goRegister();
+                break;
+        }
+    }
+
+    private void goRegister() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 }
 

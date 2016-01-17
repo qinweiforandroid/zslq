@@ -15,7 +15,7 @@ import cn.wei.zslq.R;
 public class SplashActivity extends Activity {
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
-            startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             finish();
         }
 

@@ -27,12 +27,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/mProfileNickLabel"
+                style="@style/TextViewDarkBlackText_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextViewDarkBlackText_16"
                 android:text="成龙" />
 
             <TextView
+                android:id="@+id/mProfileAccountLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

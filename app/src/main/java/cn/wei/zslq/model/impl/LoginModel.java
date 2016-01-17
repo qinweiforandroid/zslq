@@ -37,7 +37,6 @@ public class LoginModel extends ViewMode implements ILoginModel, OnGlobalExcepti
     }
 
     public boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() > 4;
     }
 
@@ -70,35 +69,30 @@ public class LoginModel extends ViewMode implements ILoginModel, OnGlobalExcepti
         HashMap<String, String> data = new HashMap<>();
         data.put("username", username);
         ActionClickUtils.onEvent(context, ActionClickUtils.ACTION_LOGIN, data);
-        if (!checkNetworkConnected()) {
-            return;
-        }
-        if (canRequest(ACTION_LOGIN)) {
-            Request request = new Request(DataServiceAPI.getDomain(), Request.RequestMethod.GET);
-            request.addHeader("token", "123456789");
-            request.put("username", username);
-            request.put("password", password);
-            request.setCallback(new StringCallback() {
-                @Override
-                public void onSuccess(String result) {
-                    LoginModel.this.user = result;
-                    onRequestSuccess(ACTION_LOGIN);
-                }
+//        Bmob.
+        Request request = new Request(DataServiceAPI.getDomain(), Request.RequestMethod.GET);
+        request.addHeader("token", "123456789");
+        request.put("username", username);
+        request.put("password", password);
+        request.setCallback(new StringCallback() {
+            @Override
+            public void onSuccess(String result) {
+                LoginModel.this.user = result;
+                onRequestSuccess(ACTION_LOGIN);
+            }
 
-                @Override
-                public void onCompleted() {
-                    closeProgress();
-                }
+            @Override
+            public void onCompleted() {
+                RequestManager.getInstance().cancelRequest(ACTION_LOGIN);
+            }
 
-                @Override
-                public void onFailure(AppException e) {
-                    e.printStackTrace();
-                    onRequestError(ACTION_LOGIN, e.responseCode, e.responseMessage);
-                }
-            });
-            request.setOnGlobalExceptionListener(this);
-            showProgressCanCancel(ACTION_LOGIN, "login ing..");
-            RequestManager.getInstance().execute(ACTION_LOGIN, request);
-        }
+            @Override
+            public void onFailure(AppException e) {
+                e.printStackTrace();
+                onRequestError(ACTION_LOGIN, e.responseCode, e.responseMessage);
+            }
+        });
+        request.setOnGlobalExceptionListener(this);
+        RequestManager.getInstance().execute(ACTION_LOGIN, request);
     }
 }

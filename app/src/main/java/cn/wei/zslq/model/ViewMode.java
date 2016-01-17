@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import cn.wei.zslq.controller.Controller;
+import cn.wei.zslq.controller.OnProgressUpdatedListener;
 import cn.wei.zslq.utils.ProgressDialogUtils;
 import http.AppException;
 import http.OnGlobalExceptionListener;
@@ -20,6 +21,7 @@ public abstract class ViewMode implements OnGlobalExceptionListener {
     protected Context context;
     private Toast mToast;
     protected Controller controller;
+    private OnProgressUpdatedListener listener;
 
     public ViewMode(Context context) {
         this.context = context;
@@ -27,6 +29,16 @@ public abstract class ViewMode implements OnGlobalExceptionListener {
 
     public void setController(Controller controller) {
         this.controller = controller;
+    }
+
+    public void setOnProgressUpdatedListener(OnProgressUpdatedListener listener) {
+        this.listener = listener;
+    }
+
+    protected void onProgressUpdated(String tag, long curPos, long contentLength) {
+        if (listener != null) {
+            listener.onProgressUpdated(tag, curPos, contentLength);
+        }
     }
 
     protected void onRequestSuccess(String tag) {

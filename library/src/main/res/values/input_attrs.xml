@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="accountview">
+        <attr name="hint" format="reference|string" />
+        <attr name="android:gravity" />
+        <attr name="android:inputType" />
+        <attr name="android:minEms" />
+        <attr name="android:maxEms" />
+        <attr name="android:maxLength" />
+        <attr name="label" format="reference|string" />
+        <attr name="leftIcon" format="reference"></attr>
+        <attr name="bg_edit" format="reference"></attr>
+        <attr name="text" format="reference|string" />
+        <attr name="android:singleLine" />
+    </declare-styleable>
+</resources>

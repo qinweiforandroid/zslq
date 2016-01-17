@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <cn.wei.library.widget.input.AccountView
+        android:id="@+id/mRegisterAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_activity_padding_8"
+        android:layout_marginRight="@dimen/common_activity_padding_8"
+        android:layout_marginTop="@dimen/common_activity_padding_8"
+        app:label="注册账号:" />
+
+    <cn.wei.library.widget.input.AccountView
+        android:id="@+id/mRegisterPwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_activity_padding_8"
+        android:layout_marginRight="@dimen/common_activity_padding_8"
+        android:layout_marginTop="@dimen/common_activity_padding_8"
+        app:label="注册密码:" />
+
+    <Button
+        android:id="@+id/mRegisterCommitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_activity_padding_8"
+        android:layout_marginRight="@dimen/common_activity_padding_8"
+        android:layout_marginTop="@dimen/common_activity_padding_16"
+        android:text="注 册" />
+</LinearLayout>

@@ -122,10 +122,6 @@ public class InformationListFragment extends BaseListFragment implements Control
         }
     }
 
-    @Override
-    public void onProgressUpdated(String tag, long curPos, long contentLength) {
-
-    }
 
     public class ViewHolder extends QBaseViewHolder {
 

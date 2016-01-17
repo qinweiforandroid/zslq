@@ -2,9 +2,9 @@
     <string name="app_name">掌上泗县</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_account">input your Account</string>
-    <string name="prompt_password">input your password</string>
-    <string name="action_sign_in">login in</string>
+    <string name="prompt_account">输入用户名</string>
+    <string name="prompt_password">输入密码</string>
+    <string name="action_sign_in">登录</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>

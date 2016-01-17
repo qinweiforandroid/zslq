@@ -101,15 +101,6 @@
         <attr name="currentDaySelected" format="boolean" />
         <attr name="drawRoundRect" format="boolean" />
     </declare-styleable>
-    <declare-styleable name="editor">
-        <attr name="hint" format="reference|string" />
-        <attr name="android:gravity" />
-        <attr name="android:inputType" />
-        <attr name="android:minEms" />
-        <attr name="android:maxEms" />
-        <attr name="text" format="reference|string" />
-        <attr name="android:singleLine" />
-    </declare-styleable>
 
     <declare-styleable name="ProgressWheel">
         <attr name="matProg_progressIndeterminate" format="boolean" />

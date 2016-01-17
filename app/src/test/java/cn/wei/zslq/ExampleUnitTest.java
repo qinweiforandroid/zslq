@@ -2,6 +2,8 @@ package cn.wei.zslq;
 
 import org.junit.Test;
 
+import java.security.AccessController;
+
 import static org.junit.Assert.*;
 
 /**
