@@ -13,13 +13,20 @@ import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
 
 public class SplashActivity extends Activity {
+    public static final int STATE_LOGINED=100;
+    public static final int STATE_NO_LOGIN=200;
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
-            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            switch (msg.what){
+                case STATE_LOGINED:
+                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                    break;
+                case STATE_NO_LOGIN:
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    break;
+            }
             finish();
         }
-
-        ;
     };
 
     @Override
@@ -30,7 +37,12 @@ public class SplashActivity extends Activity {
         Log.d("wei", "app started");
 //		TelephonyManager tm = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
 //		Toast.makeText(this, tm.getDeviceId(), 1000).show();
-        mHandler.sendEmptyMessageDelayed(0, 2000);
+        if(MyApplication.getLoginUser()==null){
+            mHandler.sendEmptyMessageDelayed(STATE_NO_LOGIN, 2000);
+
+        }else{
+            mHandler.sendEmptyMessageDelayed(STATE_LOGINED, 2000);
+        }
     }
 
     @Override

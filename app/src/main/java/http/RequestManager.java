@@ -42,7 +42,9 @@ public class RequestManager {
     public void cancelRequest(String tag, boolean force) {
         Trace.d("before cancel size=" + requests.size());
         Request request = requests.remove(tag);
-        request.cancel(force);
+        if(request!=null){
+            request.cancel(force);
+        }
         Trace.d("after cancel size=" + requests.size());
     }
 

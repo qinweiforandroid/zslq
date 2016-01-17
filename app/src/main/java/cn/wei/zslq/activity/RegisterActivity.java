@@ -69,20 +69,25 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         String pwd = mRegisterPwd.getText().toString();
         if (validAccount(account) && validPwd(pwd)) {
             model.register(account, pwd);
+        }else{
+            model.showToast("用户名和密码长度不少于6");
         }
     }
 
     public boolean validAccount(String account) {
-        return false;
+        return account.length() > 5;
     }
 
     public boolean validPwd(String pwd) {
-        return false;
+        return pwd.length() > 5;
     }
 
     @Override
     public void onSuccess(String tag) {
-
+        if(tag.equals(RegisterModel.ACTION_REGISTER)){
+            model.showToast("注册成功!");
+            finish();
+        }
     }
 
     @Override

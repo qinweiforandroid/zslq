@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import cn.bmob.v3.BmobUser;
 import cn.wei.library.widget.input.AccountView;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
@@ -121,7 +122,7 @@ public class LoginActivity extends BaseActivity implements Controller, OnClickLi
         if (tag.equals(LoginModel.ACTION_LOGIN)) {
             viewMode.closeProgress();
             goHome();
-            Toast.makeText(this, viewMode.user, Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"欢迎，"+ BmobUser.getCurrentUser(this).getUsername(), Toast.LENGTH_LONG).show();
         }
     }
 

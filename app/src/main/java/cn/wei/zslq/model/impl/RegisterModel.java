@@ -2,10 +2,10 @@ package cn.wei.zslq.model.impl;
 
 import android.content.Context;
 
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.SaveListener;
 import cn.wei.zslq.model.IRegisterModel;
 import cn.wei.zslq.model.ViewMode;
+import cn.wei.zslq.entity.User;
 
 /**
  * Created by qinwei on 2016/1/11 10:55
@@ -20,10 +20,10 @@ public class RegisterModel extends ViewMode implements IRegisterModel {
 
     @Override
     public void register(String account, String password) {
-        BmobUser user = new BmobUser();
+        User user = new User();
         user.setUsername(account);
         user.setPassword(password);
-        user.save(context, new SaveListener() {
+        user.signUp(context, new SaveListener() {
             @Override
             public void onSuccess() {
                 onRequestSuccess(ACTION_REGISTER);

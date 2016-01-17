@@ -7,17 +7,13 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 
+import cn.bmob.v3.listener.SaveListener;
+import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.entity.User;
 import cn.wei.zslq.model.ILoginModel;
 import cn.wei.zslq.model.ViewMode;
-import cn.wei.zslq.service.DataServiceAPI;
-import cn.wei.zslq.utils.ActionClickUtils;
 import cn.wei.zslq.utils.PrefsAccessor;
-import http.AppException;
 import http.OnGlobalExceptionListener;
-import http.Request;
-import http.RequestManager;
-import http.StringCallback;
 
 /**
  * Created by qinwei on 2015/12/18 15:36
@@ -68,31 +64,52 @@ public class LoginModel extends ViewMode implements ILoginModel, OnGlobalExcepti
     public void login(String username, String password) {
         HashMap<String, String> data = new HashMap<>();
         data.put("username", username);
-        ActionClickUtils.onEvent(context, ActionClickUtils.ACTION_LOGIN, data);
-//        Bmob.
-        Request request = new Request(DataServiceAPI.getDomain(), Request.RequestMethod.GET);
-        request.addHeader("token", "123456789");
-        request.put("username", username);
-        request.put("password", password);
-        request.setCallback(new StringCallback() {
+        User user=new User();
+        user.setUsername(username);
+        user.setPassword(password);
+//        User.loginByAccount(context, username, password, new LogInListener<User>() {
+//            @Override
+//            public void done(User user, BmobException e) {
+//
+//            }
+//        });
+        user.login(context, new SaveListener() {
             @Override
-            public void onSuccess(String result) {
-                LoginModel.this.user = result;
+            public void onSuccess() {
+                MyApplication.setLoginUser(User.getCurrentUser(context));
                 onRequestSuccess(ACTION_LOGIN);
             }
 
             @Override
-            public void onCompleted() {
-                RequestManager.getInstance().cancelRequest(ACTION_LOGIN);
-            }
-
-            @Override
-            public void onFailure(AppException e) {
-                e.printStackTrace();
-                onRequestError(ACTION_LOGIN, e.responseCode, e.responseMessage);
+            public void onFailure(int i, String s) {
+                onRequestError(ACTION_LOGIN, i, s);
             }
         });
-        request.setOnGlobalExceptionListener(this);
-        RequestManager.getInstance().execute(ACTION_LOGIN, request);
+//        ActionClickUtils.onEvent(context, ActionClickUtils.ACTION_LOGIN, data);
+////        Bmob.
+//        Request request = new Request(DataServiceAPI.getDomain(), Request.RequestMethod.GET);
+//        request.addHeader("token", "123456789");
+//        request.put("username", username);
+//        request.put("password", password);
+//        request.setCallback(new StringCallback() {
+//            @Override
+//            public void onSuccess(String result) {
+//                LoginModel.this.user = result;
+//                onRequestSuccess(ACTION_LOGIN);
+//            }
+//
+//            @Override
+//            public void onCompleted() {
+//                RequestManager.getInstance().cancelRequest(ACTION_LOGIN);
+//            }
+//
+//            @Override
+//            public void onFailure(AppException e) {
+//                e.printStackTrace();
+//                onRequestError(ACTION_LOGIN, e.responseCode, e.responseMessage);
+//            }
+//        });
+//        request.setOnGlobalExceptionListener(this);
+//        RequestManager.getInstance().execute(ACTION_LOGIN, request);
     }
 }

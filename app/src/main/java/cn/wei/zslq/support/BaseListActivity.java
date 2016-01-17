@@ -36,6 +36,7 @@ public abstract class BaseListActivity extends BaseActivity implements OnItemCli
 
     @Override
     protected void initializeView() {
+        super.initializeView();
         mPullToRefreshLsv = (PullToRefreshListView) findViewById(R.id.generalPullToRefreshLsv);
         mPullToRefreshLsv.setPullToRefreshOverScrollEnabled(getPullToRefreshOverScrollEnabled());
         addRefreshHeaderView(mPullToRefreshLsv.getRefreshableView());

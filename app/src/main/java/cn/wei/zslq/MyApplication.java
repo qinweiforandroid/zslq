@@ -14,12 +14,15 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import java.io.File;
 
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobUser;
 import http.Trace;
+import cn.wei.zslq.entity.User;
 
 public class MyApplication extends Application implements Application.ActivityLifecycleCallbacks {
     public static final int APP_STATE_STARTED = 1;//app 开启
     public static final int APP_STATE_LOGINED = 2;//app 登陆
     private static MyApplication mInstance;
+    private static User currentUser;
     private int app_state;
     public static boolean isDevelop = true;
     private boolean isForeground;//应用是否在前台 true代表前台，false代表后台
@@ -43,7 +46,9 @@ public class MyApplication extends Application implements Application.ActivityLi
     }
 
     private void initializeDataTask() {
-
+        if(User.getCurrentUser(getApplicationContext())!=null){
+            currentUser= BmobUser.getCurrentUser(getApplicationContext(),User.class);
+        }
     }
 
     public void initializeImageloader() {
@@ -117,5 +122,12 @@ public class MyApplication extends Application implements Application.ActivityLi
 
     public boolean isForeground() {
         return isForeground;
+    }
+
+    public static void setLoginUser(BmobUser tmp) {
+        currentUser=(User)tmp;
+    }
+    public static User getLoginUser(){
+        return currentUser;
     }
 }

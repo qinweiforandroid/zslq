@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingBottom="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp" >
+
+    <TextView
+        android:id="@+id/mChatItemDateLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="2014-1-1" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mChatItemDateLabel"
+        android:gravity="center_vertical|right"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/mChatItemUserIconImg"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/dl" />
+
+        <LinearLayout
+            android:id="@+id/mChatItemMsgContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/mChatItemUserIconImg"
+            android:background="@drawable/message_bg_right"
+            android:gravity="center_vertical|right"
+            android:maxWidth="250dp"
+            android:minHeight="45dp"
+            android:orientation="horizontal"
+            android:paddingBottom="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="15dp"
+            android:paddingTop="3dp" >
+
+            <TextView
+                android:id="@+id/mChatItemVoiceLengthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="10&apos;"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/mChatItemVoiceImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/gotye_anim_voice_right" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/mProgressBarStatu"
+            style="?android:attr/progressBarStyleSmallTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="3dp"
+            android:layout_toLeftOf="@id/mChatItemMsgContent" />
+
+        <ImageView
+            android:id="@+id/mChatItemSendErrImg"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/mChatItemMsgContent"
+            android:src="@drawable/icon_zhuyi" />
+    </RelativeLayout>
+
+</RelativeLayout>

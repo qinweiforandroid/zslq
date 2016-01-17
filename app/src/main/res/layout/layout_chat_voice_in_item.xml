@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp" >
+
+    <TextView
+        android:id="@+id/mChatItemDateLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingRight="10dp"
+        android:text="2014-1-1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingRight="50dp" >
+
+        <ImageView
+            android:id="@+id/mChatItemUserIconImg"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/dl" />
+
+        <LinearLayout
+            android:id="@+id/mChatItemMsgContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/message_bg_left"
+            android:gravity="center_vertical"
+            android:maxWidth="250dp"
+            android:minHeight="45dp"
+            android:orientation="horizontal"
+            android:paddingBottom="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="15dp"
+            android:paddingTop="3dp" >
+
+            <ImageView
+                android:id="@+id/mChatItemVoiceImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/gotye_anim_voice" />
+
+            <TextView
+                android:id="@+id/mChatItemVoiceLengthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="10&apos;"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

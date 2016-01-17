@@ -3,9 +3,9 @@
     package="cn.wei.zslq">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- bmob配置-->
     <uses-permission android:name="android.permission.READ_LOGS"/>
     <!--umeng 权限配置-->
@@ -48,6 +48,10 @@
         <activity
             android:name=".activity.WebViewActivity"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".controller.im.ChatActivity"
+            android:screenOrientation="portrait"></activity>
+
 
         <service
             android:name="com.umeng.update.net.DownloadingService"

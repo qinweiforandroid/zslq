@@ -44,14 +44,14 @@ public abstract class ViewMode implements OnGlobalExceptionListener {
     protected void onRequestSuccess(String tag) {
         if (controller != null) {
             controller.onSuccess(tag);
-            RequestManager.getInstance().removeRequest(tag);
+//            RequestManager.getInstance().removeRequest(tag);
         }
     }
 
     protected void onRequestError(String tag, int errorCode, String errorMsg) {
         if (controller != null) {
             controller.onFailure(tag, errorCode, errorMsg);
-            RequestManager.getInstance().removeRequest(tag);
+//            RequestManager.getInstance().removeRequest(tag);
         }
     }
 
