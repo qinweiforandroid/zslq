@@ -22,7 +22,6 @@ import cn.wei.library.adapter.QBaseViewHolder;
 import cn.wei.zslq.R;
 import cn.wei.zslq.support.BaseListActivity;
 import cn.wei.zslq.utils.FileUtil;
-import http.User;
 
 public class ChatActivity extends BaseListActivity  {
 	public final int type_txt_in = 0;
@@ -34,8 +33,6 @@ public class ChatActivity extends BaseListActivity  {
 	public int playingPosition = -1;
 	public boolean isPlaying = false;
 	private TextView mChatNoticeMessageLabel;
-	private User targetUser;// 对方
-	private User sendUser;// 自己
 	private String targetId;
 	private String selfId;
 	private String caseId;

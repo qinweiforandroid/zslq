@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/widgets_general_row_select"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/common_activity_padding_16"
+        android:paddingRight="@dimen/common_activity_padding_8">
+
+        <ImageView
+            android:id="@+id/mWidgetRowIconImg"
+            android:layout_width="@dimen/widget_general_row_icon_size_width"
+            android:layout_height="@dimen/widget_general_row_icon_size_height"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/common_activity_padding_8" />
+
+        <TextView
+            android:id="@+id/mWidgetRowLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/mWidgetRowIconImg"
+            android:layout_weight="1"
+            android:text="姓名" />
+
+
+        <TextView
+            android:id="@+id/mWidgetRowValueLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="小明" />
+
+        <ImageView
+            android:id="@+id/mWidgetRowActionImg"
+            android:layout_marginLeft="@dimen/common_activity_padding_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/action_row" />
+    </LinearLayout>
+</merge>

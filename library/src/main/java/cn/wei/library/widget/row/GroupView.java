@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cn.wei.library.R;
+import cn.wei.library.utils.DensityUtil;
 
 
 public class GroupView extends LinearLayout {
@@ -37,8 +38,7 @@ public class GroupView extends LinearLayout {
 
 	private void initializeView(Context context) {
 		this.context = context;
-		setBackgroundColor(context.getResources().getColor(R.color.white));
-		LayoutInflater.from(context).inflate(R.layout.widget_general_group, this);
+		LayoutInflater.from(context).inflate(R.layout.widget_row_group_general, this);
 		titleContainer = findViewById(R.id.mGroupViewTitleContainer);
 		mGroupViewTitleLabel = (TextView) findViewById(R.id.mGroupViewTitleLabel);
 		mGroupViewContainer = (LinearLayout) findViewById(R.id.mGroupViewContainer);

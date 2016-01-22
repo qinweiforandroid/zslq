@@ -48,6 +48,7 @@ public class MyApplication extends Application implements Application.ActivityLi
     private void initializeDataTask() {
         if(User.getCurrentUser(getApplicationContext())!=null){
             currentUser= BmobUser.getCurrentUser(getApplicationContext(),User.class);
+            app_state=APP_STATE_LOGINED;
         }
     }
 
@@ -124,10 +125,13 @@ public class MyApplication extends Application implements Application.ActivityLi
         return isForeground;
     }
 
-    public static void setLoginUser(BmobUser tmp) {
-        currentUser=(User)tmp;
+    public static void setLoginUser(User tmp) {
+        currentUser=tmp;
     }
     public static User getLoginUser(){
         return currentUser;
+    }
+    public static boolean isLogin(){
+        return currentUser!=null;
     }
 }

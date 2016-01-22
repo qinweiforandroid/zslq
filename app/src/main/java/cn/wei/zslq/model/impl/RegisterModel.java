@@ -22,7 +22,9 @@ public class RegisterModel extends ViewMode implements IRegisterModel {
     public void register(String account, String password) {
         User user = new User();
         user.setUsername(account);
+        user.setNick(account);
         user.setPassword(password);
+        user.setIcon("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1185115822,2221480095&fm=111&gp=0.jpg");
         user.signUp(context, new SaveListener() {
             @Override
             public void onSuccess() {

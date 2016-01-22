@@ -7,7 +7,8 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 
-import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.entity.User;
 import cn.wei.zslq.model.ILoginModel;
@@ -67,22 +68,15 @@ public class LoginModel extends ViewMode implements ILoginModel, OnGlobalExcepti
         User user=new User();
         user.setUsername(username);
         user.setPassword(password);
-//        User.loginByAccount(context, username, password, new LogInListener<User>() {
-//            @Override
-//            public void done(User user, BmobException e) {
-//
-//            }
-//        });
-        user.login(context, new SaveListener() {
+        User.loginByAccount(context, username, password, new LogInListener<User>() {
             @Override
-            public void onSuccess() {
-                MyApplication.setLoginUser(User.getCurrentUser(context));
-                onRequestSuccess(ACTION_LOGIN);
-            }
-
-            @Override
-            public void onFailure(int i, String s) {
-                onRequestError(ACTION_LOGIN, i, s);
+            public void done(User user, BmobException e) {
+                if (user != null) {
+                    MyApplication.setLoginUser(user);
+                    onRequestSuccess(ACTION_LOGIN);
+                } else {
+                    onRequestError(ACTION_LOGIN, e.getErrorCode(), e.getMessage());
+                }
             }
         });
 //        ActionClickUtils.onEvent(context, ActionClickUtils.ACTION_LOGIN, data);

@@ -53,7 +53,7 @@
     <color name="group_manager_user_title">#666666</color>
     <color name="list_item_sel_color">#eaeaea</color>
 
-    <!--user detail-->
+    <!--userEntity detail-->
     <color name="user_detail_base">#ececec</color>
     <color name="pickimage_item_bg">#ffffff</color>
 

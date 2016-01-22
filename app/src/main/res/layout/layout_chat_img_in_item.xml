@@ -24,13 +24,13 @@
             android:id="@+id/mChatItemUserIconImg"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/dl" />
+            android:src="@drawable/ic_personl_default" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/message_bg_left"
+            android:background="@drawable/im_chat_ic_message_bg_left"
             android:gravity="center_vertical"
             android:maxWidth="250dp"
             android:minHeight="45dp" >

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/common_activity_padding_8">
+
+    <ImageView
+        android:id="@+id/mInfoIconImg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/mInfoNickLabel"
+            style="@style/TextViewDarkBlackText_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="成龙" />
+
+        <TextView
+            android:id="@+id/mInfoAccountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="微信号:435231045" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/mWidgetRowActionImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/action_row" />
+</LinearLayout>
+

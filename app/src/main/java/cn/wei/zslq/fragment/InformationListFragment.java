@@ -8,8 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import cn.wei.zslq.support.BaseListFragment;
 import cn.wei.library.adapter.QBaseViewHolder;
+import cn.wei.library.utils.ImageUtils;
 import cn.wei.library.widget.EmptyView;
 import cn.wei.library.widget.FooterView;
 import cn.wei.zslq.R;
@@ -17,8 +17,8 @@ import cn.wei.zslq.activity.WebViewActivity;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.entity.InformationBean;
 import cn.wei.zslq.model.impl.InformationModel;
+import cn.wei.zslq.support.BaseListFragment;
 import cn.wei.zslq.utils.ActionClickUtils;
-import cn.wei.zslq.utils.ImageUtils;
 
 /**
  * Created by qinwei on 2015/10/29 17:41

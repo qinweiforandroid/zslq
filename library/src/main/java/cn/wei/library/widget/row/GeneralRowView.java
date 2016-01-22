@@ -42,7 +42,7 @@ public class GeneralRowView extends BaseRowView implements OnClickListener {
 		int padding = (int) getContext().getResources().getDimension(R.dimen.widget_general_row_padding);
 		setPadding(padding, padding, padding, padding);
 		setGravity(Gravity.CENTER_VERTICAL);
-		LayoutInflater.from(context).inflate(R.layout.widget_general_row, this);
+		LayoutInflater.from(context).inflate(R.layout.widget_row_android, this);
 		mWidgetRowIconImg = (ImageView) findViewById(R.id.mWidgetRowIconImg);
 		mWidgetRowLabel = (TextView) findViewById(R.id.mWidgetRowLabel);
 		mWidgetRowActionImg = (ImageView) findViewById(R.id.mWidgetRowActionImg);

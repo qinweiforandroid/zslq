@@ -30,7 +30,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="5dp"
-            android:src="@drawable/dl" />
+            android:src="@drawable/ic_personl_default" />
 
         <LinearLayout
             android:id="@+id/mChatItemMsgContent"
@@ -39,7 +39,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/mChatItemUserIconImg"
-            android:background="@drawable/message_bg_right"
+            android:background="@drawable/im_chat_message_bg_right"
             android:gravity="center_vertical|right"
             android:maxWidth="250dp"
             android:minHeight="45dp"

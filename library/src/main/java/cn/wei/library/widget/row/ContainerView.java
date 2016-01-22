@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.LinearLayout;
 
+import cn.wei.library.utils.DensityUtil;
+
 
 public class ContainerView extends LinearLayout implements OnTouchListener {
 
@@ -44,7 +46,7 @@ public class ContainerView extends LinearLayout implements OnTouchListener {
 		if (descriptor.groupDescriptors != null && descriptor.groupDescriptors.size() > 0) {
 			GroupView groupView = null;
 			LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-			params.topMargin = DensityUtil.dip2px(context, 20);
+			params.topMargin = DensityUtil.dip2px(context, 16);
 
 			for (int i = 0; i < descriptor.groupDescriptors.size(); i++) {
 				groupView = new GroupView(context);

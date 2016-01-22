@@ -33,8 +33,8 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
         mWidgetContainerView = (ContainerView) v.findViewById(R.id.mWidgetContainerView);
         ArrayList<GroupDescriptor> groupDescriptors = new ArrayList<GroupDescriptor>();
         ArrayList<BaseRowDescriptor> rowDescriptors1 = new ArrayList<BaseRowDescriptor>();
-        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.icon_profile_remaining, "共享 ", "80", RowActionEnum.MY_FIRST));
-        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.icon_profile_zone, "动态", "20", RowActionEnum.MY_FIRST));
+        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.home_tab_ic_profile_remaining, "共享 ", "80", RowActionEnum.MY_FIRST));
+        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.home_tab_ic_profile_zone, "动态", "20", RowActionEnum.MY_FIRST));
 
 
         GroupDescriptor groupDescriptor1 = new GroupDescriptor("", rowDescriptors1);
@@ -42,7 +42,7 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
         ArrayList<BaseRowDescriptor> rowDescriptors2 = new ArrayList<BaseRowDescriptor>();
 
         rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "反馈", RowActionEnum.MY_FIRST));
-        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.icon_profile_setting, "设置", RowActionEnum.MY_FIRST));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.home_tab_ic_profile_setting, "设置", RowActionEnum.MY_FIRST));
         GroupDescriptor groupDescriptor2 = new GroupDescriptor("", rowDescriptors2);
 
 

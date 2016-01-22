@@ -69,4 +69,6 @@
     <string name="call">呼叫</string>
     <string name="save_image">保存图片到手机</string>
     <string name="im_service_disconnected">无法连接到后台服务</string>
+    <!-- 标题-->
+    <string name="mTitleUserInfo">用户资料</string>
 </resources>

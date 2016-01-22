@@ -92,7 +92,7 @@
         <attr name="paddingEnd" format="dimension" />
 
         <!--
-             Boolean that controls whether a view can take focus.  By default the user can not
+             Boolean that controls whether a view can take focus.  By default the userEntity can not
              move focus to a view; by setting this attribute to true the view is
              allowed to take focus.  This value does not impact the behavior of
              directly calling {@link android.view.View#requestFocus}, which will
@@ -374,7 +374,7 @@
 
         <!--
              Defines over-scrolling behavior. This property is used only if the
-             View is scrollable. Over-scrolling is the ability for the user to
+             View is scrollable. Over-scrolling is the ability for the userEntity to
              receive feedback when attempting to scroll beyond meaningful content.
         -->
         <attr name="overScrollMode">
@@ -730,7 +730,7 @@
         -->
         <attr name="scrollingCache" format="boolean" />
         <!--
-             When set to true, the list will filter results as the user types. The
+             When set to true, the list will filter results as the userEntity types. The
              List's adapter must support the Filterable interface for this to work.
         -->
         <attr name="textFilterEnabled" format="boolean" />
@@ -770,7 +770,7 @@
              property is set to true by default but should be set to false if your adapter
              will display items of varying heights. When this property is set to true and
              your adapter displays items of varying heights, the scrollbar thumb will
-             change size as the user scrolls through the list. When set to fale, the list
+             change size as the userEntity scrolls through the list. When set to fale, the list
              will use only the number of items in the adapter and the number of items visible
              on screen to determine the scrollbar's properties.
         -->

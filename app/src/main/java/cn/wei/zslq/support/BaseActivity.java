@@ -12,7 +12,7 @@ import com.umeng.analytics.MobclickAgent;
 
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
-import cn.wei.zslq.activity.HomeActivity;
+import cn.wei.zslq.controller.main.HomeActivity;
 import cn.wei.zslq.utils.Constants;
 
 /**
@@ -88,7 +88,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             if (isCanBack()) {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
-            mToolBarTitleLabel = (TextView) findViewById(R.id.mToolBarTitleLabel);
+            if (isCenter()) {
+                mToolBarTitleLabel = (TextView) findViewById(R.id.mToolBarTitleLabel);
+            }
         }
     }
 
