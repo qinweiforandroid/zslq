@@ -14,6 +14,7 @@ import cn.wei.library.widget.row.OnRowClickListener;
 import cn.wei.library.widget.row.RowActionEnum;
 import cn.wei.zslq.R;
 import cn.wei.zslq.activity.TalkListActivity;
+import cn.wei.zslq.controller.seller.SellerSimpleInfoListActivity;
 import cn.wei.zslq.support.BaseFragment;
 import cn.wei.zslq.utils.BmobManager;
 
@@ -38,6 +39,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
         GroupDescriptor groupDescriptor1 = new GroupDescriptor("", rowDescriptors1);
 
         ArrayList<BaseRowDescriptor> rowDescriptors2 = new ArrayList<BaseRowDescriptor>();
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "刘圩商家", RowActionEnum.ACTION_SELLER));
         rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_album, "扫一扫", RowActionEnum.MY_FIRST));
         rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_favorite, "摇一摇", RowActionEnum.MY_FIRST));
         GroupDescriptor groupDescriptor2 = new GroupDescriptor("", rowDescriptors2);
@@ -70,9 +72,17 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
             case ACTION_FRIEND:
                 goFriends();
                 break;
+            case ACTION_SELLER:
+                goSeller();
+                break;
             default:
                 break;
         }
+    }
+
+    private void goSeller() {
+        Intent intent=new Intent(getActivity(), SellerSimpleInfoListActivity.class);
+        startActivity(intent);
     }
 
     private void goFriends() {

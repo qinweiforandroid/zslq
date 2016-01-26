@@ -9,7 +9,6 @@ import java.io.IOException;
 public abstract class StringCallback extends AbstractCallback<String> {
     @Override
     protected String bindData(String content) throws IOException {
-        Trace.e(content);
         return content;
     }
 }

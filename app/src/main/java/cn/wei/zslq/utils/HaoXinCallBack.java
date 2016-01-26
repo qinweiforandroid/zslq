@@ -1,6 +1,8 @@
 package cn.wei.zslq.utils;
 
 
+import com.google.gson.JsonSyntaxException;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,6 +36,8 @@ public abstract class HaoXinCallBack<T> extends AbstractCallback<T> {
             throw new AppException(responseCode, jsonObject.getString("error") + "");
         } catch (JSONException e) {
             throw new AppException(AppException.ErrorType.PARSE_JSON, "ParseJsonException:" + e.getMessage());
+        }catch(JsonSyntaxException e){
+            throw new AppException(AppException.ErrorType.PARSE_JSON, "JsonSyntaxException:" + e.getMessage());
         }
     }
 }

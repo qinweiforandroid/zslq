@@ -5,7 +5,7 @@ import android.content.Context;
 import cn.bmob.v3.listener.SaveListener;
 import cn.wei.zslq.model.IRegisterModel;
 import cn.wei.zslq.model.ViewMode;
-import cn.wei.zslq.entity.User;
+import cn.wei.zslq.domain.User;
 
 /**
  * Created by qinwei on 2016/1/11 10:55

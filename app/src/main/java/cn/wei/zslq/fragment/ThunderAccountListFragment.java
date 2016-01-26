@@ -3,8 +3,6 @@ package cn.wei.zslq.fragment;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +16,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 import cn.wei.library.adapter.QBaseRecyclerViewHolder;
 import cn.wei.zslq.R;
-import cn.wei.zslq.entity.ThunderAccount;
+import cn.wei.zslq.domain.ThunderAccount;
 import cn.wei.zslq.support.BaseRecyclerRefreshViewFragment;
 import http.Trace;
 
@@ -27,19 +25,6 @@ import http.Trace;
  * email:qinwei_it@163.com
  */
 public class ThunderAccountListFragment extends BaseRecyclerRefreshViewFragment {
-    private android.os.Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == 0) {
-                modules.clear();
-                mSwipeRefreshLayout.setRefreshing(false);
-                mSwipeRefreshLayout.setEnabled(true);
-            }
-            modules.add("http://g.hiphotos.baidu.com/image/h%3D360/sign=8f437d29d5a20cf45990f8d946084b0c/9d82d158ccbf6c8156cbd646b93eb13532fa40a4.jpg");
-            adapter.notifyDataSetChanged();
-
-        }
-    };
 
     @Override
     protected int getFragmentLayoutId() {
@@ -121,6 +106,8 @@ public class ThunderAccountListFragment extends BaseRecyclerRefreshViewFragment 
                     break;
                 case R.id.mAccountCopyPwdBtn:
                     copyToClipboard(account.getPassword());
+                    break;
+                default:
                     break;
             }
         }

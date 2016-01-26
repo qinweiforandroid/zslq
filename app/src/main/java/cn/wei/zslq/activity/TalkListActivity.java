@@ -23,8 +23,8 @@ import java.util.LinkedList;
 import cn.wei.library.adapter.QBaseViewHolder;
 import cn.wei.library.utils.DensityUtil;
 import cn.wei.zslq.R;
-import cn.wei.zslq.entity.Comment;
-import cn.wei.zslq.entity.Talk;
+import cn.wei.zslq.domain.Comment;
+import cn.wei.zslq.domain.Talk;
 import cn.wei.zslq.support.BaseListActivity;
 import cn.wei.zslq.widget.talk.SayTextView;
 import cn.wei.zslq.widget.talk.TalkEditText;
@@ -283,7 +283,7 @@ public class TalkListActivity extends BaseListActivity {
         }
     }
 
-    public class RecyclerList extends LinkedList<View> {
+    public static class RecyclerList extends LinkedList<View> {
         private final Context context;
         private final int LayoutId;
 

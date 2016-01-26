@@ -17,7 +17,7 @@ import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.main.LoginActivity;
 import cn.wei.zslq.controller.profile.ProfileEditorActivity;
-import cn.wei.zslq.entity.User;
+import cn.wei.zslq.domain.User;
 import cn.wei.zslq.support.BaseFragment;
 
 /**
@@ -89,6 +89,8 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                 break;
             case ACTION_GO_LOGIN:
                 goLogin();
+                break;
+            default:
                 break;
         }
     }

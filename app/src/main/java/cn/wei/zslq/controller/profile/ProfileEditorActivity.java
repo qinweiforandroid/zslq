@@ -15,7 +15,7 @@ import cn.wei.library.widget.row.expand.IOSRowDescriptor;
 import cn.wei.library.widget.row.expand.UserIconRowDescriptor;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
-import cn.wei.zslq.entity.User;
+import cn.wei.zslq.domain.User;
 import cn.wei.zslq.support.BaseActivity;
 
 /**
@@ -66,6 +66,8 @@ public class ProfileEditorActivity extends BaseActivity implements OnRowClickLis
         switch (action){
             case ACTION_USER_ICON:
                 goUserIconEditor();
+                break;
+            default:
                 break;
         }
     }

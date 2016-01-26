@@ -15,6 +15,7 @@ public class Request {
 
 
     public RequestTask task;
+    public int delayTime=-1;
 
     public enum RequestMethod {
         GET, POST, PUT, DELETE

@@ -20,6 +20,11 @@ public class AppException extends Exception {
         this.responseMessage = responseMessage;
     }
 
+    @Override
+    public String toString() {
+        return "code:"+this.responseCode+"\nmsg:"+this.responseMessage;
+    }
+
     public AppException(ErrorType type, String detailMessage) {
         super(type.name() + ":" + detailMessage);
         this.responseMessage = detailMessage;
@@ -30,6 +35,8 @@ public class AppException extends Exception {
                 break;
             case URL_NOT_VALID:
                 this.responseCode = HttpContants.URL_NOT_VALID;
+                break;
+            default:
                 break;
         }
 

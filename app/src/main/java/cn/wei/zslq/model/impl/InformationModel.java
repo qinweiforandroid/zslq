@@ -4,9 +4,9 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
-import cn.wei.zslq.entity.InformationBean;
-import cn.wei.zslq.entity.InformationExtraInfoBean;
-import cn.wei.zslq.entity.InformationRoot;
+import cn.wei.zslq.domain.InformationBean;
+import cn.wei.zslq.domain.InformationExtraInfoBean;
+import cn.wei.zslq.domain.InformationRoot;
 import cn.wei.zslq.model.IInformationModel;
 import cn.wei.zslq.model.ViewMode;
 import cn.wei.zslq.utils.UrlHelpper;
@@ -59,10 +59,15 @@ public class InformationModel extends ViewMode implements IInformationModel {
         request.setCallback(new JsonCallback<InformationRoot>() {
 
             @Override
+            public InformationRoot preRequest(String url) {
+                return super.preRequest(url);
+            }
+
+            @Override
             public void onSuccess(InformationRoot result) {
                 if (result.getCode() == 0) {
                     informationBeans = result.getResults();
-                    extraInfo = (InformationExtraInfoBean) result.getExtraInfo();
+                    extraInfo =  result.getExtraInfo();
                     onRequestSuccess(currentRequestTag);
                 } else {
                     onRequestError(currentRequestTag, result.getCode(), result.getError());

@@ -1,4 +1,4 @@
-package cn.wei.zslq.entity;
+package cn.wei.zslq.domain;
 
 public class InformationExtraInfoBean {
     private String countTotal;

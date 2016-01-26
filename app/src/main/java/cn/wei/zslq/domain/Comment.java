@@ -1,4 +1,4 @@
-package cn.wei.zslq.entity;
+package cn.wei.zslq.domain;
 
 public class Comment {
 	public static final int comment=0;

@@ -10,7 +10,7 @@ import android.widget.ViewSwitcher;
 import cn.wei.zslq.support.BaseActivity;
 import cn.wei.library.widget.EmptyView;
 import cn.wei.zslq.R;
-import cn.wei.zslq.entity.InformationBean;
+import cn.wei.zslq.domain.InformationBean;
 import cn.wei.zslq.utils.HaoXinCallBack;
 import cn.wei.zslq.utils.UrlHelpper;
 import http.AppException;
@@ -26,8 +26,6 @@ public class WebViewActivity extends BaseActivity implements EmptyView.OnRetryLi
     public static final String KEY_INFORMATION_ID = "key_information_id";
     private WebView mWebView;
     private String informationId;
-    protected ViewSwitcher mViewSwitcher;
-    protected EmptyView mEmptyView;
 
     public static Intent getIntent(Context context, String id) {
         Intent intent = new Intent(context, WebViewActivity.class);
@@ -71,16 +69,12 @@ public class WebViewActivity extends BaseActivity implements EmptyView.OnRetryLi
         load();
     }
 
-    public void load() {
-        mViewSwitcher.setDisplayedChild(0);
-    }
-
     private void loadInformationFromServer() {
         Request request = new Request(UrlHelpper.loadInformationDetail(informationId));
         request.setCallback(new HaoXinCallBack<InformationBean>() {
             @Override
             public void onSuccess(InformationBean result) {
-                mViewSwitcher.setDisplayedChild(1);
+                showContent();
                 setTitle(result.getTitle());
                 mWebView.loadDataWithBaseURL("", result.getContentValue(), "text/html", "UTF-8", "");
             }
@@ -113,7 +107,7 @@ public class WebViewActivity extends BaseActivity implements EmptyView.OnRetryLi
     }
 
     // js通信接口
-    public class JavascriptInterface {
+    public static class JavascriptInterface {
         @android.webkit.JavascriptInterface
         public void openImage(String img) {
             Trace.d(img);

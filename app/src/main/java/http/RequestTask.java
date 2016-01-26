@@ -26,6 +26,13 @@ public class RequestTask extends AsyncTask<Void, Long, Object> {
         if (o != null) {
             return o;
         }
+        if (request.delayTime > 0) {
+            try {
+                Thread.sleep(request.delayTime);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         return doRequest(0);
     }
 

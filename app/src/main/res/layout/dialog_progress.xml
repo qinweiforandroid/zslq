@@ -13,12 +13,11 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center">
-        <cn.wei.library.widget.ProgressWheel
-            android:id="@+id/progress_wheel"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            wheel:matProg_barColor="#019EEB"
-            wheel:matProg_progressIndeterminate="true" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mProgressBar" />
 
         <TextView
             android:id="@+id/mProgressDialogLabel"

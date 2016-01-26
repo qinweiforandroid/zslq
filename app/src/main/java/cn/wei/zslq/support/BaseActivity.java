@@ -7,9 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import com.umeng.analytics.MobclickAgent;
 
+import cn.wei.library.widget.EmptyView;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.main.HomeActivity;
@@ -19,8 +21,10 @@ import cn.wei.zslq.utils.Constants;
  * 结构化activity的代码
  * 方法调用顺序为setContentView()->initializeView()->recoveryState(saveInstance)-> initializeData();
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements EmptyView.OnRetryListener {
     protected String TAG = this.getClass().getSimpleName();
+    protected ViewSwitcher mViewSwitcher;
+    protected EmptyView mEmptyView;
 
     @Override
     protected void onCreate(Bundle saveInstance) {
@@ -92,9 +96,22 @@ public abstract class BaseActivity extends AppCompatActivity {
                 mToolBarTitleLabel = (TextView) findViewById(R.id.mToolBarTitleLabel);
             }
         }
+
+        if (findViewById(cn.wei.library.R.id.mEmptyView) != null) {
+            mEmptyView = (EmptyView) findViewById(cn.wei.library.R.id.mEmptyView);
+            mEmptyView.setOnRetryListener(this);
+            mEmptyView.notifyDataChanged(EmptyView.State.ing);
+            mViewSwitcher = (ViewSwitcher) findViewById(cn.wei.library.R.id.mViewSwitcher);
+            load();
+        }
     }
-
-
+    public void showContent() {
+        mEmptyView.notifyDataChanged(EmptyView.State.done);
+        mViewSwitcher.setDisplayedChild(1);
+    }
+    public void load() {
+        mViewSwitcher.setDisplayedChild(0);
+    }
     /**
      * 界面被系统强杀 数据状态恢复
      *
@@ -171,5 +188,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         return false;
     }
 
+    @Override
+    public void onRetry() {
+
+    }
 }
 

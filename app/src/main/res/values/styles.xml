@@ -9,7 +9,7 @@
         <item name="android:windowBackground">@color/windowBg</item>
     </style>
 
-    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+    <style name="CustomDialog" parent="@android:style/Theme.DeviceDefault.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowContentOverlay">@null</item>

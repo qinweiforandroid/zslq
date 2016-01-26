@@ -1,4 +1,4 @@
-package cn.wei.zslq.entity;
+package cn.wei.zslq.domain;
 
 import cn.bmob.v3.BmobObject;
 

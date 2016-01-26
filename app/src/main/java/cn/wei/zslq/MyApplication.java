@@ -16,7 +16,7 @@ import java.io.File;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import http.Trace;
-import cn.wei.zslq.entity.User;
+import cn.wei.zslq.domain.User;
 
 public class MyApplication extends Application implements Application.ActivityLifecycleCallbacks {
     public static final int APP_STATE_STARTED = 1;//app 开启
@@ -38,8 +38,6 @@ public class MyApplication extends Application implements Application.ActivityLi
         initializeDataTask();
         registerActivityLifecycleCallbacks(this);
     }
-
-
 
     private void initializeBmobConfig() {
         Bmob.initialize(this, "23cef32eb5b6f7cf7c6dfb88d7def740");

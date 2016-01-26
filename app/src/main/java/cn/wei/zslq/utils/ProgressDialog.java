@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import cn.wei.library.widget.ProgressWheel;
 import cn.wei.zslq.R;
 
 
@@ -20,7 +19,6 @@ import cn.wei.zslq.R;
 public class ProgressDialog extends Dialog {
 
 	private String message;
-	private ProgressWheel mProgressBar;
 	private TextView mProgressDialogLabel;
 
 	public ProgressDialog(Context context, boolean cancelable, OnCancelListener cancelListener) {
@@ -40,7 +38,6 @@ public class ProgressDialog extends Dialog {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.dialog_progress);
 		mProgressDialogLabel = (TextView) findViewById(R.id.mProgressDialogLabel);
-		mProgressBar = (ProgressWheel) findViewById(R.id.progress_wheel);
 		if (TextUtils.isEmpty(message)) {
 			mProgressDialogLabel.setVisibility(View.GONE);
 		} else {
@@ -54,7 +51,10 @@ public class ProgressDialog extends Dialog {
 		dialog.setMessage(message);
 		return dialog;
 	}
+
+
 	private void setMessage(String message) {
+
 		this.message = message;
 	}
 }

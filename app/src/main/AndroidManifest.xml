@@ -7,13 +7,14 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- bmob配置-->
-    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.READ_LOGS" />
     <!--umeng 权限配置-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -61,18 +62,27 @@
             android:name=".activity.TalkListActivity"
             android:screenOrientation="portrait"></activity>
 
+        <activity
+            android:name=".controller.seller.SellerSimpleInfoListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".controller.seller.SellerDetailActivity"
+            android:screenOrientation="portrait"></activity>
 
 
         <service
             android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService" >
-        </service>
+            android:process=":DownloadingService"></service>
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
-        <meta-data android:value="568a1cfd67e58e5f3e000739" android:name="UMENG_APPKEY"></meta-data>
-        <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="568a1cfd67e58e5f3e000739"></meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Channel ID" />
 
     </application>
 

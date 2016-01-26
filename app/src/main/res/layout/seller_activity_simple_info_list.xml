@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <ViewSwitcher
+        android:id="@+id/mViewSwitcher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:inAnimation="@android:anim/fade_in"
+        android:outAnimation="@android:anim/fade_out">
+
+        <cn.wei.library.widget.EmptyView
+            android:id="@id/mEmptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.handmark.pulltorefresh.PullToRefreshListView
+            android:id="@id/generalPullToRefreshLsv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:scrollbars="none"
+            android:smoothScrollbar="true" />
+    </ViewSwitcher>
+</FrameLayout>

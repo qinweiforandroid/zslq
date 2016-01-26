@@ -15,7 +15,7 @@ import cn.wei.library.widget.FooterView;
 import cn.wei.zslq.R;
 import cn.wei.zslq.activity.WebViewActivity;
 import cn.wei.zslq.controller.Controller;
-import cn.wei.zslq.entity.InformationBean;
+import cn.wei.zslq.domain.InformationBean;
 import cn.wei.zslq.model.impl.InformationModel;
 import cn.wei.zslq.support.BaseListFragment;
 import cn.wei.zslq.utils.ActionClickUtils;
@@ -25,8 +25,7 @@ import cn.wei.zslq.utils.ActionClickUtils;
  * email:qinwei_it@163.com
  */
 public class InformationListFragment extends BaseListFragment implements Controller {
-    private String countTotal;
-    private InformationModel viewModel;
+    private InformationModel model;
 
     @Override
     public int getFragmentLayoutId() {
@@ -36,8 +35,8 @@ public class InformationListFragment extends BaseListFragment implements Control
     @Override
     protected void initializeArguments(Bundle args) {
         super.initializeArguments(args);
-        viewModel = new InformationModel(getContext());
-        viewModel.setController(this);
+        model = new InformationModel(getContext());
+        model.setController(this);
     }
 
     @Override
@@ -54,17 +53,22 @@ public class InformationListFragment extends BaseListFragment implements Control
 
     public void loadDataFromServer() {
         mEmptyView.notifyDataChanged(EmptyView.State.ing);
-        viewModel.loadInformationFirst();
+        model.loadInformationFirst();
     }
 
     @Override
     public void onRefresh(boolean isRefresh) {
         super.onRefresh(isRefresh);
-        if (viewModel.extraInfo != null) {
-            viewModel.loadInformationRefresh(viewModel.extraInfo.getCountTotal());
+        if (model.extraInfo != null) {
+            mPullToRefreshLsv.setScrollingWhileRefreshingEnabled(false);
+            model.loadInformationRefresh(model.extraInfo.getCountTotal());
         }
     }
 
+    @Override
+    protected boolean getPullToRefreshOverScrollEnabled() {
+        return true;
+    }
 
     @Override
     public View getAdapterViewAtPosition(int position, View convertView, ViewGroup parent) {
@@ -85,18 +89,18 @@ public class InformationListFragment extends BaseListFragment implements Control
     public void onSuccess(String tag) {
         switch (tag) {
             case InformationModel.ACTION_FIRST_LOAD:
-                modules.addAll(viewModel.informationBeans);
+                modules.addAll(model.informationBeans);
                 adapter.notifyDataSetChanged();
                 showContent();
                 break;
             case InformationModel.ACTION_MORE_LOAD:
-                modules.addAll(viewModel.informationBeans);
+                modules.addAll(model.informationBeans);
                 adapter.notifyDataSetChanged();
                 footerView.notifyDataChanged(FooterView.State.done);
                 break;
             case InformationModel.ACTION_REFRESH_LOAD:
                 modules.clear();
-                modules.addAll(viewModel.informationBeans);
+                modules.addAll(model.informationBeans);
                 adapter.notifyDataSetChanged();
                 mPullToRefreshLsv.onRefreshComplete();
                 break;
@@ -153,7 +157,7 @@ public class InformationListFragment extends BaseListFragment implements Control
     public void loadMore() {
         InformationBean informationBean = (InformationBean) modules.get(modules.size()-1);
         footerView.notifyDataChanged(FooterView.State.ing);
-        viewModel.loadInformationMore(informationBean.getId(), viewModel.extraInfo.getCountTotal());
+        model.loadInformationMore(informationBean.getId(), model.extraInfo.getCountTotal());
 
     }
 
@@ -161,7 +165,7 @@ public class InformationListFragment extends BaseListFragment implements Control
     public void onRetryLoadMore() {
         InformationBean informationBean = (InformationBean) modules.get(modules.size()-1);
         footerView.notifyDataChanged(FooterView.State.ing);
-        viewModel.loadInformationMore(informationBean.getId(), viewModel.extraInfo.getCountTotal());
+        model.loadInformationMore(informationBean.getId(), model.extraInfo.getCountTotal());
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.umeng.analytics.MobclickAgent;
 
 import cn.wei.library.R;
 import cn.wei.library.widget.EmptyView;
+import http.Trace;
 
 /**
  * fragment简单的封装
@@ -92,6 +93,12 @@ public abstract class BaseFragment extends Fragment implements EmptyView.OnRetry
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Trace.d(this.getClass().getSimpleName(),isVisibleToUser+"");
     }
 
     @Override

@@ -5,11 +5,11 @@ package cn.wei.zslq.service;
  * email:qinwei_it@163.com
  */
 public class DataServiceAPI {
-    private static String DOMAIN = "http://www.baidu.com";
-    private static final String ACTION_LOGIN = "/user/account/login";
+    private static String DOMAIN = "https://api.bmob.cn";
+    private static final String ACTION_LOGIN = "/functions/login";
 
     public static String getDomain() {
-        return DOMAIN + "/v1";
+        return DOMAIN + "/1";
     }
 
     public static String loadLogin() {
