@@ -32,7 +32,7 @@ public abstract class BaseListActivity extends BaseActivity implements OnItemCli
     protected ArrayList<Object> modules = new ArrayList<Object>();
     protected PullToRefreshListView mPullToRefreshLsv;
     protected ListAdapter adapter;
-    private FooterView footerView;
+    protected FooterView footerView;
 
     @Override
     protected void initializeView() {

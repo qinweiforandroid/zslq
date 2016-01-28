@@ -1,159 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="10dp" >
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="2dp"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:padding="8dp">
+
 
         <cn.wei.library.widget.CircleImageView
+            android:id="@+id/mTalkItemUserIconImg"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:layout_marginRight="@dimen/common_activity_padding_8"
             android:src="@drawable/ic_launcher" />
+
+
+        <TextView
+            android:id="@+id/mTalkItemUserNickLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/mTalkItemUserIconImg"
+            android:text="杨悦"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/mTalkContentLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mTalkItemUserNickLabel"
+            android:layout_marginTop="@dimen/common_activity_padding_8"
+            android:layout_toRightOf="@id/mTalkItemUserIconImg"
+            android:lineSpacingExtra="2dp"
+            android:text="这次南京之旅很开心，谢谢姐姐专车接送，姐姐的大龙虾，火锅，还有午觉睡晚贴心的丰盛外卖，还有送我两套衣服，很开心，好想有个这样的姐姐"
+            android:textSize="14sp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:orientation="vertical" >
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mTalkContentLabel"
+            android:layout_marginTop="@dimen/common_activity_padding_8"
+            android:layout_toRightOf="@id/mTalkItemUserIconImg">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:id="@+id/mTalkItemCreateTimeLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="杨悦"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
                 android:text="12:00"
                 android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/selector_im_talk_zan"
+                android:gravity="center_vertical"
+                android:text="点赞"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_activity_padding_8"
+                android:drawableLeft="@drawable/im_ic_qq_comment_normal"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="评论"
+                android:textSize="12sp" />
         </LinearLayout>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/mTalkContentLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:lineSpacingExtra="3dp"
-        android:text="这次南京之旅很开心，谢谢姐姐专车接送，姐姐的大龙虾，火锅，还有午觉睡晚贴心的丰盛外卖，还有送我两套衣服，很开心，好想有个这样的姐姐"
-        android:textSize="14sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_launcher" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_launcher" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_launcher" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/im_zone_talk_share_selector" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/im_ic_qq_comment_zan_normal" />
-
-        <ImageView
-            android:id="@+id/mTalkItemCommentImg"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/im_zone_talk_comment_img_selector" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/im_ic_qq_zone_zan" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="浏览140次"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/im_ic_qq_zone_zan" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="王周亚,王周亚,王周亚,王周亚,王周亚,王周亚,王周亚,王周亚,王周亚,王周亚,王周亚,王周亚,王周亚,王周亚,王周亚,王周亚,王周亚  觉得很赞"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/mTalkCommentContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical" >
-    </LinearLayout>
-	<TextView 
-	    android:id="@+id/mTalkItemCommentLabel"
-	    android:padding="5dp"
-	    android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="我也说一句..."
-        android:textSize="12sp"
-        android:background="@drawable/im_zone_talk_comment_label_boder"
-	    />
-</LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

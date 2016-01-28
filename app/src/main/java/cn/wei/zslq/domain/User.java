@@ -9,6 +9,7 @@ import cn.bmob.v3.BmobUser;
 public class User extends BmobUser {
     private String icon;
     private String nick;
+    private String signature;
     private boolean canPublish;
 
     public void setIcon(String icon) {
@@ -38,5 +39,13 @@ public class User extends BmobUser {
 
     public void setCanPublish(boolean canPublish) {
         this.canPublish = canPublish;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 }

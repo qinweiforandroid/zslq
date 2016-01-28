@@ -14,7 +14,7 @@ import cn.bmob.v3.listener.LogInListener;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.domain.User;
 import cn.wei.zslq.model.ILoginModel;
-import cn.wei.zslq.model.ViewMode;
+import cn.wei.zslq.model.ViewModel;
 import cn.wei.zslq.service.DataServiceAPI;
 import cn.wei.zslq.utils.ActionClickUtils;
 import cn.wei.zslq.utils.PrefsAccessor;
@@ -29,7 +29,7 @@ import http.Trace;
  * Created by qinwei on 2015/12/18 15:36
  * email:qinwei_it@163.com
  */
-public class LoginModel extends ViewMode implements ILoginModel, OnGlobalExceptionListener {
+public class LoginModel extends ViewModel implements ILoginModel, OnGlobalExceptionListener {
     public static final String ACTION_LOGIN = "action_login";
     public String user;
 
@@ -82,9 +82,9 @@ public class LoginModel extends ViewMode implements ILoginModel, OnGlobalExcepti
             public void done(User user, BmobException e) {
                 if (user != null) {
                     MyApplication.setLoginUser(user);
-                    onRequestSuccess(ACTION_LOGIN);
+                    onResponseSuccess(ACTION_LOGIN);
                 } else {
-                    onRequestError(ACTION_LOGIN, e.getErrorCode(), e.getMessage());
+                    onResponseError(ACTION_LOGIN, e.getErrorCode(), e.getMessage());
                 }
             }
         });
@@ -97,7 +97,7 @@ public class LoginModel extends ViewMode implements ILoginModel, OnGlobalExcepti
 //            @Override
 //            public void onSuccess(String result) {
 //                LoginModel.this.user = result;
-//                onRequestSuccess(ACTION_LOGIN);
+//                onResponseSuccess(ACTION_LOGIN);
 //            }
 //
 //            @Override
@@ -108,7 +108,7 @@ public class LoginModel extends ViewMode implements ILoginModel, OnGlobalExcepti
 //            @Override
 //            public void onFailure(AppException e) {
 //                e.printStackTrace();
-//                onRequestError(ACTION_LOGIN, e.responseCode, e.responseMessage);
+//                onResponseError(ACTION_LOGIN, e.responseCode, e.responseMessage);
 //            }
 //        });
 //        request.setOnGlobalExceptionListener(this);

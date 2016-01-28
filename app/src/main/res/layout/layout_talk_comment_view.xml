@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="@drawable/widgets_general_row_select" >
+     >
 
     <cn.wei.zslq.widget.talk.SayTextView
-        android:id="@+id/mSayLabel"
+        android:background="@drawable/widgets_general_row_select"
+        android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="3dp"
         android:textSize="13sp" >
     </cn.wei.zslq.widget.talk.SayTextView>
 
-</RelativeLayout>
+</merge>

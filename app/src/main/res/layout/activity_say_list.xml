@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/layout_toolbar" />
 
-    <com.handmark.pulltorefresh.PullToRefreshListView
-        android:id="@id/generalPullToRefreshLsv"
+    <ViewSwitcher
+        android:id="@+id/mViewSwitcher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="@null"
-        android:dividerHeight="10dp"
-        android:fadingEdge="none"
-        android:fastScrollEnabled="false"
-        android:focusable="false"
-        android:footerDividersEnabled="false"
-        android:headerDividersEnabled="false"
-        android:listSelector="@android:color/transparent"
-        android:smoothScrollbar="true" />
+        android:inAnimation="@android:anim/fade_in"
+        android:outAnimation="@android:anim/fade_out">
 
-    <cn.wei.zslq.widget.talk.TalkEditText
-        android:id="@+id/mTalkEditText"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
+        <cn.wei.library.widget.EmptyView
+            android:id="@id/mEmptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-</RelativeLayout>
+        <com.handmark.pulltorefresh.PullToRefreshListView
+            android:id="@id/generalPullToRefreshLsv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:focusable="false"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:cacheColorHint="@android:color/transparent"
+            android:listSelector="@android:color/transparent"
+            android:smoothScrollbar="true" />
+    </ViewSwitcher>
+
+</LinearLayout>

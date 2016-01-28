@@ -24,7 +24,7 @@ public class MyApplication extends Application implements Application.ActivityLi
     private static MyApplication mInstance;
     private static User currentUser;
     private int app_state;
-    public static boolean isDevelop = true;
+    public final static boolean isDevelop = true;
     private boolean isForeground;//应用是否在前台 true代表前台，false代表后台
     private int activityCount;
 
@@ -128,6 +128,10 @@ public class MyApplication extends Application implements Application.ActivityLi
     }
     public static User getLoginUser(){
         return currentUser;
+    }
+    public static void loginOut(){
+        MyApplication.getLoginUser().logOut(mInstance.getApplicationContext());
+        currentUser=null;
     }
     public static boolean isLogin(){
         return currentUser!=null;

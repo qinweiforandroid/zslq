@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <cn.wei.library.widget.input.AccountView
+        android:id="@+id/mProfileNickEditor"
+        android:layout_marginTop="@dimen/common_activity_padding_16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bg_edit="@color/white"
+        app:label="昵称" />
+
+    <TextView
+        style="@style/TextViewLightGrayText_12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/common_activity_padding_8"
+        android:text="设置后,其他人将看到你的昵称" />
+</LinearLayout>

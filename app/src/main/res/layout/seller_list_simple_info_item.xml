@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="3dp"
     app:cardElevation="2dp"
     app:cardPreventCornerOverlap="false"
     app:cardUseCompatPadding="true">
@@ -27,38 +27,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/mSellerItemTitleLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
                 android:ellipsize="end"
+                android:singleLine="true"
                 android:text="万达广场"
-                android:textStyle="bold"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/mSellerItemDescriptorLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:maxLines="2"
-                android:lineSpacingExtra="2dp"
-                android:ellipsize="end"
                 android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:lineSpacingExtra="2dp"
+                android:maxLines="2"
                 android:text="万达广场近期打算落户刘圩镇啦，大家敬请期待"
                 android:textSize="14sp" />
+
             <TextView
-                android:layout_marginTop="4dp"
                 android:id="@+id/mSellerItemTimeLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="刚刚"
-                android:textSize="@dimen/text_size_12"
-                android:textColor="#999999" />
+                android:textColor="@color/gray_08"
+                android:textSize="@dimen/text_size_12" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

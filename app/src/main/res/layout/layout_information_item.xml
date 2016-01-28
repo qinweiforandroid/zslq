@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="2dp"
+    app:cardCornerRadius="3dp"
     app:cardElevation="2dp"
     app:cardPreventCornerOverlap="false"
     app:cardUseCompatPadding="true">
@@ -14,12 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="5dp">
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/mNewsItemIconImg"
-            android:layout_width="120dp"
-            android:layout_height="90dp"
+            android:layout_width="140dp"
+            android:layout_height="108dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher" />
 
@@ -37,6 +37,7 @@
                 android:layout_weight="1"
                 android:maxLines="2"
                 android:text="123456789456789"
+                android:textColor="@color/black_04"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -53,7 +54,7 @@
                     android:layout_weight="1"
                     android:singleLine="true"
                     android:text="作者:"
-                    android:textColor="#999999" />
+                    android:textColor="@color/gray_08" />
 
                 <TextView
                     android:id="@+id/mNewsItemCreateDateLabel"
@@ -61,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="刚刚"
-                    android:textColor="#999999" />
+                    android:textColor="@color/gray_08" />
             </LinearLayout>
         </LinearLayout>
 

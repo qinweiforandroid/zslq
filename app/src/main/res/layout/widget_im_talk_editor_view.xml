@@ -2,9 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/im_zone_talk_comment_label_boder"
     android:gravity="center_vertical"
-    android:padding="10dp" >
+    android:padding="10dp">
 
     <EditText
         android:id="@+id/mTalkEdt"
@@ -12,9 +11,9 @@
         android:layout_height="30dp"
         android:layout_weight="1"
         android:background="@drawable/round_white_bg"
+        android:hint="说点什么吧..."
         android:maxLines="5"
         android:padding="3dp"
-        android:hint="说点什么吧..."
         android:textSize="14sp" />
 
     <ImageView
@@ -29,8 +28,8 @@
         android:id="@+id/mTalkEditorSendLabel"
         android:layout_width="50dp"
         android:layout_height="30dp"
-        android:background="@drawable/skin_common_btn_white_pressed"
         android:gravity="center"
+        android:background="@drawable/round_white_bg"
         android:text="发送" />
 
 </LinearLayout>

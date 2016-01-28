@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/talk_action_add"
+        android:icon="@android:drawable/ic_menu_add"
+        android:orderInCategory="100"
+        android:title="添加说说"
+        app:showAsAction="ifRoom"></item>
+    <item
+        android:id="@+id/talk_action_look"
+        android:icon="@android:drawable/ic_menu_zoom"
+        android:orderInCategory="100"
+        android:title="查看说说"
+        app:showAsAction="ifRoom"></item>
+</menu>

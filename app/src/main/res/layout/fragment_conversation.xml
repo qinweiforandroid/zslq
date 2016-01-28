@@ -7,6 +7,11 @@
         android:id="@id/generalPullToRefreshLsv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:cacheColorHint="@color/transparent"
         android:fadingEdge="none"
+        android:fastScrollEnabled="false"
+        android:focusable="false"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
         android:smoothScrollbar="true" />
 </RelativeLayout>

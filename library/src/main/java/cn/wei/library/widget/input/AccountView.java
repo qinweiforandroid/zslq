@@ -151,6 +151,10 @@ public class AccountView extends LinearLayout implements TextWatcher, OnClickLis
             mAccountLabel.setCompoundDrawablesWithIntrinsicBounds(a.getDrawable(icon), null, null, null);
         }
 
+        if(a.hasValue(R.styleable.accountview_bg_edit)){
+            mAccountContentEdt.setBackgroundColor(a.getInt(R.styleable.accountview_bg_edit,R.color.white));
+        }
+
         a.recycle();
     }
 

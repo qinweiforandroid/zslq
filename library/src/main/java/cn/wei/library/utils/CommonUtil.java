@@ -6,6 +6,8 @@ import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.StatFs;
@@ -375,6 +377,18 @@ public class CommonUtil {
     public static boolean gifCheck(String url) {
         boolean isGif = !TextUtils.isEmpty(url) && url.equals(CommonUtil.matchUrl(url)) && url.toLowerCase().substring(url.length() - 4, url.length()).equals(".gif");
         return isGif;
+    }
+
+    public static boolean isNetworkConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (mNetworkInfo != null) {
+                return mNetworkInfo.isAvailable();
+            }
+        }
+        return false;
     }
 
 }

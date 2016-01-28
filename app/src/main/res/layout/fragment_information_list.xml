@@ -18,6 +18,11 @@
         android:layout_height="match_parent"
         android:divider="@null"
         android:fadingEdge="none"
-        android:scrollbars="none"
+        android:fastScrollEnabled="false"
+        android:focusable="false"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
         android:smoothScrollbar="true" />
 </ViewSwitcher>

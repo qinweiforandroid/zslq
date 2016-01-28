@@ -61,7 +61,7 @@
                 android:id="@+id/mChatItemVoiceImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/gotye_anim_voice_right" />
+                android:src="@drawable/gotye_anim_voice_right_3" />
         </LinearLayout>
 
         <ProgressBar

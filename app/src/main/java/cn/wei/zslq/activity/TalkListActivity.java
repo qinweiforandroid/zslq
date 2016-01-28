@@ -1,33 +1,25 @@
 package cn.wei.zslq.activity;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
+import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.handmark.pulltorefresh.PullToRefreshBase.Mode;
-import com.handmark.pulltorefresh.PullToRefreshListView.DispatchTouchEventListener;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 import cn.wei.library.adapter.QBaseViewHolder;
-import cn.wei.library.utils.DensityUtil;
+import cn.wei.library.utils.ImageUtils;
+import cn.wei.library.widget.EmptyView;
+import cn.wei.library.widget.FooterView;
 import cn.wei.zslq.R;
-import cn.wei.zslq.domain.Comment;
+import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.domain.Talk;
+import cn.wei.zslq.model.impl.TalkModel;
 import cn.wei.zslq.support.BaseListActivity;
-import cn.wei.zslq.widget.talk.SayTextView;
-import cn.wei.zslq.widget.talk.TalkEditText;
+import cn.wei.zslq.utils.Constants;
 import http.Trace;
 
 /**
@@ -37,13 +29,11 @@ import http.Trace;
  * @version 1.0
  * @created 创建时间: 2015-5-2 上午20:36:45
  */
-public class TalkListActivity extends BaseListActivity {
-    public static final String reply = "回复";
-    public static final String word = ": ";
-    private int height;
-    private TalkEditText mTalkEditText;
-    private RecyclerList views;
+public class TalkListActivity extends BaseListActivity implements Controller {
+    private int pageNum = 1;
+    private TalkModel model;
 
+    public int load_data_state=1;
     @Override
     public void setContentView() {
         setContentView(R.layout.activity_say_list);
@@ -53,83 +43,126 @@ public class TalkListActivity extends BaseListActivity {
     public void initializeView() {
         super.initializeView();
         setTitle("空间动态");
-        mTalkEditText = (TalkEditText) findViewById(R.id.mTalkEditText);
-        mPullToRefreshLsv.setMode(Mode.DISABLED);
-        mPullToRefreshLsv.setOnDispatchTouchEventListener(new DispatchTouchEventListener() {
-
-            @Override
-            public boolean dispatchTouchEvent(MotionEvent ev) {
-                switch (ev.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        if (mTalkEditText.getVisibility() == View.VISIBLE) {
-                            mTalkEditText.hideInputSoft();
-                            return true;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-                return false;
-            }
-        });
     }
 
     @Override
     public void initializeData() {
-        views = new RecyclerList(this, R.layout.layout_talk_comment_view);
-//        views.initliazeData(10);
+        model = new TalkModel(this);
+        model.setController(this);
         loadDataFromServer();
     }
 
-    public void loadDataFromServer() {
-        modules.addAll(getTalks());
-        adapter.notifyDataSetChanged();
+    private void loadDataFromServer() {
+        load_data_state= Constants.LOAD_DATA_STATE_LOAD_FIRST;
+        mEmptyView.notifyDataChanged(EmptyView.State.ing);
+        model.loadTalkList(pageNum);
     }
 
-    public ArrayList<Talk> getTalks() {
-        ArrayList<Talk> talks = new ArrayList<Talk>();
-        Talk talk = new Talk();
-        talk.setTimestamp(System.currentTimeMillis());
-        talk.setTalkContent("这次南京之旅很开心，谢谢姐姐专车接送，姐姐的大龙虾，火锅，还有午觉睡晚贴心的丰盛外卖，还有送我两套衣服，很开心，好想有个这样的姐姐,这次南京之旅很开心，谢谢姐姐专车接送，姐姐的大龙虾，火锅，还有午觉睡晚贴心的丰盛外卖，还有送我两套衣服，很开心，好想有个这样的姐姐");
-        ArrayList<Comment> comments = new ArrayList<Comment>();
-        comments.add(new Comment("小伟", "雨过晴天", "人之初,性本善.知之为知之,不知为不知,是知也!"));
-        comments.add(new Comment("小明", "小伟", "呵呵,好着呢！"));
-        comments.add(new Comment("小伟", "小明", "吃饭了没有?"));
-        comments.add(new Comment("小明", "小伟", "吃了,你呢!"));
-        comments.add(new Comment("李四", "哈哈!"));
-        comments.add(new Comment("張三", "你好呀!"));
-        talk.setComments(comments);
-        ArrayList<String> imgUris = new ArrayList<String>();
-        imgUris.add("imgUris");
-        imgUris.add("imgUris");
-        talk.setImgUris(imgUris);
-        talks.add(talk);
+    @Override
+    public void onRefresh(boolean isRefresh) {
+        super.onRefresh(isRefresh);
+        pageNum = 1;
+        load_data_state=Constants.LOAD_DATA_STATE_LOAD_REFRESH;
+        model.loadTalkList(pageNum);
+    }
 
-        Talk talk1 = new Talk();
-        talk1.setTimestamp(System.currentTimeMillis());
-        talk1.setTalkContent("这次南京之旅很开心，谢谢姐姐专车接送，姐姐的大龙虾，火锅，还有午觉睡晚贴心的丰盛外卖，还有送我两套衣服，很开心，好想有个这样的姐姐,这次南京之旅很开心，谢谢姐姐专车接送，姐姐的大龙虾，火锅，还有午觉睡晚贴心的丰盛外卖，还有送我两套衣服，很开心，好想有个这样的姐姐 这次南京之旅很开心，谢谢姐姐专车接送，姐姐的大龙虾，火锅，还有午觉睡晚贴心的丰盛外卖，还有送我两套衣服，很开心，好想有个这样的姐姐,这次南京之旅很开心，谢谢姐姐专车接送，姐姐的大龙虾，火锅，还有午觉睡晚贴心的丰盛外卖，还有送我两套衣服，很开心，好想有个这样的姐姐");
-        ArrayList<Comment> comments1 = new ArrayList<Comment>();
-        comments1.add(new Comment("小伟", "雨过晴天", "人之初,性本善.知之为知之,不知为不知,是知也!"));
-        comments1.add(new Comment("小明", "小伟", "呵呵,好着呢！"));
-        comments1.add(new Comment("小伟", "小明", "吃饭了没有?"));
-        comments1.add(new Comment("小明", "小伟", "吃了,你呢!"));
-        comments1.add(new Comment("李四", "哈哈!"));
-        talk1.setComments(comments1);
-        ArrayList<String> imgUris1 = new ArrayList<String>();
-        imgUris1.add("imgUris");
-        imgUris1.add("imgUris");
-        talk1.setImgUris(imgUris1);
-        talks.add(talk1);
-        talks.add(talk1);
-        talks.add(talk1);
-        talks.add(talk);
-        talks.add(talk1);
-        talks.add(talk);
-        talks.add(talk1);
-        talks.add(talk1);
-        talks.add(talk1);
-        talks.add(talk1);
-        return talks;
+    @Override
+    public void loadMore() {
+        load_data_state=Constants.LOAD_DATA_STATE_LOAD_MORE;
+        model.loadTalkList(pageNum);
+    }
+
+    @Override
+    public void onRetryLoadMore() {
+        loadMore();
+    }
+
+    @Override
+    public void onRetry() {
+        load();
+        loadDataFromServer();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.talk_publish_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.talk_action_add:
+                goTalkAdd();
+                break;
+            case R.id.talk_action_look:
+                loadDataFromServer();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void goTalkAdd() {
+        Intent intent = new Intent(this, TalkPublishActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onSuccess(String action) {
+        Trace.e("onSuccess:" + model.talks.size());
+        switch (load_data_state) {
+            case Constants.LOAD_DATA_STATE_LOAD_FIRST:
+                pageNum++;
+                modules.addAll(model.talks);
+                adapter.notifyDataSetChanged();
+                showContent();
+                break;
+            case Constants.LOAD_DATA_STATE_LOAD_REFRESH:
+                pageNum++;
+                modules.clear();
+                modules.addAll(model.talks);
+                adapter.notifyDataSetChanged();
+                mPullToRefreshLsv.onRefreshComplete();
+                footerView.notifyDataChanged(FooterView.State.done);
+                break;
+            case  Constants.LOAD_DATA_STATE_LOAD_MORE:
+                if (model.talks.size() == 0) {
+                    footerView.notifyDataChanged(FooterView.State.no_data);
+                } else {
+                    pageNum++;
+                    modules.addAll(model.talks);
+                    adapter.notifyDataSetChanged();
+                    footerView.notifyDataChanged(FooterView.State.done);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public boolean isCanLoadMore() {
+        return true;
+    }
+
+    @Override
+    public void onFailure(String action, int errorCode, String errorMsg) {
+        switch (load_data_state) {
+            case Constants.LOAD_DATA_STATE_LOAD_FIRST:
+                mEmptyView.notifyDataChanged(EmptyView.State.error);
+                Trace.e("onFailure:" + errorMsg);
+                break;
+            case Constants.LOAD_DATA_STATE_LOAD_REFRESH:
+                Toast.makeText(TalkListActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+                break;
+            case Constants.LOAD_DATA_STATE_LOAD_MORE:
+                footerView.notifyDataChanged(FooterView.State.error);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -147,167 +180,54 @@ public class TalkListActivity extends BaseListActivity {
         return convertView;
     }
 
-    public class ViewHolder extends QBaseViewHolder implements SayTextView.OnLightTextListener, OnClickListener, OnLongClickListener {
-        private Talk talk;
-        private LinearLayout mTalkCommentContainer;
-        private TextView mTalkContentLabel;
-        private ImageView mTalkItemCommentImg;
-        private TextView mTalkItemCommentLabel;
-        private View itemView;
-        private int itemViewHeight;
-        private int position;
-        // 延迟计算top值
-        private Handler mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                mPullToRefreshLsv.getRefreshableView().setFocusableInTouchMode(false);
-                mPullToRefreshLsv.getRefreshableView().setSelectionFromTop(position + 1, getTop());
-            }
 
-        };
+//        if(TextUtils.isEmpty(text.toString().trim())){
+//            Toast.makeText(TalkListActivity.this, "评论内容不能为空!", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        Talk talk = (Talk) mTalkEditText.getTag();
+//        TalkComment comment = new TalkComment();
+//        comment.setReplyType(TalkComment.comment);
+//        comment.setFromUser(MyApplication.getLoginUser());
+//        comment.setContent(text.toString());
+//        comment.setTalk(talk);
+//        comment.save(this, new SaveListener() {
+//            @Override
+//            public void onSuccess() {
+//                Trace.e("onSuccess");
+//            }
+//
+//            @Override
+//            public void onFailure(int i, String s) {
+//                Trace.e("onFailure:"+s);
+//            }
+//        });
+
+    public class ViewHolder extends QBaseViewHolder {
+        private Talk talk;
+        private TextView mTalkContentLabel;
+        private ImageView mTalkItemUserIconImg;
+        private TextView mTalkItemUserNickLabel;
+        private TextView mTalkItemCreateTimeLabel;
 
         @Override
         public void initializeView(View view) {
-            this.itemView = view;
-            mTalkItemCommentLabel = (TextView) view.findViewById(R.id.mTalkItemCommentLabel);
-            mTalkCommentContainer = (LinearLayout) view.findViewById(R.id.mTalkCommentContainer);
+            mTalkItemUserIconImg = (ImageView) view.findViewById(R.id.mTalkItemUserIconImg);
+            mTalkItemUserNickLabel = (TextView) view.findViewById(R.id.mTalkItemUserNickLabel);
+            mTalkItemCreateTimeLabel = (TextView) view.findViewById(R.id.mTalkItemCreateTimeLabel);
             mTalkContentLabel = (TextView) view.findViewById(R.id.mTalkContentLabel);
-            mTalkItemCommentImg = (ImageView) view.findViewById(R.id.mTalkItemCommentImg);
-            TalkCommentClickListener talkCommentClickListener = new TalkCommentClickListener();
-            mTalkItemCommentImg.setOnClickListener(talkCommentClickListener);
-            mTalkItemCommentLabel.setOnClickListener(talkCommentClickListener);
         }
 
-        private class TalkCommentClickListener implements OnClickListener {
-            @Override
-            public void onClick(View v) {
-                showSoftInput();
-            }
-        }
-
-        public void showSoftInput() {
-            height = mPullToRefreshLsv.getHeight();
-            mTalkEditText.setVisibility(View.VISIBLE);
-            mTalkEditText.showSoftInput();
-            mHandler.sendEmptyMessageDelayed(0, 400);
-        }
-
-        public int getTop() {
-            // TODO 编辑框距离底部距离-（listview高度-itemView高度）-编辑框高度
-            int h = mTalkEditText.getBottom() - (height - itemViewHeight) - mTalkItemCommentLabel.getHeight() - DensityUtil.dip2px(TalkListActivity.this, 5);
-            return h * -1;
-        }
 
         @Override
         public void initializeData(int position) {
-            this.position = position;
             talk = (Talk) modules.get(position);
-            mTalkContentLabel.setText(talk.getTalkContent());
-            initializeCommentView(talk.getComments());
-            initializeCOmmentPictures(talk.getImgUris());
-            itemViewHeight = itemView.getHeight();
+            ImageUtils.displayImage(talk.getCreateUser().getIcon(), mTalkItemUserIconImg, ImageUtils.getUserIconOptions());
+            mTalkItemUserNickLabel.setText(talk.getCreateUser().getNick());
+            mTalkItemCreateTimeLabel.setText(talk.getCreatedAt());
+            mTalkContentLabel.setText(talk.getContent());
         }
 
-        private void initializeCOmmentPictures(ArrayList<String> imgUris) {
 
-        }
-
-        private void initializeCommentView(ArrayList<Comment> comments) {
-            if (comments == null || comments.size() == 0) {
-                mTalkItemCommentLabel.setVisibility(View.GONE);
-            } else {
-                mTalkItemCommentLabel.setVisibility(View.VISIBLE);
-            }
-
-            int childViewSize = mTalkCommentContainer.getChildCount();
-            for (int i = 0; i < (childViewSize>comments.size()?comments.size():childViewSize); i++) {
-                View view = mTalkCommentContainer.getChildAt(i);
-                initializeCommentData(comments.get(i), view);
-            }
-            if (childViewSize == comments.size()) {
-                return;
-            } else if (comments.size() > childViewSize) {
-                for (int i = childViewSize; i < comments.size(); i++) {
-                    View view=views.get();
-                    initializeCommentData(comments.get(i),view);
-                    mTalkCommentContainer.addView(view, i);
-                }
-            } else {
-                for (int i =childViewSize; i < childViewSize; i++) {
-                    if(views.size()<20){
-                        views.add(mTalkCommentContainer.getChildAt(i));
-                    }
-                    mTalkCommentContainer.removeViewAt(i);
-                }
-            }
-        }
-
-        public void initializeCommentData(Comment comment, View view) {
-            view.setOnClickListener(this);
-            view.setOnLongClickListener(this);
-            SayTextView sayTextView = (SayTextView) view.findViewById(R.id.mSayLabel);
-            String fromNick = comment.getFromNick();
-            ArrayList<SayTextView.SpanEntity> spans = new ArrayList<SayTextView.SpanEntity>();
-            String content = null;
-            if (comment.getReplyType() == Comment.reply) {
-                String toNick = comment.getToNick();
-                content = fromNick + reply + toNick + word + comment.getContent();
-                int endIndex = fromNick.length() + reply.length() + toNick.length();
-                spans.add(new SayTextView.SpanEntity(0, fromNick.length(), fromNick));
-                spans.add(new SayTextView.SpanEntity(fromNick.length() + reply.length(), endIndex, toNick));
-            } else {
-                content = fromNick + word + comment.getContent();
-                spans.add(new SayTextView.SpanEntity(0, fromNick.length(), fromNick));
-            }
-            sayTextView.initializeData(content, spans, this);
-            view.setTag(comment);
-        }
-
-        @Override
-        public void onLightTextClickListener(String id) {
-            Toast.makeText(TalkListActivity.this, id, Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onClick(View v) {
-            Comment comment = (Comment) v.getTag();
-            mTalkEditText.setHintText("回复" + comment.getFromNick() + ":");
-            mTalkEditText.setText(null);
-            showSoftInput();
-        }
-
-        @Override
-        public boolean onLongClick(View v) {
-            return true;
-        }
-    }
-
-    public static class RecyclerList extends LinkedList<View> {
-        private final Context context;
-        private final int LayoutId;
-
-        public RecyclerList(Context context, int layoutId) {
-            this.context = context;
-            this.LayoutId = layoutId;
-        }
-
-        public void initliazeData(int number) {
-            for (int i = 0; i < number; i++) {
-                addFirst(LayoutInflater.from(context).inflate(LayoutId, null));
-            }
-        }
-
-        public View get() {
-            View view = null;
-            if (size() > 0) {
-                view = getFirst();
-                removeFirst();
-            } else {
-                view = LayoutInflater.from(context).inflate(LayoutId, null);
-                Trace.e("创建新的view");
-            }
-            return view;
-        }
     }
 }

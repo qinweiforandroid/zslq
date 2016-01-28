@@ -4,14 +4,6 @@
     android:layout_height="48dip">
 
 
-    <TextView
-        android:id="@+id/mAccountLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="8dp"
-        android:textSize="16sp"
-        />
 
     <EditText
         android:id="@+id/mAccountContentEdt"
@@ -23,6 +15,14 @@
         android:paddingRight="40dp"
         android:singleLine="true"/>
 
+    <TextView
+        android:id="@+id/mAccountLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:textSize="16sp"
+        />
     <ImageView
         android:id="@+id/mAccountClearImg"
         android:layout_width="15dp"

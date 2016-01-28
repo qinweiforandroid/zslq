@@ -24,7 +24,8 @@ import cn.wei.zslq.support.BaseActivity;
  */
 public class ProfileEditorActivity extends BaseActivity implements OnRowClickListener {
     private ContainerView mWidgetContainerView;
-
+    private User user;
+    public static final int REQUEST_USER_NICK_EDITOR=1;
     @Override
     protected void setContentView() {
         setContentView(R.layout.activity_profile_edtior);
@@ -34,12 +35,16 @@ public class ProfileEditorActivity extends BaseActivity implements OnRowClickLis
     protected void initializeView() {
         super.initializeView();
         setTitle(getString(R.string.mTitleUserInfo));
-        User user= MyApplication.getLoginUser();
+        user= MyApplication.getLoginUser();
         mWidgetContainerView = (ContainerView) findViewById(R.id.mWidgetContainerView);
+    }
+
+    @Override
+    protected void initializeData() {
         ArrayList<GroupDescriptor> groupDescriptors = new ArrayList<GroupDescriptor>();
         ArrayList<BaseRowDescriptor> rowDescriptors1 = new ArrayList<BaseRowDescriptor>();
         rowDescriptors1.add(new UserIconRowDescriptor("头像", user.getIcon(), RowActionEnum.ACTION_USER_ICON));
-        rowDescriptors1.add(new IOSRowDescriptor("昵称", "雨过天晴", RowActionEnum.ACTION_FRIEND));
+        rowDescriptors1.add(new IOSRowDescriptor("昵称", user.getNick(), RowActionEnum.ACTION_USER_NICK));
         rowDescriptors1.add(new IOSRowDescriptor("签名", "这个家伙很懒什么也没留下!", RowActionEnum.ACTION_FRIEND));
         GroupDescriptor groupDescriptor1 = new GroupDescriptor("", rowDescriptors1);
 
@@ -57,23 +62,35 @@ public class ProfileEditorActivity extends BaseActivity implements OnRowClickLis
     }
 
     @Override
-    protected void initializeData() {
-
-    }
-
-    @Override
     public void onRowClick(View rowView, RowActionEnum action) {
         switch (action){
             case ACTION_USER_ICON:
                 goUserIconEditor();
+                break;
+            case ACTION_USER_NICK:
+                goUserNickEditor();
                 break;
             default:
                 break;
         }
     }
 
+    private void goUserNickEditor() {
+        Intent intent=new Intent(this,ProfileNickEditorActivity.class);
+        intent.putExtra(ProfileNickEditorActivity.KEY_NICK,user.getNick());
+        startActivityForResult(intent,REQUEST_USER_NICK_EDITOR);
+    }
+
     private void goUserIconEditor() {
         Intent intent=new Intent(this,ProfileIconEditorActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode==RESULT_OK){
+            initializeData();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -43,6 +43,7 @@ public class ContainerView extends LinearLayout implements OnTouchListener {
 	}
 
 	public void notifyDataChanged() {
+		removeAllViews();
 		if (descriptor.groupDescriptors != null && descriptor.groupDescriptors.size() > 0) {
 			GroupView groupView = null;
 			LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);

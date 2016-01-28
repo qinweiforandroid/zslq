@@ -17,13 +17,13 @@ import http.RequestManager;
  * Created by qinwei on 2015/12/18 16:10
  * email:qinwei_it@163.com
  */
-public abstract class ViewMode implements OnGlobalExceptionListener {
+public abstract class ViewModel implements OnGlobalExceptionListener {
     protected Context context;
     private Toast mToast;
     protected Controller controller;
     private OnProgressUpdatedListener listener;
 
-    public ViewMode(Context context) {
+    public ViewModel(Context context) {
         this.context = context;
     }
 
@@ -41,14 +41,14 @@ public abstract class ViewMode implements OnGlobalExceptionListener {
         }
     }
 
-    protected void onRequestSuccess(String tag) {
+    protected void onResponseSuccess(String tag) {
         if (controller != null) {
             controller.onSuccess(tag);
             RequestManager.getInstance().removeRequest(tag);
         }
     }
 
-    protected void onRequestError(String tag, int errorCode, String errorMsg) {
+    protected void onResponseError(String tag, int errorCode, String errorMsg) {
         if (controller != null) {
             controller.onFailure(tag, errorCode, errorMsg);
             RequestManager.getInstance().removeRequest(tag);
