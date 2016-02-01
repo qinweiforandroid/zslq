@@ -13,7 +13,7 @@ import cn.wei.library.widget.row.GroupDescriptor;
 import cn.wei.library.widget.row.OnRowClickListener;
 import cn.wei.library.widget.row.RowActionEnum;
 import cn.wei.zslq.R;
-import cn.wei.zslq.activity.TalkListActivity;
+import cn.wei.zslq.controller.im.TalkListActivity;
 import cn.wei.zslq.controller.seller.SellerSimpleInfoListActivity;
 import cn.wei.zslq.support.BaseFragment;
 import cn.wei.zslq.utils.BmobManager;

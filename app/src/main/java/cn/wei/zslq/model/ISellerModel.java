@@ -8,4 +8,6 @@ public interface ISellerModel {
     String ACTION_LOAD_SELLER_INFO_LIST = "action_loadSellerInfoList";
 
     void loadSellerInfoList();
+
+
 }

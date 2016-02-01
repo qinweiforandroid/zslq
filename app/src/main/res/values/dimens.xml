@@ -23,5 +23,6 @@
 
     <dimen name="album_list_item_name_size">15sp</dimen>
     <dimen name="album_top_cancel_size">14sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

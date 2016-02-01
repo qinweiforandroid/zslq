@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <cn.wei.library.widget.CircleImageView
+        android:id="@+id/mTalkItemUserIconImg"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginRight="@dimen/common_activity_padding_8"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/mTalkItemUserNickLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/mTalkItemUserIconImg"
+        android:text="杨悦"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/mTalkItemCreateTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mTalkItemUserNickLabel"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@id/mTalkItemUserIconImg"
+        android:text="12:00"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/mTalkContentLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mTalkItemUserIconImg"
+        android:layout_marginTop="@dimen/common_activity_padding_8"
+        android:lineSpacingExtra="2dp"
+        android:text="这次南京之旅很开心，谢谢姐姐专车接送，姐姐的大龙虾，火锅，还有午觉睡晚贴心的丰盛外卖，还有送我两套衣服，很开心，好想有个这样的姐姐"
+        android:textColor="@color/black_04"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mTalkContentLabel"
+        android:layout_marginTop="@dimen/common_activity_padding_8"
+        android:gravity="right">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/selector_im_talk_zan"
+            android:gravity="center_vertical"
+            android:text="点赞"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common_activity_padding_8"
+            android:drawableLeft="@drawable/im_ic_qq_comment_normal"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="评论"
+            android:textSize="12sp" />
+    </LinearLayout>
+</RelativeLayout>

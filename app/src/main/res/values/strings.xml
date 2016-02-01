@@ -71,4 +71,6 @@
     <string name="im_service_disconnected">无法连接到后台服务</string>
     <!-- 标题-->
     <string name="mTitleUserInfo">用户资料</string>
+    <string name="title_activity_talk_comment">TalkCommentActivity</string>
+    <string name="title_talk_add">添加说说</string>
 </resources>

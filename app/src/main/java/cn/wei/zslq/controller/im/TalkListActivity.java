@@ -1,4 +1,4 @@
-package cn.wei.zslq.activity;
+package cn.wei.zslq.controller.im;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,10 +31,12 @@ import http.Trace;
  * @created 创建时间: 2015-5-2 上午20:36:45
  */
 public class TalkListActivity extends BaseListActivity implements Controller {
+    private static final int REQUEST_TO_ADD_TALK = 100;
     private int pageNum = 1;
     private TalkModel model;
 
-    public int load_data_state=1;
+    public int load_data_state = 1;
+
     @Override
     public void setContentView() {
         setContentView(R.layout.activity_say_list);
@@ -53,7 +56,7 @@ public class TalkListActivity extends BaseListActivity implements Controller {
     }
 
     private void loadDataFromServer() {
-        load_data_state= Constants.LOAD_DATA_STATE_LOAD_FIRST;
+        load_data_state = Constants.LOAD_DATA_STATE_LOAD_FIRST;
         mEmptyView.notifyDataChanged(EmptyView.State.ing);
         model.loadTalkList(pageNum);
     }
@@ -62,13 +65,13 @@ public class TalkListActivity extends BaseListActivity implements Controller {
     public void onRefresh(boolean isRefresh) {
         super.onRefresh(isRefresh);
         pageNum = 1;
-        load_data_state=Constants.LOAD_DATA_STATE_LOAD_REFRESH;
+        load_data_state = Constants.LOAD_DATA_STATE_LOAD_REFRESH;
         model.loadTalkList(pageNum);
     }
 
     @Override
     public void loadMore() {
-        load_data_state=Constants.LOAD_DATA_STATE_LOAD_MORE;
+        load_data_state = Constants.LOAD_DATA_STATE_LOAD_MORE;
         model.loadTalkList(pageNum);
     }
 
@@ -85,7 +88,7 @@ public class TalkListActivity extends BaseListActivity implements Controller {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.talk_publish_menu, menu);
+        getMenuInflater().inflate(R.menu.talk__list_to_publish_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -106,7 +109,20 @@ public class TalkListActivity extends BaseListActivity implements Controller {
 
     private void goTalkAdd() {
         Intent intent = new Intent(this, TalkPublishActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,REQUEST_TO_ADD_TALK);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(RESULT_OK==resultCode){
+            if(requestCode==REQUEST_TO_ADD_TALK&&data!=null){
+                Talk talk= (Talk) data.getSerializableExtra(TalkPublishActivity.KEY_TALK_ENTITIES);
+                modules.add(0,talk);
+                adapter.notifyDataSetChanged();
+                mPullToRefreshLsv.getRefreshableView().setSelection(0);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -127,7 +143,7 @@ public class TalkListActivity extends BaseListActivity implements Controller {
                 mPullToRefreshLsv.onRefreshComplete();
                 footerView.notifyDataChanged(FooterView.State.done);
                 break;
-            case  Constants.LOAD_DATA_STATE_LOAD_MORE:
+            case Constants.LOAD_DATA_STATE_LOAD_MORE:
                 if (model.talks.size() == 0) {
                     footerView.notifyDataChanged(FooterView.State.no_data);
                 } else {
@@ -181,28 +197,6 @@ public class TalkListActivity extends BaseListActivity implements Controller {
     }
 
 
-//        if(TextUtils.isEmpty(text.toString().trim())){
-//            Toast.makeText(TalkListActivity.this, "评论内容不能为空!", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        Talk talk = (Talk) mTalkEditText.getTag();
-//        TalkComment comment = new TalkComment();
-//        comment.setReplyType(TalkComment.comment);
-//        comment.setFromUser(MyApplication.getLoginUser());
-//        comment.setContent(text.toString());
-//        comment.setTalk(talk);
-//        comment.save(this, new SaveListener() {
-//            @Override
-//            public void onSuccess() {
-//                Trace.e("onSuccess");
-//            }
-//
-//            @Override
-//            public void onFailure(int i, String s) {
-//                Trace.e("onFailure:"+s);
-//            }
-//        });
-
     public class ViewHolder extends QBaseViewHolder {
         private Talk talk;
         private TextView mTalkContentLabel;
@@ -229,5 +223,13 @@ public class TalkListActivity extends BaseListActivity implements Controller {
         }
 
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Talk talk = (Talk) parent.getAdapter().getItem(position);
+        Intent intent = new Intent(this, TalkCommentActivity.class);
+        intent.putExtra(TalkCommentActivity.KEY_TALK_ENTITIES, talk);
+        startActivity(intent);
     }
 }

@@ -21,7 +21,7 @@ public class ProfileModel extends ViewModel implements IProfileModel {
     @Override
     public void doUpdateNick(final String nick) {
         User user = new User();
-        user.setValue("nick", nick);
+        user.setNick(nick);
         user.update(context, MyApplication.getLoginUser().getObjectId(), new UpdateListener() {
             @Override
             public void onSuccess() {

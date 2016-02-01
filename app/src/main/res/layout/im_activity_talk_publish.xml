@@ -5,21 +5,16 @@
     android:orientation="vertical">
 
     <include layout="@layout/layout_toolbar" />
-
-
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/mTalkContentEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:gravity="top"
+        android:padding="@dimen/common_activity_padding_8"
+        android:layout_margin="@dimen/common_activity_padding_8"
+        android:background="@drawable/round_white_bg"
+        android:lines="5"
         android:inputType="textMultiLine" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="commit" />
-
 
 </LinearLayout>

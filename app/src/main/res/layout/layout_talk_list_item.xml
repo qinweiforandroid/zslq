@@ -38,6 +38,7 @@
             android:id="@+id/mTalkContentLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black_04"
             android:layout_below="@id/mTalkItemUserNickLabel"
             android:layout_marginTop="@dimen/common_activity_padding_8"
             android:layout_toRightOf="@id/mTalkItemUserIconImg"

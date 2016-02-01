@@ -7,7 +7,9 @@ import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 import cn.wei.zslq.domain.Talk;
+import cn.wei.zslq.domain.User;
 import cn.wei.zslq.model.ITalkModel;
 import cn.wei.zslq.model.ViewModel;
 import http.Trace;
@@ -17,8 +19,9 @@ import http.Trace;
  * email:qinwei_it@163.com
  */
 public class TalkModel extends ViewModel implements ITalkModel {
-    public static final int PAGE_SIZE=5;
+    public static final int PAGE_SIZE = 10;
     public ArrayList<Talk> talks;
+    public Talk talk;//创建说说封装对象
 
     public TalkModel(Context context) {
         super(context);
@@ -43,6 +46,25 @@ public class TalkModel extends ViewModel implements ITalkModel {
             public void onError(int i, String s) {
                 Trace.e("onError:" + s);
                 onResponseError(ACTION_LOAD_TALK_LIST, i, s);
+            }
+        });
+    }
+
+    @Override
+    public void doPublishTalk(String text, User user) {
+        talk = new Talk();
+        talk.setContent(text);
+        talk.setCreateUser(user);
+        talk.setTimestamp(System.currentTimeMillis());
+        talk.save(context, new SaveListener() {
+            @Override
+            public void onSuccess() {
+                onResponseSuccess(ACTION_DO_PUBLISH_TALK);
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                onResponseError(ACTION_DO_PUBLISH_TALK, i, s);
             }
         });
     }
