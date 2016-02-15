@@ -118,7 +118,6 @@ public abstract class BaseFragment extends Fragment implements EmptyView.OnRetry
     @Override
     public void onRetry() {
         mEmptyView.notifyDataChanged(EmptyView.State.ing);
-        load();
     }
 
     public void load() {

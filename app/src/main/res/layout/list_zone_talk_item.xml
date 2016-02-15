@@ -38,12 +38,12 @@
             android:id="@+id/mTalkContentLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black_04"
             android:layout_below="@id/mTalkItemUserNickLabel"
             android:layout_marginTop="@dimen/common_activity_padding_8"
             android:layout_toRightOf="@id/mTalkItemUserIconImg"
             android:lineSpacingExtra="2dp"
             android:text="这次南京之旅很开心，谢谢姐姐专车接送，姐姐的大龙虾，火锅，还有午觉睡晚贴心的丰盛外卖，还有送我两套衣服，很开心，好想有个这样的姐姐"
+            android:textColor="@color/black_04"
             android:textSize="14sp" />
 
         <LinearLayout
@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/mTalkContentLabel"
             android:layout_marginTop="@dimen/common_activity_padding_8"
+            android:gravity="center_vertical"
             android:layout_toRightOf="@id/mTalkItemUserIconImg">
 
             <TextView
@@ -62,18 +63,21 @@
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/mTalkItemLookNumLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/selector_im_talk_zan"
+                android:drawableLeft="@drawable/im_ic_qq_comment_zan"
                 android:gravity="center_vertical"
-                android:text="点赞"
+                android:text="查看"
+                android:drawablePadding="5dp"
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/mTalkItemCommentNumLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/common_activity_padding_8"
-                android:drawableLeft="@drawable/im_ic_qq_comment_normal"
+                android:drawableLeft="@drawable/im_ic_qq_comment"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="评论"

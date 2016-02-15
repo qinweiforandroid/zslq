@@ -34,7 +34,7 @@ public class SellerSimpleInfoListActivity extends BaseListActivity implements Co
 
     @Override
     protected void setContentView() {
-        setContentView(R.layout.seller_activity_simple_info_list);
+        setContentView(R.layout.activity_seller_simple_info_list);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class SellerSimpleInfoListActivity extends BaseListActivity implements Co
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(this).inflate(R.layout.seller_list_simple_info_item, null);
+            convertView = LayoutInflater.from(this).inflate(R.layout.list_seller_simple_info_item, null);
             holder.initializeView(convertView);
             convertView.setTag(holder);
         } else {

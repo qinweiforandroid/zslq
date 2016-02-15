@@ -9,11 +9,14 @@ public class Talk extends BmobObject {
     private String content;
     private User createUser;
     private long timestamp;
-    private ArrayList<String> images;
+    private Integer lookNum;
+    private Integer commentNum;
 
-    public Talk(){
-        images=new ArrayList<>();
+    public Talk() {
+        lookNum = 0;
+        commentNum = 0;
     }
+
     public User getCreateUser() {
         return createUser;
     }
@@ -46,14 +49,6 @@ public class Talk extends BmobObject {
         this.timestamp = timestamp;
     }
 
-    public ArrayList<String> getImages() {
-        return images;
-    }
-
-    public void setImages(ArrayList<String> images) {
-        this.images = images;
-    }
-
 
     public ArrayList<Talk> getTalks() {
         ArrayList<Talk> talks = new ArrayList<Talk>();
@@ -71,7 +66,7 @@ public class Talk extends BmobObject {
         ArrayList<String> imgUris = new ArrayList<String>();
         imgUris.add("imgUris");
         imgUris.add("imgUris");
-        talk.setImages(imgUris);
+//        talk.setImages(imgUris);
         talks.add(talk);
 
         Talk talk1 = new Talk();
@@ -87,7 +82,7 @@ public class Talk extends BmobObject {
         ArrayList<String> imgUris1 = new ArrayList<String>();
         imgUris1.add("imgUris");
         imgUris1.add("imgUris");
-        talk1.setImages(imgUris1);
+//        talk1.setImages(imgUris1);
         talks.add(talk1);
         talks.add(talk1);
         talks.add(talk1);
@@ -99,5 +94,21 @@ public class Talk extends BmobObject {
         talks.add(talk1);
         talks.add(talk1);
         return talks;
+    }
+
+    public Integer getLookNum() {
+        return lookNum;
+    }
+
+    public void setLookNum(Integer lookNum) {
+        this.lookNum = lookNum;
+    }
+
+    public Integer getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(Integer commentNum) {
+        this.commentNum = commentNum;
     }
 }

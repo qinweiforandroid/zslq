@@ -57,5 +57,5 @@
                 android:text="注册" />
         </LinearLayout>
     </ScrollView>
-    <include layout="@layout/third_login"/>
+    <include layout="@layout/support_third_login"/>
 </LinearLayout>

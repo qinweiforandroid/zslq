@@ -60,7 +60,7 @@
             android:name=".controller.profile.ProfileNickEditorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".controller.im.TalkListActivity"
+            android:name=".controller.zone.TalkListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".controller.seller.SellerSimpleInfoListActivity"
@@ -69,7 +69,7 @@
             android:name=".controller.seller.SellerDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".controller.im.TalkPublishActivity"
+            android:name=".controller.zone.TalkPublishActivity"
             android:screenOrientation="portrait" />
 
         <service
@@ -88,7 +88,7 @@
             android:value="Channel ID" />
 
         <activity
-            android:name=".controller.im.TalkCommentActivity"
+            android:name=".controller.zone.TalkCommentActivity"
             android:label="@string/title_activity_talk_comment"
             android:theme="@style/AppTheme" >
         </activity>

@@ -29,7 +29,7 @@ public class InformationListFragment extends BaseListFragment implements Control
 
     @Override
     public int getFragmentLayoutId() {
-        return R.layout.fragment_information_list;
+        return R.layout.fragment_tab_information;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class InformationListFragment extends BaseListFragment implements Control
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_information_item, null);
+            convertView = LayoutInflater.from(getActivity()).inflate(R.layout.list_information_item, null);
             holder.initializeView(convertView);
             convertView.setTag(holder);
         } else {

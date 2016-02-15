@@ -74,7 +74,7 @@ public class ThunderAccountListFragment extends BaseRecyclerRefreshViewFragment 
 
     @Override
     public QBaseRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        QBaseRecyclerViewHolder holder = new ViewHolder(LayoutInflater.from(getActivity()).inflate(R.layout.layout_thunder_account_item, null));
+        QBaseRecyclerViewHolder holder = new ViewHolder(LayoutInflater.from(getActivity()).inflate(R.layout.list_thunder_account_item, null));
         return holder;
     }
 

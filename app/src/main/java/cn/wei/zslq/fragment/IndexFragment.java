@@ -22,7 +22,7 @@ public class IndexFragment extends BaseFragment {
 
     @Override
     protected int getFragmentLayoutId() {
-        return R.layout.fragment_index;
+        return R.layout.fragment_drawer_content;
     }
 
     @Override

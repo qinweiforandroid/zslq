@@ -29,7 +29,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     protected int getFragmentLayoutId() {
-        return R.layout.fragment_profile;
+        return R.layout.fragment_tab_profile;
     }
 
     @Override

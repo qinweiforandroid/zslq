@@ -56,5 +56,5 @@
     <!--userEntity detail-->
     <color name="user_detail_base">#ececec</color>
     <color name="pickimage_item_bg">#ffffff</color>
-
+    <color name="tb_munion_item_force">#e3e3e3</color>
 </resources>

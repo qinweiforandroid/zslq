@@ -51,21 +51,23 @@
 
 
         <TextView
+            android:id="@+id/mTalkItemLookNumLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/selector_im_talk_zan"
+            android:drawableLeft="@drawable/im_ic_qq_comment_zan"
             android:gravity="center_vertical"
-            android:text="点赞"
+            android:text=""
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/mTalkItemCommentNumLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/common_activity_padding_8"
-            android:drawableLeft="@drawable/im_ic_qq_comment_normal"
+            android:drawableLeft="@drawable/im_ic_qq_comment"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"
-            android:text="评论"
+            android:text=""
             android:textSize="12sp" />
     </LinearLayout>
 </RelativeLayout>

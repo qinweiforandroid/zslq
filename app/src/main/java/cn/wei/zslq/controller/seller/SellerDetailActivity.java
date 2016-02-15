@@ -22,7 +22,7 @@ public class SellerDetailActivity extends BaseActivity{
 
     @Override
     protected void setContentView() {
-        setContentView(R.layout.seller_activity_detail_info);
+        setContentView(R.layout.activity_seller_detail_info);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package cn.wei.zslq.controller.im;
+package cn.wei.zslq.controller.zone;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import cn.wei.library.adapter.QBaseViewHolder;
 import cn.wei.library.utils.ImageUtils;
+import cn.wei.library.utils.TimeHelper;
 import cn.wei.library.widget.EmptyView;
 import cn.wei.library.widget.FooterView;
 import cn.wei.zslq.R;
@@ -39,7 +40,7 @@ public class TalkListActivity extends BaseListActivity implements Controller {
 
     @Override
     public void setContentView() {
-        setContentView(R.layout.activity_say_list);
+        setContentView(R.layout.activity_zone_talk_list);
     }
 
     @Override
@@ -82,7 +83,6 @@ public class TalkListActivity extends BaseListActivity implements Controller {
 
     @Override
     public void onRetry() {
-        load();
         loadDataFromServer();
     }
 
@@ -109,15 +109,15 @@ public class TalkListActivity extends BaseListActivity implements Controller {
 
     private void goTalkAdd() {
         Intent intent = new Intent(this, TalkPublishActivity.class);
-        startActivityForResult(intent,REQUEST_TO_ADD_TALK);
+        startActivityForResult(intent, REQUEST_TO_ADD_TALK);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(RESULT_OK==resultCode){
-            if(requestCode==REQUEST_TO_ADD_TALK&&data!=null){
-                Talk talk= (Talk) data.getSerializableExtra(TalkPublishActivity.KEY_TALK_ENTITIES);
-                modules.add(0,talk);
+        if (RESULT_OK == resultCode) {
+            if (requestCode == REQUEST_TO_ADD_TALK && data != null) {
+                Talk talk = (Talk) data.getSerializableExtra(TalkPublishActivity.KEY_TALK_ENTITIES);
+                modules.add(0, talk);
                 adapter.notifyDataSetChanged();
                 mPullToRefreshLsv.getRefreshableView().setSelection(0);
             }
@@ -186,7 +186,7 @@ public class TalkListActivity extends BaseListActivity implements Controller {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(this).inflate(R.layout.layout_talk_list_item, null);
+            convertView = LayoutInflater.from(this).inflate(R.layout.list_zone_talk_item, null);
             holder.initializeView(convertView);
             convertView.setTag(holder);
         } else {
@@ -203,6 +203,8 @@ public class TalkListActivity extends BaseListActivity implements Controller {
         private ImageView mTalkItemUserIconImg;
         private TextView mTalkItemUserNickLabel;
         private TextView mTalkItemCreateTimeLabel;
+        private TextView mTalkItemLookNumLabel;
+        private TextView mTalkItemCommentNumLabel;
 
         @Override
         public void initializeView(View view) {
@@ -210,6 +212,8 @@ public class TalkListActivity extends BaseListActivity implements Controller {
             mTalkItemUserNickLabel = (TextView) view.findViewById(R.id.mTalkItemUserNickLabel);
             mTalkItemCreateTimeLabel = (TextView) view.findViewById(R.id.mTalkItemCreateTimeLabel);
             mTalkContentLabel = (TextView) view.findViewById(R.id.mTalkContentLabel);
+            mTalkItemLookNumLabel = (TextView) view.findViewById(R.id.mTalkItemLookNumLabel);
+            mTalkItemCommentNumLabel = (TextView) view.findViewById(R.id.mTalkItemCommentNumLabel);
         }
 
 
@@ -218,8 +222,10 @@ public class TalkListActivity extends BaseListActivity implements Controller {
             talk = (Talk) modules.get(position);
             ImageUtils.displayImage(talk.getCreateUser().getIcon(), mTalkItemUserIconImg, ImageUtils.getUserIconOptions());
             mTalkItemUserNickLabel.setText(talk.getCreateUser().getNick());
-            mTalkItemCreateTimeLabel.setText(talk.getCreatedAt());
+            mTalkItemCreateTimeLabel.setText(TimeHelper.getTimeRule2(talk.getCreatedAt()));
             mTalkContentLabel.setText(talk.getContent());
+            mTalkItemLookNumLabel.setText(talk.getLookNum()+"");
+            mTalkItemCommentNumLabel.setText(talk.getCommentNum()+"");
         }
 
 

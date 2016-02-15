@@ -1,4 +1,4 @@
-package cn.wei.zslq.controller.im;
+package cn.wei.zslq.controller.zone;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -36,11 +36,12 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
 
     @Override
     protected void setContentView() {
-        setContentView(R.layout.im_activity_talk_comment);
+        setContentView(R.layout.activity_zone_talk_comment);
     }
 
     @Override
     protected void initializeView() {
+        talk = (Talk) getIntent().getSerializableExtra(KEY_TALK_ENTITIES);
         super.initializeView();
         mCommentContentEdt = (EditText) findViewById(R.id.mCommentContentEdt);
         findViewById(R.id.mCommentCommitBtn).setOnClickListener(this);
@@ -75,16 +76,20 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
 
     @Override
     protected void addRefreshHeaderView(ListView refreshableView) {
-        View view = LayoutInflater.from(this).inflate(R.layout.im_layout_talk_content, null);
+        View view = LayoutInflater.from(this).inflate(R.layout.list_zone_talk_content_header, null);
         ImageView mTalkItemUserIconImg = (ImageView) view.findViewById(R.id.mTalkItemUserIconImg);
         TextView mTalkItemUserNickLabel = (TextView) view.findViewById(R.id.mTalkItemUserNickLabel);
         TextView mTalkItemCreateTimeLabel = (TextView) view.findViewById(R.id.mTalkItemCreateTimeLabel);
         TextView mTalkContentLabel = (TextView) view.findViewById(R.id.mTalkContentLabel);
-        talk = (Talk) getIntent().getSerializableExtra(KEY_TALK_ENTITIES);
+        TextView mTalkItemLookNumLabel = (TextView) view.findViewById(R.id.mTalkItemLookNumLabel);
+        TextView mTalkItemCommentNumLabel = (TextView) view.findViewById(R.id.mTalkItemCommentNumLabel);
+
         ImageUtils.displayImage(talk.getCreateUser().getIcon(), mTalkItemUserIconImg, ImageUtils.getUserIconOptions());
         mTalkItemUserNickLabel.setText(talk.getCreateUser().getNick());
-        mTalkItemCreateTimeLabel.setText(talk.getCreatedAt());
+        mTalkItemCreateTimeLabel.setText(TimeHelper.getTimeRule2(talk.getCreatedAt()));
         mTalkContentLabel.setText(talk.getContent());
+        mTalkItemLookNumLabel.setText(talk.getLookNum()+"");
+        mTalkItemCommentNumLabel.setText(talk.getCommentNum()+"");
         refreshableView.addHeaderView(view);
         super.addRefreshHeaderView(refreshableView);
     }
@@ -99,7 +104,7 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(this).inflate(R.layout.im_activity_talk_comment_item, null);
+            convertView = LayoutInflater.from(this).inflate(R.layout.list_zone_talk_comment_item, null);
             holder.initializeView(convertView);
             convertView.setTag(holder);
         } else {

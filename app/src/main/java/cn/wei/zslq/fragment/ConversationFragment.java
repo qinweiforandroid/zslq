@@ -20,7 +20,7 @@ public class ConversationFragment extends BaseListFragment implements OnItemClic
 
 	@Override
 	protected int getFragmentLayoutId() {
-		return R.layout.fragment_conversation;
+		return R.layout.fragment_tab_conversation;
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class ConversationFragment extends BaseListFragment implements OnItemClic
 		ViewHolder mViewHolder=null;
 		if (convertView == null || convertView.getTag() == null) {
 			mViewHolder = new ViewHolder();
-			convertView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_conversation_item, null);
+			convertView = LayoutInflater.from(getActivity()).inflate(R.layout.list_conversation_item, null);
 			mViewHolder.initializeView(convertView);
 			convertView.setTag(mViewHolder);
 		} else {

@@ -1,4 +1,4 @@
-package cn.wei.zslq.controller.im;
+package cn.wei.zslq.controller.zone;
 
 import android.content.Intent;
 import android.text.Editable;
@@ -30,7 +30,7 @@ public class TalkPublishActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void setContentView() {
-        setContentView(R.layout.im_activity_talk_publish);
+        setContentView(R.layout.activity_zone_talk_publish);
     }
 
     @Override
