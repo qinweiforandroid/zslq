@@ -224,8 +224,8 @@ public class TalkListActivity extends BaseListActivity implements Controller {
             mTalkItemUserNickLabel.setText(talk.getCreateUser().getNick());
             mTalkItemCreateTimeLabel.setText(TimeHelper.getTimeRule2(talk.getCreatedAt()));
             mTalkContentLabel.setText(talk.getContent());
-            mTalkItemLookNumLabel.setText(talk.getLookNum()+"");
-            mTalkItemCommentNumLabel.setText(talk.getCommentNum()+"");
+            mTalkItemLookNumLabel.setText(talk.getLookNum() + "");
+            mTalkItemCommentNumLabel.setText(talk.getCommentNum() + "");
         }
 
 
@@ -234,6 +234,7 @@ public class TalkListActivity extends BaseListActivity implements Controller {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Talk talk = (Talk) parent.getAdapter().getItem(position);
+        model.doTalkLookNumAdd(talk.getObjectId());
         Intent intent = new Intent(this, TalkCommentActivity.class);
         intent.putExtra(TalkCommentActivity.KEY_TALK_ENTITIES, talk);
         startActivity(intent);

@@ -2,10 +2,15 @@ package cn.wei.zslq.model.impl;
 
 import android.content.Context;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.AsyncCustomEndpoints;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.CloudCodeListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.wei.zslq.domain.Talk;
@@ -65,6 +70,28 @@ public class TalkModel extends ViewModel implements ITalkModel {
             @Override
             public void onFailure(int i, String s) {
                 onResponseError(ACTION_DO_PUBLISH_TALK, i, s);
+            }
+        });
+    }
+
+    @Override
+    public void doTalkLookNumAdd(String id) {
+        JSONObject loginParams = new JSONObject();
+        try {
+            loginParams.put("objectId", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+        ace.callEndpoint(context, "talkLookNumAdd", loginParams, new CloudCodeListener() {
+            @Override
+            public void onSuccess(Object object) {
+                Trace.d("说说查看:" + object.toString());
+            }
+
+            @Override
+            public void onFailure(int code, String msg) {
+                Trace.d("说说查看:" + msg);
             }
         });
     }

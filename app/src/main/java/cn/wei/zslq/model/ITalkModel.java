@@ -12,4 +12,6 @@ public interface ITalkModel {
     void loadTalkList(int pageNum);
 
     void doPublishTalk(String text,User user);
+
+    void doTalkLookNumAdd(String id);
 }

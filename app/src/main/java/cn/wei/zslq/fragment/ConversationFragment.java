@@ -9,50 +9,53 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.handmark.pulltorefresh.PullToRefreshBase;
+
 import cn.wei.library.adapter.QBaseViewHolder;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.im.ChatActivity;
 import cn.wei.zslq.support.BaseListFragment;
 
-/** 
+/**
  */
 public class ConversationFragment extends BaseListFragment implements OnItemClickListener {
 
-	@Override
-	protected int getFragmentLayoutId() {
-		return R.layout.fragment_tab_conversation;
-	}
+    @Override
+    protected int getFragmentLayoutId() {
+        return R.layout.fragment_tab_conversation;
+    }
 
-	@Override
-	protected void initializeView(View v) {
-		super.initializeView(v);
-		for (int i = 0; i < 10; i++) {
-			modules.add("");
-		}
-		adapter.notifyDataSetChanged();
-	}
+    @Override
+    protected void initializeView(View v) {
+        super.initializeView(v);
+        mPullToRefreshLsv.setMode(PullToRefreshBase.Mode.DISABLED);
+        for (int i = 0; i < 10; i++) {
+            modules.add("");
+        }
+        adapter.notifyDataSetChanged();
+    }
 
 
-	static class ViewHolder extends QBaseViewHolder{
-		TextView mConversationStatusLabel;
-		TextView mConversationContentLabel;
-		TextView mConversationUsernameLabel;
-		TextView mConversationTimestampLabel;
-		TextView mConversationNumTip;
-		ImageView mConversationAvatarImg;
+    static class ViewHolder extends QBaseViewHolder {
+        TextView mConversationStatusLabel;
+        TextView mConversationContentLabel;
+        TextView mConversationUsernameLabel;
+        TextView mConversationTimestampLabel;
+        TextView mConversationNumTip;
+        ImageView mConversationAvatarImg;
 
-		@Override
-		public void initializeView(View view) {
-			mConversationAvatarImg = (ImageView) view.findViewById(R.id.mConversationAvatarImg);
-			mConversationNumTip = (TextView) view.findViewById(R.id.mConversationNumTip);
-			mConversationTimestampLabel = (TextView) view.findViewById(R.id.mConversationTimestampLabel);
-			mConversationUsernameLabel = (TextView) view.findViewById(R.id.mConversationUsernameLabel);
-			mConversationContentLabel = (TextView) view.findViewById(R.id.mConversationContentLabel);
+        @Override
+        public void initializeView(View view) {
+            mConversationAvatarImg = (ImageView) view.findViewById(R.id.mConversationAvatarImg);
+            mConversationNumTip = (TextView) view.findViewById(R.id.mConversationNumTip);
+            mConversationTimestampLabel = (TextView) view.findViewById(R.id.mConversationTimestampLabel);
+            mConversationUsernameLabel = (TextView) view.findViewById(R.id.mConversationUsernameLabel);
+            mConversationContentLabel = (TextView) view.findViewById(R.id.mConversationContentLabel);
 
-		}
+        }
 
-		@Override
-		public void initializeData(int position) {
+        @Override
+        public void initializeData(int position) {
 //			Conversation conversation = mConversationList.get(position);
 //			if (conversation.getUnreadNum() == 0) {
 //				mConversationNumTip.setVisibility(View.INVISIBLE);
@@ -70,31 +73,31 @@ public class ConversationFragment extends BaseListFragment implements OnItemClic
 //			}
 //			mConversationTimestampLabel.setText(TimeHelper.getTimeRule3(conversation.getTimestamp()));
 
-		}
-	}
+        }
+    }
 
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Intent intent = new Intent(getActivity(), ChatActivity.class);
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), ChatActivity.class);
 //		Conversation conversation = mConversationList.get(position);
 //		intent.putExtra(Constants.KEY_TARGETID, conversation.getTargetId());
 //		intent.putExtra(Constants.KEY_TARGETNAME, conversation.getTargetName());
-		startActivity(intent);
-	}
+        startActivity(intent);
+    }
 
-	@Override
-	public View getAdapterViewAtPosition(int position, View convertView, ViewGroup parent) {
-		ViewHolder mViewHolder=null;
-		if (convertView == null || convertView.getTag() == null) {
-			mViewHolder = new ViewHolder();
-			convertView = LayoutInflater.from(getActivity()).inflate(R.layout.list_conversation_item, null);
-			mViewHolder.initializeView(convertView);
-			convertView.setTag(mViewHolder);
-		} else {
-			mViewHolder = (ViewHolder) convertView.getTag();
-		}
-		mViewHolder.initializeData(position);
-		return convertView;
-	}
+    @Override
+    public View getAdapterViewAtPosition(int position, View convertView, ViewGroup parent) {
+        ViewHolder mViewHolder = null;
+        if (convertView == null || convertView.getTag() == null) {
+            mViewHolder = new ViewHolder();
+            convertView = LayoutInflater.from(getActivity()).inflate(R.layout.list_conversation_item, null);
+            mViewHolder.initializeView(convertView);
+            convertView.setTag(mViewHolder);
+        } else {
+            mViewHolder = (ViewHolder) convertView.getTag();
+        }
+        mViewHolder.initializeData(position);
+        return convertView;
+    }
 
 }
