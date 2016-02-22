@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.StatFs;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -390,5 +391,10 @@ public class CommonUtil {
         }
         return false;
     }
+    public static Handler mHandler=new Handler();
+    public static void postDelayed(Runnable runnable,long during){
+        mHandler.postDelayed(runnable, during);
+    }
+
 
 }

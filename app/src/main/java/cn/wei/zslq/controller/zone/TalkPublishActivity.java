@@ -43,7 +43,7 @@ public class TalkPublishActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initializeData() {
         setTitle(getString(R.string.title_talk_add));
-        model=new TalkModel(this);
+        model = new TalkModel(this);
         model.setController(this);
     }
 
@@ -67,6 +67,7 @@ public class TalkPublishActivity extends BaseActivity implements View.OnClickLis
         model.showProgress("提交中...");
         model.doPublishTalk(mTalkContentEdt.getText().toString().trim(), MyApplication.getLoginUser());
     }
+
     @Override
     public void onSuccess(String action) {
         model.closeProgress();

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.controller.OnProgressUpdatedListener;
+import cn.wei.zslq.utils.NativeProgressDialogUtils;
 import cn.wei.zslq.utils.ProgressDialogUtils;
 import http.AppException;
 import http.OnGlobalExceptionListener;
@@ -87,7 +88,7 @@ public abstract class ViewModel implements OnGlobalExceptionListener {
     }
 
     public void showProgress(String message) {
-        ProgressDialogUtils.showProgressDialog(context, message);
+        NativeProgressDialogUtils.showProgressDialog(context, message);
     }
 
     public void showProgressCanCancel(final String tag, String message) {
@@ -100,7 +101,7 @@ public abstract class ViewModel implements OnGlobalExceptionListener {
     }
 
     public void closeProgress() {
-        ProgressDialogUtils.closeProgressDialog();
+        NativeProgressDialogUtils.closeProgressDialog();
     }
 
     public boolean checkNetworkConnected() {

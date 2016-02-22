@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -7,41 +7,57 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/layout_toolbar" />
-
-    <com.handmark.pulltorefresh.PullToRefreshListView
-        android:id="@id/generalPullToRefreshLsv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_below="@id/toolbar"
-        android:layout_weight="1"
-        android:divider="@color/default_line_color"
-        android:dividerHeight="1px"
-        android:fadingEdge="none"
-        android:fastScrollEnabled="false"
-        android:focusable="false"
-        android:footerDividersEnabled="false"
-        android:headerDividersEnabled="false"
-        android:smoothScrollbar="true" />
-
-    <include layout="@layout/layout_line_black" />
-
     <LinearLayout
+        android:id="@+id/content"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:gravity="bottom"
-        android:padding="5dp">
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/windowBg"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/mCommentContentEdt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+        <com.handmark.pulltorefresh.PullToRefreshListView
+            android:id="@id/generalPullToRefreshLsv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/toolbar"
+            android:transcriptMode="normal"
+            android:layout_weight="1"
+            android:divider="@color/default_line_color"
+            android:dividerHeight="1px"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:focusable="false"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:smoothScrollbar="true" />
 
-        <Button
-            android:id="@+id/mCommentCommitBtn"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/mTalkCommentLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="评论" />
+            android:background="@color/white"
+            android:gravity="center"
+            android:padding="5dp">
+
+            <EditText
+                android:id="@+id/mCommentContentEdt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/mCommentCommitBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="评论" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+    <cn.wei.library.widget.EmptyView
+        android:id="@id/mEmptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/windowBg"></cn.wei.library.widget.EmptyView>
+</FrameLayout>

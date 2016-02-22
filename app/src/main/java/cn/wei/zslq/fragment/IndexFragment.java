@@ -48,7 +48,7 @@ public class IndexFragment extends BaseFragment {
                 case 0:
                     return new InformationListFragment();
                 case 1:
-                    return new ConversationFragment();
+                    return new SortFragment();
                 case 2:
                     return new FindFragment();
                 case 3:

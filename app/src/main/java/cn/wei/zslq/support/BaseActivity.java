@@ -101,17 +101,21 @@ public abstract class BaseActivity extends AppCompatActivity implements EmptyVie
             mEmptyView = (EmptyView) findViewById(cn.wei.library.R.id.mEmptyView);
             mEmptyView.setOnRetryListener(this);
             mEmptyView.notifyDataChanged(EmptyView.State.ing);
-            mViewSwitcher = (ViewSwitcher) findViewById(cn.wei.library.R.id.mViewSwitcher);
-            load();
+            if (findViewById(cn.wei.library.R.id.mViewSwitcher) != null) {
+                mViewSwitcher = (ViewSwitcher) findViewById(cn.wei.library.R.id.mViewSwitcher);
+                mViewSwitcher.setDisplayedChild(0);
+            }
         }
     }
+   public void load(){
+       mViewSwitcher.setDisplayedChild(0);
+   }
+
     public void showContent() {
         mEmptyView.notifyDataChanged(EmptyView.State.done);
         mViewSwitcher.setDisplayedChild(1);
     }
-    public void load() {
-        mViewSwitcher.setDisplayedChild(0);
-    }
+
     /**
      * 界面被系统强杀 数据状态恢复
      *

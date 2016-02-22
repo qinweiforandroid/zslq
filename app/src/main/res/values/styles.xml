@@ -1,6 +1,6 @@
 <resources>
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-    </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar"></style>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="AppTheme.Base">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -22,14 +22,23 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="RowLabelStyle" >
+    <style name="RowLabelStyle">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
     </style>
-    <style name="RowDetailLabelStyle" >
+
+    <style name="RowDetailLabelStyle">
         <item name="android:textColor">@color/gray_06</item>
         <item name="android:textSize">14sp</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="AppTheme.TalkCommentActivity" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 </resources>

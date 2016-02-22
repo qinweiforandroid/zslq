@@ -17,7 +17,6 @@ import cn.bmob.v3.listener.FindListener;
 import cn.wei.library.adapter.QBaseRecyclerViewHolder;
 import cn.wei.zslq.R;
 import cn.wei.zslq.domain.ThunderAccount;
-import cn.wei.zslq.support.BaseRecyclerRefreshViewFragment;
 import http.Trace;
 
 /**

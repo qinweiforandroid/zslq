@@ -30,7 +30,13 @@ public class ConversationFragment extends BaseListFragment implements OnItemClic
         super.initializeView(v);
         mPullToRefreshLsv.setMode(PullToRefreshBase.Mode.DISABLED);
         for (int i = 0; i < 10; i++) {
-            modules.add("");
+            if(i>2&&i<5){
+                modules.add("b"+i);
+            }else if(i>=5){
+                modules.add("c"+i);
+            }else if(i<=2){
+                modules.add("a"+i);
+            }
         }
         adapter.notifyDataSetChanged();
     }

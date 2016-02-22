@@ -1,5 +1,7 @@
 package cn.wei.zslq.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 
@@ -37,10 +39,10 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         mWidgetContainerView = (ContainerView) v.findViewById(R.id.mWidgetContainerView);
         bindData();
     }
-    long currentLoad=0;
+    long lastStamp =0;
     private void bindData() {
-        if(System.currentTimeMillis()-currentLoad<800){
-            this.currentLoad=System.currentTimeMillis();
+        if(System.currentTimeMillis()- lastStamp <800){
+            this.lastStamp =System.currentTimeMillis();
             return;
         }
         ArrayList<BaseRowDescriptor> rowDescriptor0s = new ArrayList<BaseRowDescriptor>();
@@ -59,12 +61,11 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         GroupDescriptor groupDescriptor1 = new GroupDescriptor("", rowDescriptors1);
 
         ArrayList<BaseRowDescriptor> rowDescriptors2 = new ArrayList<BaseRowDescriptor>();
-        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_album, "表情", RowActionEnum.MY_FIRST));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_album, "反馈", RowActionEnum.MY_FIRST));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_album, "关于我", RowActionEnum.MY_FIRST));
         GroupDescriptor groupDescriptor2 = new GroupDescriptor("", rowDescriptors2);
 
         ArrayList<BaseRowDescriptor> rowDescriptors3 = new ArrayList<BaseRowDescriptor>();
-        rowDescriptors3.add(new GeneralRowDescriptor(R.drawable.more_my_album, "反馈", RowActionEnum.MY_FIRST));
-        rowDescriptors3.add(new GeneralRowDescriptor(R.drawable.more_my_album, "设置", RowActionEnum.MY_FIRST));
         rowDescriptors3.add(new GeneralRowDescriptor(R.drawable.more_my_album, "退出登录", RowActionEnum.ACTION_LOGIN_OUT));
         GroupDescriptor groupDescriptor3 = new GroupDescriptor("", rowDescriptors3);
 
@@ -105,9 +106,20 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
     private void doLoginOut() {
 //        MyApplication.getLoginUser().logOut(getActivity());
-        MyApplication.loginOut();
-        startActivity(new Intent(getActivity(),LoginActivity.class));
-        getActivity().finish();
+        new AlertDialog.Builder(getActivity())
+                .setMessage("是否退出登录？")
+                .setTitle(android.R.string.dialog_alert_title)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MyApplication.loginOut();
+                        startActivity(new Intent(getActivity(), LoginActivity.class));
+                        getActivity().finish();
+                    }
+                })
+                .setPositiveButton(android.R.string.cancel, null)
+                .create().show();
     }
 
     private void goLogin() {

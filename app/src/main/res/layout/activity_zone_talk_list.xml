@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -12,6 +13,7 @@
         android:id="@+id/mViewSwitcher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
         android:inAnimation="@android:anim/fade_in"
         android:outAnimation="@android:anim/fade_out">
 
@@ -25,15 +27,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/toolbar"
+            android:cacheColorHint="@android:color/transparent"
             android:divider="@null"
             android:fadingEdge="none"
             android:fastScrollEnabled="false"
             android:focusable="false"
             android:footerDividersEnabled="false"
             android:headerDividersEnabled="false"
-            android:cacheColorHint="@android:color/transparent"
             android:listSelector="@android:color/transparent"
             android:smoothScrollbar="true" />
+
     </ViewSwitcher>
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/mFloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/common_activity_padding_16"
+        android:layout_marginRight="@dimen/common_activity_padding_16"
+        android:src="@android:drawable/ic_menu_add"
+        app:borderWidth="0dp"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+</RelativeLayout>

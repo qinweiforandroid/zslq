@@ -1,9 +1,14 @@
 package cn.wei.zslq.controller.zone;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -16,6 +21,7 @@ import cn.wei.library.adapter.QBaseViewHolder;
 import cn.wei.library.utils.CommonUtil;
 import cn.wei.library.utils.ImageUtils;
 import cn.wei.library.utils.TimeHelper;
+import cn.wei.library.widget.EmptyView;
 import cn.wei.library.widget.FooterView;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
@@ -28,10 +34,13 @@ import cn.wei.zslq.utils.Constants;
 
 public class TalkCommentActivity extends BaseListActivity implements View.OnClickListener, Controller {
     public static final String KEY_TALK_ENTITIES = "key_talk_entities";
+    public static final String KEY_START_LOCATION = "key_start_location";
     private EditText mCommentContentEdt;
     private Talk talk;
+    private int startLocation;
     private int pageNum = 1;
     public int load_data_state = 1;
+    public boolean isFirstLoad = true;
     private TalkCommentModel model;
 
     @Override
@@ -42,6 +51,7 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
     @Override
     protected void initializeView() {
         talk = (Talk) getIntent().getSerializableExtra(KEY_TALK_ENTITIES);
+        startLocation = getIntent().getIntExtra(KEY_START_LOCATION, 0);
         super.initializeView();
         mCommentContentEdt = (EditText) findViewById(R.id.mCommentContentEdt);
         findViewById(R.id.mCommentCommitBtn).setOnClickListener(this);
@@ -53,7 +63,13 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
         mPullToRefreshLsv.setMode(PullToRefreshBase.Mode.DISABLED);
         model = new TalkCommentModel(this);
         model.setController(this);
-        loadDataFromServer();
+        findViewById(R.id.mTalkCommentLayout).setTranslationY(100);
+        startIntroAnimation();
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                loadDataFromServer();
+            }
+        }, 500);
     }
 
     private void loadDataFromServer() {
@@ -61,17 +77,38 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
         model.loadTalkCommentList(talk, pageNum);
     }
 
+    private void startIntroAnimation() {
+        mEmptyView.setScaleY(0.1f);
+        mEmptyView.setPivotY(startLocation);
+        mEmptyView.animate()
+                .scaleY(1)
+                .setDuration(200)
+                .setInterpolator(new AccelerateInterpolator())
+                .start();
+    }
+
+    private void animateContent() {
+        findViewById(R.id.mTalkCommentLayout).animate().translationY(0)
+                .setInterpolator(new DecelerateInterpolator())
+                .setDuration(300)
+                .start();
+    }
+
 
     @Override
     public void onClick(View v) {
-        String content = mCommentContentEdt.getText().toString().trim();
+        final String content = mCommentContentEdt.getText().toString().trim();
         if (TextUtils.isEmpty(content)) {
             Toast.makeText(this, "评论内容不能为空!", Toast.LENGTH_SHORT).show();
             return;
         }
         CommonUtil.hideInput(this);
         model.showProgress("提交中...");
-        model.doTalkComment(talk, MyApplication.getLoginUser(), content, TalkComment.comment);
+       CommonUtil.postDelayed(new Runnable() {
+           public void run() {
+               model.doTalkComment(talk, MyApplication.getLoginUser(), content, TalkComment.comment);
+           }
+       }, 500);
     }
 
     @Override
@@ -88,8 +125,8 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
         mTalkItemUserNickLabel.setText(talk.getCreateUser().getNick());
         mTalkItemCreateTimeLabel.setText(TimeHelper.getTimeRule2(talk.getCreatedAt()));
         mTalkContentLabel.setText(talk.getContent());
-        mTalkItemLookNumLabel.setText(talk.getLookNum()+"");
-        mTalkItemCommentNumLabel.setText(talk.getCommentNum()+"");
+        mTalkItemLookNumLabel.setText(talk.getLookNum() + "");
+        mTalkItemCommentNumLabel.setText(talk.getCommentNum() + "");
         refreshableView.addHeaderView(view);
         super.addRefreshHeaderView(refreshableView);
     }
@@ -97,21 +134,6 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
     @Override
     public void loadMore() {
         loadDataFromServer();
-    }
-
-    @Override
-    public View getAdapterViewAtPosition(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
-        if (convertView == null) {
-            holder = new ViewHolder();
-            convertView = LayoutInflater.from(this).inflate(R.layout.list_zone_talk_comment_item, null);
-            holder.initializeView(convertView);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-        holder.initializeData(position);
-        return convertView;
     }
 
     @Override
@@ -126,6 +148,12 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
                 modules.addAll(model.comments);
                 pageNum++;
                 adapter.notifyDataSetChanged();
+                if (isFirstLoad) {
+                    findViewById(R.id.content).setVisibility(View.VISIBLE);
+                    mEmptyView.notifyDataChanged(EmptyView.State.done);
+                    animateContent();
+                    isFirstLoad = false;
+                }
                 break;
             case TalkCommentModel.ACTION_DO_TALK_COMMENT:
                 mCommentContentEdt.setText("");
@@ -153,6 +181,21 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
             default:
                 break;
         }
+    }
+
+    @Override
+    public View getAdapterViewAtPosition(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder = null;
+        if (convertView == null) {
+            holder = new ViewHolder();
+            convertView = LayoutInflater.from(this).inflate(R.layout.list_zone_talk_comment_item, null);
+            holder.initializeView(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        holder.initializeData(position);
+        return convertView;
     }
 
 
@@ -184,5 +227,26 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
     @Override
     public boolean isCanLoadMore() {
         return true;
+    }
+
+    @Override
+    protected boolean isCanFinish() {
+        onBackPressed();
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        findViewById(R.id.content).animate()
+                .translationY(mEmptyView.getHeight())
+                .setDuration(300)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        TalkCommentActivity.super.onBackPressed();
+                        overridePendingTransition(0, 0);
+                    }
+                })
+                .start();
     }
 }

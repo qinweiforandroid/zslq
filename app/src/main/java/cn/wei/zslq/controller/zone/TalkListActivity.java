@@ -1,11 +1,12 @@
 package cn.wei.zslq.controller.zone;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,12 +32,13 @@ import http.Trace;
  * @version 1.0
  * @created 创建时间: 2015-5-2 上午20:36:45
  */
-public class TalkListActivity extends BaseListActivity implements Controller {
+public class TalkListActivity extends BaseListActivity implements Controller, View.OnClickListener {
     private static final int REQUEST_TO_ADD_TALK = 100;
     private int pageNum = 1;
     private TalkModel model;
 
     public int load_data_state = 1;
+    private FloatingActionButton mFloatingActionButton;
 
     @Override
     public void setContentView() {
@@ -47,6 +49,9 @@ public class TalkListActivity extends BaseListActivity implements Controller {
     public void initializeView() {
         super.initializeView();
         setTitle("空间动态");
+        mFloatingActionButton = (FloatingActionButton) findViewById(R.id.mFloatingActionButton);
+        mFloatingActionButton.setOnClickListener(this);
+        mFloatingActionButton.setTranslationY(2 * getResources().getDimensionPixelOffset(R.dimen.btn_fab_size));
     }
 
     @Override
@@ -70,60 +75,20 @@ public class TalkListActivity extends BaseListActivity implements Controller {
         model.loadTalkList(pageNum);
     }
 
-    @Override
-    public void loadMore() {
-        load_data_state = Constants.LOAD_DATA_STATE_LOAD_MORE;
-        model.loadTalkList(pageNum);
-    }
-
-    @Override
-    public void onRetryLoadMore() {
-        loadMore();
-    }
-
-    @Override
-    public void onRetry() {
-        loadDataFromServer();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.talk__list_to_publish_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.talk_action_add:
-                goTalkAdd();
-                break;
-            case R.id.talk_action_look:
-                loadDataFromServer();
-                break;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void goTalkAdd() {
         Intent intent = new Intent(this, TalkPublishActivity.class);
         startActivityForResult(intent, REQUEST_TO_ADD_TALK);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (RESULT_OK == resultCode) {
-            if (requestCode == REQUEST_TO_ADD_TALK && data != null) {
-                Talk talk = (Talk) data.getSerializableExtra(TalkPublishActivity.KEY_TALK_ENTITIES);
-                modules.add(0, talk);
-                adapter.notifyDataSetChanged();
-                mPullToRefreshLsv.getRefreshableView().setSelection(0);
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
+    public void animateTalkAddBtn() {
+        mFloatingActionButton.animate()
+                .translationY(0)
+                .setInterpolator(new OvershootInterpolator(1.f))
+                .setStartDelay(500)
+                .setDuration(300)
+                .start();
     }
+
 
     @Override
     public void onSuccess(String action) {
@@ -134,6 +99,7 @@ public class TalkListActivity extends BaseListActivity implements Controller {
                 modules.addAll(model.talks);
                 adapter.notifyDataSetChanged();
                 showContent();
+                animateTalkAddBtn();
                 break;
             case Constants.LOAD_DATA_STATE_LOAD_REFRESH:
                 pageNum++;
@@ -158,10 +124,6 @@ public class TalkListActivity extends BaseListActivity implements Controller {
         }
     }
 
-    @Override
-    public boolean isCanLoadMore() {
-        return true;
-    }
 
     @Override
     public void onFailure(String action, int errorCode, String errorMsg) {
@@ -181,6 +143,68 @@ public class TalkListActivity extends BaseListActivity implements Controller {
         }
     }
 
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.mFloatingActionButton:
+                goTalkAdd();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Talk talk = (Talk) parent.getAdapter().getItem(position);
+        model.doTalkLookNumAdd(talk.getObjectId());
+        Intent intent = new Intent(this, TalkCommentActivity.class);
+        //Get location on screen for tapped view
+        int[] startingLocation = new int[2];
+        view.getLocationOnScreen(startingLocation);
+        intent.putExtra(TalkCommentActivity.KEY_START_LOCATION, startingLocation[1]);
+
+        intent.putExtra(TalkCommentActivity.KEY_TALK_ENTITIES, talk);
+        startActivity(intent);
+        //Disable enter transition for new Acitvity
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
+    public void loadMore() {
+        load_data_state = Constants.LOAD_DATA_STATE_LOAD_MORE;
+        model.loadTalkList(pageNum);
+    }
+
+    @Override
+    public void onRetryLoadMore() {
+        loadMore();
+    }
+
+    @Override
+    public void onRetry() {
+        loadDataFromServer();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (RESULT_OK == resultCode) {
+            if (requestCode == REQUEST_TO_ADD_TALK && data != null) {
+                Talk talk = (Talk) data.getSerializableExtra(TalkPublishActivity.KEY_TALK_ENTITIES);
+                modules.add(0, talk);
+                adapter.notifyDataSetChanged();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullToRefreshLsv.getRefreshableView().smoothScrollToPosition(0);
+                    }
+                }, 300);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     @Override
     public View getAdapterViewAtPosition(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
@@ -195,7 +219,6 @@ public class TalkListActivity extends BaseListActivity implements Controller {
         holder.initializeData(position);
         return convertView;
     }
-
 
     public class ViewHolder extends QBaseViewHolder {
         private Talk talk;
@@ -227,16 +250,11 @@ public class TalkListActivity extends BaseListActivity implements Controller {
             mTalkItemLookNumLabel.setText(talk.getLookNum() + "");
             mTalkItemCommentNumLabel.setText(talk.getCommentNum() + "");
         }
-
-
     }
 
+
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Talk talk = (Talk) parent.getAdapter().getItem(position);
-        model.doTalkLookNumAdd(talk.getObjectId());
-        Intent intent = new Intent(this, TalkCommentActivity.class);
-        intent.putExtra(TalkCommentActivity.KEY_TALK_ENTITIES, talk);
-        startActivity(intent);
+    public boolean isCanLoadMore() {
+        return true;
     }
 }
