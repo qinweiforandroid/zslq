@@ -25,8 +25,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
-import cn.dreamtobe.kpswitch.util.KeyboardUtil;
-
 
 /**
  * Detail: http://blog.dreamtobe.cn/2015/09/01/keyboard-panel-switch/

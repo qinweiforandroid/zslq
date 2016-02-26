@@ -16,7 +16,7 @@ public class FooterView extends LinearLayout implements OnClickListener {
 
     private ProgressBar mProgressBar;
     private TextView mFooterLabel;
-    private State status = State.done;
+    public State status = State.done;
     private OnFooterViewListener listener;
 
     public interface OnFooterViewListener {

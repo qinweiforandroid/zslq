@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:wheel="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:gravity="center"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content">
 
+    <cn.wei.library.widget.FooterView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mFooterView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</FrameLayout>
 
-    <cn.wei.library.widget.ProgressWheel
-        android:id="@+id/mFooterProgress"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        wheel:matProg_barColor="#5588FF"
-        wheel:matProg_progressIndeterminate="true" />
-
-    <TextView
-        android:id="@+id/mFooterLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="" />
-</LinearLayout>

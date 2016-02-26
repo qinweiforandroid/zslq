@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.wei.library.R;
-import cn.wei.library.utils.ImageUtils;
+import cn.wei.library.utils.ImageDisplay;
 
 
 public class SimpleInfoRowView extends BaseRowView implements OnClickListener {
@@ -64,7 +64,7 @@ public class SimpleInfoRowView extends BaseRowView implements OnClickListener {
             if (TextUtils.isEmpty(rowDescriptor.iconUrl)) {
                 mInfoIconImg.setImageResource(rowDescriptor.iconResId);
             } else {
-                ImageUtils.displayImage(rowDescriptor.iconUrl, mInfoIconImg, ImageUtils.getUserIconOptions());
+                ImageDisplay.getInstance().displayImage(rowDescriptor.iconUrl, mInfoIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
             }
             mInfoAccountLabel.setText(rowDescriptor.account);
             mInfoNickLabel.setText(rowDescriptor.nick);

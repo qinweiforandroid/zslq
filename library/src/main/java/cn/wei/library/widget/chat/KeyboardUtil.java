@@ -21,7 +21,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import cn.dreamtobe.kpswitch.R;
+import cn.wei.library.R;
+
 
 /**
  * Created by Jacksgong on 15/7/6.

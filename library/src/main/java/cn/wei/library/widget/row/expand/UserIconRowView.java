@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.wei.library.R;
-import cn.wei.library.utils.ImageUtils;
+import cn.wei.library.utils.ImageDisplay;
 import cn.wei.library.widget.row.BaseRowDescriptor;
 import cn.wei.library.widget.row.BaseRowView;
 import cn.wei.library.widget.row.OnRowClickListener;
@@ -79,7 +79,7 @@ public class UserIconRowView extends BaseRowView implements OnClickListener {
                 mWidgetRowIconImg.setBackgroundResource(rowDescriptor.iconResId);
             }
             mWidgetRowLabel.setText(rowDescriptor.label);
-            ImageUtils.displayImage(rowDescriptor.iconUrl,mUserIconImg,ImageUtils.getUserIconOptions());
+            ImageDisplay.getInstance().displayImage(rowDescriptor.iconUrl,mUserIconImg,R.drawable.ic_launcher,R.drawable.ic_launcher);
             if (rowDescriptor.action != null) {
                 setBackgroundResource(R.drawable.widgets_general_row_select);
                 mWidgetRowActionImg.setBackgroundResource(R.drawable.action_row);

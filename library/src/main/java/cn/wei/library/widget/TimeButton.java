@@ -10,13 +10,10 @@ import android.widget.Button;
  * email:qinwei_it@163.com
  */
 public class TimeButton extends Button {
-
-
     private TimeTask timeTask;
     private int length;
     private int curTime;
     private TimeChangedListener listener;
-
     public TimeButton(Context context) {
         super(context);
         initializeView();
@@ -33,13 +30,10 @@ public class TimeButton extends Button {
     }
 
     private void initializeView() {
-
     }
-
     public void setOnTimeChangedListener(TimeChangedListener listener) {
         this.listener = listener;
     }
-
     public void start() {
         start(60);
     }
@@ -96,5 +90,4 @@ public class TimeButton extends Button {
 
         void onTimeCompleted();
     }
-
 }

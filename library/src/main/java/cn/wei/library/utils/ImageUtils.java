@@ -232,15 +232,13 @@ public class ImageUtils {
      * @param imageView 图片控件
      * @param options   图片的加载配置
      */
-    public static void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
-        ImageLoader.getInstance().displayImage(uri, imageView, options);
-    }
+//    public static void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
+//        ImageLoader.getInstance().displayImage(uri, imageView, options);
+//    }
 
     public static void displayImage(String uri, ImageView imageView, DisplayImageOptions options, ImageLoadingListener listener) {
         ImageLoader.getInstance().displayImage(uri, imageView, options, listener);
     }
-
-
     public static void clearMemoryCache() {
         ImageLoader.getInstance().clearMemoryCache();
     }

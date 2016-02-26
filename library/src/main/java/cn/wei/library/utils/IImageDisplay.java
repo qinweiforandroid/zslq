@@ -11,6 +11,8 @@ import android.widget.ImageView;
 public interface IImageDisplay {
 	void displayImage(String uri, ImageView imageView);
 
+	void displayImage(String uri,ImageView imageView,int placeId,int errorId);
+
 	void displayImage(int id, ImageView imageView);
 
 	void clearMemoryCache();
