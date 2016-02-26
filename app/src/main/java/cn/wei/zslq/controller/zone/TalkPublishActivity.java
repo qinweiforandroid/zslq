@@ -10,12 +10,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import cn.wei.library.utils.DensityUtil;
+import cn.wei.library.utils.Trace;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.model.impl.TalkModel;
 import cn.wei.zslq.support.BaseActivity;
-import http.Trace;
 
 /**
  * Created by qinwei on 2016/1/27 11:09

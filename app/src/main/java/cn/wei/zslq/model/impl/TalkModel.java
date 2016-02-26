@@ -13,11 +13,11 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.CloudCodeListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.wei.library.utils.Trace;
 import cn.wei.zslq.domain.Talk;
 import cn.wei.zslq.domain.User;
 import cn.wei.zslq.model.ITalkModel;
 import cn.wei.zslq.model.ViewModel;
-import http.Trace;
 
 /**
  * Created by qinwei on 2016/1/28 10:08

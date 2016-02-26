@@ -20,8 +20,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import cn.wei.library.utils.Trace;
 import cn.wei.zslq.R;
-import http.Trace;
 
 
 /**

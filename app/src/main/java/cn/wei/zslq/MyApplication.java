@@ -3,20 +3,14 @@ package cn.wei.zslq;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
-import android.os.Environment;
-
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-
-import java.io.File;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
-import http.Trace;
+import cn.wei.library.utils.ImageDisplay;
+import cn.wei.library.utils.Trace;
+import cn.wei.zslq.config.AppConfig;
 import cn.wei.zslq.domain.User;
+import cn.wei.zslq.utils.GlideDisplay;
 
 public class MyApplication extends Application implements Application.ActivityLifecycleCallbacks {
     public static final int APP_STATE_STARTED = 1;//app 开启
@@ -24,7 +18,6 @@ public class MyApplication extends Application implements Application.ActivityLi
     private static MyApplication mInstance;
     private static User currentUser;
     private int app_state;
-    public final static boolean isDevelop = true;
     private boolean isForeground;//应用是否在前台 true代表前台，false代表后台
     private int activityCount;
 
@@ -37,6 +30,10 @@ public class MyApplication extends Application implements Application.ActivityLi
         initializeBmobConfig();
         initializeDataTask();
         registerActivityLifecycleCallbacks(this);
+        AppConfig config = AppConfig.getInstance();
+        config.isDevelopment = true;
+        config.init(getApplicationContext());
+        Trace.model = config.isDevelopment;
     }
 
     private void initializeBmobConfig() {
@@ -44,28 +41,20 @@ public class MyApplication extends Application implements Application.ActivityLi
     }
 
     private void initializeDataTask() {
-        if(User.getCurrentUser(getApplicationContext())!=null){
-            currentUser= BmobUser.getCurrentUser(getApplicationContext(),User.class);
-            app_state=APP_STATE_LOGINED;
+        if (User.getCurrentUser(getApplicationContext()) != null) {
+            currentUser = BmobUser.getCurrentUser(getApplicationContext(), User.class);
+            app_state = APP_STATE_LOGINED;
         }
     }
 
     public void initializeImageloader() {
-        String cacheDir = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "ZSLQ" + File.separator + "cache";
-        ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(getApplicationContext());
-        config.threadPriority(Thread.NORM_PRIORITY - 2);
-        config.denyCacheImageMultipleSizesInMemory();
-        config.diskCache(new UnlimitedDiscCache(new File(cacheDir)));
-        config.diskCacheFileNameGenerator(new Md5FileNameGenerator());
-        config.diskCacheSize(50 * 1024 * 1024); // 50 MiB
-        config.tasksProcessingOrder(QueueProcessingType.LIFO);
-        config.writeDebugLogs(); // Remove for release app
-        // Initialize ImageLoader with configuration.
-        ImageLoader.getInstance().init(config.build());
+        ImageDisplay.getInstance().init(new GlideDisplay(getApplicationContext()));
     }
+
     public static MyApplication getInstance() {
         return mInstance;
     }
+
     public int getAppState() {
         return app_state;
     }
@@ -124,16 +113,19 @@ public class MyApplication extends Application implements Application.ActivityLi
     }
 
     public static void setLoginUser(User tmp) {
-        currentUser=tmp;
+        currentUser = tmp;
     }
-    public static User getLoginUser(){
+
+    public static User getLoginUser() {
         return currentUser;
     }
-    public static void loginOut(){
+
+    public static void loginOut() {
         MyApplication.getLoginUser().logOut(mInstance.getApplicationContext());
-        currentUser=null;
+        currentUser = null;
     }
-    public static boolean isLogin(){
-        return currentUser!=null;
+
+    public static boolean isLogin() {
+        return currentUser != null;
     }
 }

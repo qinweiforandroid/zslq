@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.wei.library.utils.Trace;
+
 /**
  * Created by qinwei on 2015/10/6.
  * email:qinwei_it@163.com

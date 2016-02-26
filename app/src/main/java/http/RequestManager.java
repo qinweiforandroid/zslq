@@ -4,6 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import cn.wei.library.utils.Trace;
+
 /**
  * Created by qinwei on 2015/10/6.
  * email:qinwei_it@163.com

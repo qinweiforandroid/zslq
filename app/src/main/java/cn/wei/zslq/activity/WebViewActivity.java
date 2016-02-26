@@ -7,16 +7,16 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ViewSwitcher;
 
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.library.utils.Trace;
 import cn.wei.library.widget.EmptyView;
 import cn.wei.zslq.R;
 import cn.wei.zslq.domain.InformationBean;
-import cn.wei.zslq.utils.HaoXinCallBack;
+import cn.wei.zslq.support.BaseActivity;
+import http.HaoXinCallBack;
 import cn.wei.zslq.utils.UrlHelpper;
 import http.AppException;
 import http.Request;
 import http.RequestManager;
-import http.Trace;
 
 /**
  * Created by qinwei on 2015/10/30 23:39

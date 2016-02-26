@@ -40,6 +40,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MessageActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ViewPagerActivity"
@@ -75,6 +76,7 @@
             android:name=".controller.zone.TalkCommentActivity"
             android:label="@string/title_activity_talk_comment"
             android:windowSoftInputMode="adjustResize"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.TalkCommentActivity"></activity>
 
         <service

@@ -10,6 +10,8 @@ import java.net.HttpURLConnection;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterInputStream;
 
+import cn.wei.library.utils.Trace;
+
 /**
  * Created by qinwei on 2015/10/6.
  * email:qinwei_it@163.com

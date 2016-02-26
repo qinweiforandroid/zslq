@@ -3,11 +3,11 @@ package cn.wei.zslq.model.impl;
 import android.content.Context;
 
 import cn.bmob.v3.listener.UpdateListener;
+import cn.wei.library.utils.Trace;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.domain.User;
 import cn.wei.zslq.model.IProfileModel;
 import cn.wei.zslq.model.ViewModel;
-import http.Trace;
 
 /**
  * Created by qinwei on 2016/1/28 10:51

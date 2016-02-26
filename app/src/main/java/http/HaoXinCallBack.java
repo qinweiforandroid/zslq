@@ -1,4 +1,4 @@
-package cn.wei.zslq.utils;
+package http;
 
 
 import com.google.gson.JsonSyntaxException;
@@ -9,10 +9,10 @@ import org.json.JSONObject;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+import cn.wei.library.utils.Trace;
 import http.AbstractCallback;
 import http.AppException;
 import http.JsonParser;
-import http.Trace;
 
 public abstract class HaoXinCallBack<T> extends AbstractCallback<T> {
     private Type type;

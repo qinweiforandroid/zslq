@@ -9,12 +9,12 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.wei.library.utils.Trace;
 import cn.wei.zslq.domain.Talk;
 import cn.wei.zslq.domain.TalkComment;
 import cn.wei.zslq.domain.User;
 import cn.wei.zslq.model.ITalkCommentModel;
 import cn.wei.zslq.model.ViewModel;
-import http.Trace;
 
 /**
  * 业务实现类

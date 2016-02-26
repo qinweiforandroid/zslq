@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.wei.library.adapter.QBaseViewHolder;
-import cn.wei.library.utils.ImageUtils;
+import cn.wei.library.utils.ImageDisplay;
 import cn.wei.library.widget.EmptyView;
 import cn.wei.library.widget.FooterView;
 import cn.wei.zslq.R;
@@ -145,7 +145,7 @@ public class InformationListFragment extends BaseListFragment implements Control
         @Override
         public void initializeData(int position) {
             InformationBean information = (InformationBean) modules.get(position);
-            ImageUtils.displayImage(information.getImages(), mNewsItemIconImg, ImageUtils.getUserIconOptions());
+            ImageDisplay.getInstance().displayImage(information.getImages(), mNewsItemIconImg, cn.wei.library.R.drawable.ic_launcher, cn.wei.library.R.drawable.ic_launcher);
             mNewsItemTitleLabel.setText(information.getTitle());
             mNewsItemAuthorLabel.setText("作者:" + information.getAuthor());
             mNewsItemCreateDateLabel.setText(information.getCreateTimeValue());

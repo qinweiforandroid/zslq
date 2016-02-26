@@ -15,9 +15,10 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 import cn.wei.library.adapter.QBaseRecyclerViewHolder;
+import cn.wei.library.utils.Trace;
 import cn.wei.zslq.R;
 import cn.wei.zslq.domain.ThunderAccount;
-import http.Trace;
+import cn.wei.zslq.support.BaseRecyclerRefreshViewFragment;
 
 /**
  * Created by qinwei on 2016/1/6 11:12

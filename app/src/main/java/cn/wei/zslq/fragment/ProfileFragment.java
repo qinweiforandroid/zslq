@@ -17,6 +17,7 @@ import cn.wei.library.widget.row.RowActionEnum;
 import cn.wei.library.widget.row.SimpleInfoRowDescriptor;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
+import cn.wei.zslq.activity.MessageActivity;
 import cn.wei.zslq.controller.main.LoginActivity;
 import cn.wei.zslq.controller.profile.ProfileEditorActivity;
 import cn.wei.zslq.domain.User;
@@ -62,7 +63,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         ArrayList<BaseRowDescriptor> rowDescriptors2 = new ArrayList<BaseRowDescriptor>();
         rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_album, "反馈", RowActionEnum.MY_FIRST));
-        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_album, "关于我", RowActionEnum.MY_FIRST));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_album, "关于我", RowActionEnum.ACTION_ABOUT_ME));
         GroupDescriptor groupDescriptor2 = new GroupDescriptor("", rowDescriptors2);
 
         ArrayList<BaseRowDescriptor> rowDescriptors3 = new ArrayList<BaseRowDescriptor>();
@@ -98,6 +99,10 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                 break;
             case ACTION_LOGIN_OUT:
                 doLoginOut();
+                break;
+            case ACTION_ABOUT_ME:
+                Intent intent=new Intent(getActivity(), MessageActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;

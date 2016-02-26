@@ -2,6 +2,8 @@ package http;
 
 import java.io.IOException;
 
+import cn.wei.library.utils.Trace;
+
 /**
  * Created by qinwei on 2015/10/6.
  * email:qinwei_it@163.com

@@ -19,7 +19,7 @@ import com.handmark.pulltorefresh.PullToRefreshBase;
 
 import cn.wei.library.adapter.QBaseViewHolder;
 import cn.wei.library.utils.CommonUtil;
-import cn.wei.library.utils.ImageUtils;
+import cn.wei.library.utils.ImageDisplay;
 import cn.wei.library.utils.TimeHelper;
 import cn.wei.library.widget.EmptyView;
 import cn.wei.library.widget.FooterView;
@@ -104,11 +104,11 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
         }
         CommonUtil.hideInput(this);
         model.showProgress("提交中...");
-       CommonUtil.postDelayed(new Runnable() {
-           public void run() {
-               model.doTalkComment(talk, MyApplication.getLoginUser(), content, TalkComment.comment);
-           }
-       }, 500);
+        CommonUtil.postDelayed(new Runnable() {
+            public void run() {
+                model.doTalkComment(talk, MyApplication.getLoginUser(), content, TalkComment.comment);
+            }
+        }, 500);
     }
 
     @Override
@@ -120,8 +120,7 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
         TextView mTalkContentLabel = (TextView) view.findViewById(R.id.mTalkContentLabel);
         TextView mTalkItemLookNumLabel = (TextView) view.findViewById(R.id.mTalkItemLookNumLabel);
         TextView mTalkItemCommentNumLabel = (TextView) view.findViewById(R.id.mTalkItemCommentNumLabel);
-
-        ImageUtils.displayImage(talk.getCreateUser().getIcon(), mTalkItemUserIconImg, ImageUtils.getUserIconOptions());
+        ImageDisplay.getInstance().displayImage(talk.getCreateUser().getIcon(), mTalkItemUserIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
         mTalkItemUserNickLabel.setText(talk.getCreateUser().getNick());
         mTalkItemCreateTimeLabel.setText(TimeHelper.getTimeRule2(talk.getCreatedAt()));
         mTalkContentLabel.setText(talk.getContent());
@@ -217,7 +216,7 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
         @Override
         public void initializeData(int position) {
             comment = (TalkComment) modules.get(position);
-            ImageUtils.displayImage(comment.getFromUser().getIcon(), mTalkItemUserIconImg, ImageUtils.getUserIconOptions());
+            ImageDisplay.getInstance().displayImage(comment.getFromUser().getIcon(), mTalkItemUserIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
             mTalkItemUserNickLabel.setText(comment.getFromUser().getNick());
             mTalkItemCreateTimeLabel.setText(TimeHelper.getTimeRule2(comment.getCreatedAt()));
             mTalkContentLabel.setText(comment.getContent());

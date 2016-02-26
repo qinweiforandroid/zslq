@@ -26,4 +26,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="btn_fab_size">56dp</dimen>
 
+    <dimen name="panel_height">200dp</dimen>
 </resources>

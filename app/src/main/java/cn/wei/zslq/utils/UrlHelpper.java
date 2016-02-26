@@ -1,5 +1,7 @@
 package cn.wei.zslq.utils;
 
+import cn.wei.zslq.config.AppConfig;
+
 /**
  * Created by qinwei on 2015/10/30 23:46
  * email:qinwei_it@163.com
@@ -15,6 +17,9 @@ public class UrlHelpper {
     public static final String ACTION_GET_INFORMATION_DETAIL = "?r=message/detail";
 
     public static String getDomain() {
+        if (AppConfig.getInstance().isDevelopment) {
+            return DOMAIN;
+        }
         return DOMAIN;
     }
 
@@ -27,6 +32,7 @@ public class UrlHelpper {
     }
 
     public static String showImage(String uri) {
+
         return getDomain() + uri;
     }
 }

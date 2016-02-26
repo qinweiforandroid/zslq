@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.LogInListener;
+import cn.wei.library.utils.Trace;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.domain.User;
 import cn.wei.zslq.model.ILoginModel;
@@ -23,7 +24,6 @@ import http.OnGlobalExceptionListener;
 import http.Request;
 import http.RequestManager;
 import http.StringCallback;
-import http.Trace;
 
 /**
  * Created by qinwei on 2015/12/18 15:36

@@ -5,6 +5,8 @@ import com.google.gson.JsonSyntaxException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+import cn.wei.library.utils.Trace;
+
 /**
  * Created by qinwei on 2015/10/6.
  * email:qinwei_it@163.com

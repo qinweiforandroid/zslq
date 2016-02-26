@@ -17,13 +17,13 @@ import java.util.ArrayList;
 
 import cn.bmob.v3.listener.SaveListener;
 import cn.wei.library.adapter.QBaseViewHolder;
-import cn.wei.library.utils.ImageUtils;
+import cn.wei.library.utils.ImageDisplay;
+import cn.wei.library.utils.Trace;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.domain.SellerDomain;
 import cn.wei.zslq.model.impl.SellerModel;
 import cn.wei.zslq.support.BaseListActivity;
-import http.Trace;
 
 /**
  * Created by qinwei on 2016/1/24 20:58
@@ -152,7 +152,7 @@ public class SellerSimpleInfoListActivity extends BaseListActivity implements Co
             mSellerItemTitleLabel.setText(seller.getTitle());
             mSellerItemDescriptorLabel.setText(seller.descriptor);
             mSellerItemTimeLabel.setText(seller.getCreatedAt());
-            ImageUtils.displayImage(seller.image, mSellerItemIconImg, ImageUtils.getUserIconOptions());
+            ImageDisplay.getInstance().displayImage(seller.image, mSellerItemIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
         }
     }
 

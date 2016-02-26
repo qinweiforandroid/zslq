@@ -15,18 +15,21 @@ public class AppConfig {
     public static final String ROOT_TEST_SERVER = "http://www.baidu.com/test";
     public static final String ROOT_SERVER = "http://www.baidu.com/";
     public static AppConfig mInstance;
+    public boolean isDevelopment;
     private Context context;
 
 
-    private AppConfig(Context context) {
-        this.context = context;
-    }
-
-    public static AppConfig getInstance(Context context) {
+    public static AppConfig getInstance() {
         if (mInstance == null) {
-            mInstance = new AppConfig(context);
+            synchronized (AppConfig.class) {
+                mInstance = new AppConfig();
+            }
         }
         return mInstance;
+    }
+
+    public void init(Context context) {
+        this.context = context;
     }
 
     public boolean isFirstOpen() {

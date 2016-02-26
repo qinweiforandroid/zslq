@@ -13,8 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.wei.library.adapter.QBaseViewHolder;
-import cn.wei.library.utils.ImageUtils;
+import cn.wei.library.utils.ImageDisplay;
 import cn.wei.library.utils.TimeHelper;
+import cn.wei.library.utils.Trace;
 import cn.wei.library.widget.EmptyView;
 import cn.wei.library.widget.FooterView;
 import cn.wei.zslq.R;
@@ -23,7 +24,6 @@ import cn.wei.zslq.domain.Talk;
 import cn.wei.zslq.model.impl.TalkModel;
 import cn.wei.zslq.support.BaseListActivity;
 import cn.wei.zslq.utils.Constants;
-import http.Trace;
 
 /**
  * 类描述:
@@ -243,7 +243,7 @@ public class TalkListActivity extends BaseListActivity implements Controller, Vi
         @Override
         public void initializeData(int position) {
             talk = (Talk) modules.get(position);
-            ImageUtils.displayImage(talk.getCreateUser().getIcon(), mTalkItemUserIconImg, ImageUtils.getUserIconOptions());
+            ImageDisplay.getInstance().displayImage(talk.getCreateUser().getIcon(), mTalkItemUserIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
             mTalkItemUserNickLabel.setText(talk.getCreateUser().getNick());
             mTalkItemCreateTimeLabel.setText(TimeHelper.getTimeRule2(talk.getCreatedAt()));
             mTalkContentLabel.setText(talk.getContent());
