@@ -1,9 +1,13 @@
 package cn.wei.zslq.fragment;
 
+import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +57,19 @@ public class JokeFragment extends BaseListFragment implements Controller {
             load_data_state = Constants.LOAD_DATA_STATE_LOAD_REFRESH;
             viewModel.loadJokeData(pageNum);
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        JokeBean bean = (JokeBean) parent.getAdapter().getItem(position);
+        copyToClipboard(bean.getText());
+    }
+
+    public void copyToClipboard(String text) {
+        ClipboardManager myClipboard = (ClipboardManager) getActivity().getSystemService(Activity.CLIPBOARD_SERVICE);
+        ClipData myClip = ClipData.newPlainText("text", text);
+        myClipboard.setPrimaryClip(myClip);
+        Toast.makeText(getActivity(), "复制成功", Toast.LENGTH_SHORT).show();
     }
 
     @Override

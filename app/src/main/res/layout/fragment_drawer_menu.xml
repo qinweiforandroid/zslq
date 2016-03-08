@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mDrawerMenuRootView"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/windowBg"
-    android:orientation="vertical"
-    android:gravity="center">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/red_06"
-        android:text="此区域努力建设中.."/>
+    android:orientation="vertical">
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/mDrawerMenuNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/fragment_drawer_menu_header"
+        app:menu="@menu/menu_drawer" />
 </LinearLayout>

@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--android:checkableBehavior="single"-->
+    <group >
+        <item
+            android:id="@+id/nav_joke"
+            android:icon="@drawable/ic_launcher"
+            android:title="开心一笑" />
+        <item
+            android:id="@+id/nav_information"
+            android:icon="@drawable/ic_launcher"
+            android:title="动漫资讯" />
+        <item
+            android:id="@+id/nav_friends"
+            android:icon="@drawable/ic_launcher"
+            android:title="账号密码" />
+        <item
+            android:id="@+id/nav_discussion"
+            android:icon="@drawable/ic_launcher"
+            android:title="服务信息" />
+    </group>
+
+    <item android:title="其它">
+        <menu>
+            <item
+                android:icon="@drawable/ic_launcher"
+                android:title="关    于" />
+            <item
+                android:icon="@drawable/ic_launcher"
+                android:title="设    置" />
+        </menu>
+    </item>
+</menu>

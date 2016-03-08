@@ -1,5 +1,7 @@
 package cn.wei.zslq.fragment;
 
+import android.support.design.widget.NavigationView;
+import android.view.MenuItem;
 import android.view.View;
 
 import cn.wei.library.widget.row.OnRowClickListener;
@@ -12,6 +14,8 @@ import cn.wei.zslq.support.BaseFragment;
  * email:qinwei_it@163.com
  */
 public class MenuFragment extends BaseFragment implements View.OnClickListener, OnRowClickListener {
+
+    private NavigationView mDrawerMenuNavigationView;
 
     @Override
     protected int getFragmentLayoutId() {
@@ -26,6 +30,16 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
 
             }
         });
+        mDrawerMenuNavigationView = (NavigationView) v.findViewById(R.id.mDrawerMenuNavigationView);
+        mDrawerMenuNavigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+//                        menuItem.setChecked(true);
+//                        ((HomeActivity) getActivity()).closeDrawers();
+                        return true;
+                    }
+                });
     }
 
     @Override
