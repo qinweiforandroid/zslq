@@ -61,6 +61,7 @@ public class TalkListActivity extends BaseListActivity implements Controller, Vi
         loadDataFromServer();
     }
 
+
     private void loadDataFromServer() {
         load_data_state = Constants.LOAD_DATA_STATE_LOAD_FIRST;
         mEmptyView.notifyDataChanged(EmptyView.State.ing);
@@ -92,7 +93,6 @@ public class TalkListActivity extends BaseListActivity implements Controller, Vi
 
     @Override
     public void onSuccess(String action) {
-        Trace.e("onSuccess:" + model.talks.size());
         switch (load_data_state) {
             case Constants.LOAD_DATA_STATE_LOAD_FIRST:
                 pageNum++;
@@ -127,10 +127,10 @@ public class TalkListActivity extends BaseListActivity implements Controller, Vi
 
     @Override
     public void onFailure(String action, int errorCode, String errorMsg) {
+        Trace.e("onFailure:" + errorMsg);
         switch (load_data_state) {
             case Constants.LOAD_DATA_STATE_LOAD_FIRST:
                 mEmptyView.notifyDataChanged(EmptyView.State.error);
-                Trace.e("onFailure:" + errorMsg);
                 break;
             case Constants.LOAD_DATA_STATE_LOAD_REFRESH:
                 Toast.makeText(TalkListActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
@@ -205,6 +205,7 @@ public class TalkListActivity extends BaseListActivity implements Controller, Vi
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+
     @Override
     public View getAdapterViewAtPosition(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
@@ -219,6 +220,7 @@ public class TalkListActivity extends BaseListActivity implements Controller, Vi
         holder.initializeData(position);
         return convertView;
     }
+
 
     public class ViewHolder extends QBaseViewHolder {
         private Talk talk;

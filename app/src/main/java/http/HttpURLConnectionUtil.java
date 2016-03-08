@@ -105,7 +105,7 @@ public class HttpURLConnectionUtil {
 
     private static void addHeaders(HttpURLConnection connection, Map<String, String> headers) {
         if (headers == null || headers.size() == 0) return;
-        StringBuilder builder = new StringBuilder("request header：\n");
+        StringBuilder builder = new StringBuilder("request list_zone_talk_header：\n");
         for (Map.Entry<String, String> entry : headers.entrySet()) {
             builder.append("key=" + entry.getKey() + ",value=" + entry.getValue() + "\n");
             connection.addRequestProperty(entry.getKey(), entry.getValue());

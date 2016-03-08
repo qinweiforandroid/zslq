@@ -152,7 +152,6 @@ public class InformationListFragment extends BaseListFragment implements Control
         }
     }
 
-
     @Override
     public void loadMore() {
         InformationBean informationBean = (InformationBean) modules.get(modules.size()-1);
@@ -160,14 +159,6 @@ public class InformationListFragment extends BaseListFragment implements Control
         model.loadInformationMore(informationBean.getId(), model.extraInfo.getCountTotal());
 
     }
-
-    @Override
-    public void onRetryLoadMore() {
-        InformationBean informationBean = (InformationBean) modules.get(modules.size()-1);
-        footerView.notifyDataChanged(FooterView.State.ing);
-        model.loadInformationMore(informationBean.getId(), model.extraInfo.getCountTotal());
-    }
-
     @Override
     public boolean isCanLoadMore() {
         return true;

@@ -93,6 +93,8 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         switch (action) {
             case ACTION_PRIFLE_INFO:
                 goProfileEditor();
+//                Intent intent1=new Intent(getActivity(), AActivity.class);
+//                startActivity(intent1);
                 break;
             case ACTION_GO_LOGIN:
                 goLogin();

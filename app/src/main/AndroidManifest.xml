@@ -79,6 +79,16 @@
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.TalkCommentActivity"></activity>
 
+        <activity
+            android:name=".activity.AActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.BActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CActivity"
+            android:screenOrientation="portrait" />
+
         <service
             android:name="com.umeng.update.net.DownloadingService"
             android:process=":DownloadingService" />

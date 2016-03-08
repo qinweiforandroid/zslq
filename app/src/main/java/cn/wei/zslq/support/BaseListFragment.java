@@ -149,8 +149,8 @@ public abstract class BaseListFragment extends BaseFragment implements OnItemCli
 	}
 
 	@Override
-	public void onRetryLoadMore() {
-
+	public final void onRetryLoadMore() {
+		loadMore();
 	}
 
 }

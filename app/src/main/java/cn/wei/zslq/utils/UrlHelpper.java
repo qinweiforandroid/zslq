@@ -9,6 +9,7 @@ import cn.wei.zslq.config.AppConfig;
 public class UrlHelpper {
     public static final String DOMAIN = "http://api.playsm.com/index.php";
 
+    public static final String BAIDU_APIKEY = "d21e61b696755d2ca3d1d3484bcc5331";
     /**
      * 查看资讯列表
      */
@@ -34,5 +35,19 @@ public class UrlHelpper {
     public static String showImage(String uri) {
 
         return getDomain() + uri;
+    }
+
+
+    /**
+     * 微信热门文章
+     *
+     * @return
+     */
+    public static String getWinXinHotArticle() {
+        return "http://apis.baidu.com/txapi/weixin/wxhot";
+    }
+
+    public static String loadJokeData(int page) {
+        return "http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text?page="+page;
     }
 }
