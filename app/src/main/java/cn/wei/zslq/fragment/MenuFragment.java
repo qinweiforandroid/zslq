@@ -1,11 +1,9 @@
 package cn.wei.zslq.fragment;
 
+import android.content.Context;
 import android.support.design.widget.NavigationView;
-import android.view.MenuItem;
 import android.view.View;
 
-import cn.wei.library.widget.row.OnRowClickListener;
-import cn.wei.library.widget.row.RowActionEnum;
 import cn.wei.zslq.R;
 import cn.wei.zslq.support.BaseFragment;
 
@@ -13,9 +11,10 @@ import cn.wei.zslq.support.BaseFragment;
  * Created by qinwei on 2015/11/3 23:30
  * email:qinwei_it@163.com
  */
-public class MenuFragment extends BaseFragment implements View.OnClickListener, OnRowClickListener {
+public class MenuFragment extends BaseFragment implements View.OnClickListener {
 
     private NavigationView mDrawerMenuNavigationView;
+    private NavigationView.OnNavigationItemSelectedListener listener;
 
     @Override
     protected int getFragmentLayoutId() {
@@ -31,15 +30,7 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
             }
         });
         mDrawerMenuNavigationView = (NavigationView) v.findViewById(R.id.mDrawerMenuNavigationView);
-        mDrawerMenuNavigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                        menuItem.setChecked(true);
-//                        ((HomeActivity) getActivity()).closeDrawers();
-                        return true;
-                    }
-                });
+        mDrawerMenuNavigationView.setNavigationItemSelectedListener(listener);
     }
 
     @Override
@@ -50,8 +41,12 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener, 
 
     }
 
-    @Override
-    public void onRowClick(View rowView, RowActionEnum action) {
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof NavigationView.OnNavigationItemSelectedListener) {
+            listener = (NavigationView.OnNavigationItemSelectedListener) context;
+        }
     }
 }

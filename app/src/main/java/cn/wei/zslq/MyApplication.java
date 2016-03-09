@@ -20,7 +20,6 @@ public class MyApplication extends Application implements Application.ActivityLi
     private int app_state;
     private boolean isForeground;//应用是否在前台 true代表前台，false代表后台
     private int activityCount;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -31,7 +30,7 @@ public class MyApplication extends Application implements Application.ActivityLi
         initializeDataTask();
         registerActivityLifecycleCallbacks(this);
         AppConfig config = AppConfig.getInstance();
-        config.isDevelopment = true;
+        config.isDevelopment = false;
         config.init(getApplicationContext());
         Trace.model = config.isDevelopment;
     }

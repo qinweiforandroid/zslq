@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -17,12 +18,15 @@
             android:layout_height="match_parent" />
 
         <!-- 侧滑菜单内容 -->
-        <FrameLayout
-            android:id="@+id/drawer_menu"
-            android:layout_width="250dp"
+        <android.support.design.widget.NavigationView
+            android:id="@+id/mDrawerMenuNavigationView"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/windowBg"></FrameLayout>
+            android:layout_gravity="left"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/fragment_drawer_menu_header"
+            app:menu="@menu/menu_drawer" />
     </android.support.v4.widget.DrawerLayout>
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+import cn.wei.library.widget.EmptyView;
 import cn.wei.library.widget.row.BaseRowDescriptor;
 import cn.wei.library.widget.row.ContainerDescriptor;
 import cn.wei.library.widget.row.ContainerView;
@@ -32,6 +33,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     protected void initializeView(View v) {
+        mEmptyView.notifyDataChanged(EmptyView.State.ing);
         mWidgetContainerView = (ContainerView) v.findViewById(R.id.mWidgetContainerView);
         ArrayList<GroupDescriptor> groupDescriptors = new ArrayList<GroupDescriptor>();
         ArrayList<BaseRowDescriptor> rowDescriptors1 = new ArrayList<BaseRowDescriptor>();
@@ -54,7 +56,13 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
         groupDescriptors.add(groupDescriptor3);
         ContainerDescriptor containerDescriptor = new ContainerDescriptor(groupDescriptors);
         mWidgetContainerView.initializeData(containerDescriptor, this);
+    }
+
+    @Override
+    protected void lazyLoad() {
+        super.lazyLoad();
         mWidgetContainerView.notifyDataChanged();
+        showContent();
     }
 
     @Override
@@ -68,7 +76,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     public void onRowClick(View rowView, RowActionEnum action) {
-        switch (action){
+        switch (action) {
             case ACTION_FRIEND:
                 goFriends();
                 break;
@@ -81,12 +89,12 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     private void goSeller() {
-        Intent intent=new Intent(getActivity(), SellerSimpleInfoListActivity.class);
+        Intent intent = new Intent(getActivity(), SellerSimpleInfoListActivity.class);
         startActivity(intent);
     }
 
     private void goFriends() {
-        Intent intent=new Intent(getActivity(), TalkListActivity.class);
+        Intent intent = new Intent(getActivity(), TalkListActivity.class);
         startActivity(intent);
     }
 }

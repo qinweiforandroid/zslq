@@ -1,8 +1,10 @@
 package cn.wei.zslq.controller.main;
 
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -10,16 +12,18 @@ import com.umeng.update.UmengUpdateAgent;
 
 import cn.wei.zslq.R;
 import cn.wei.zslq.fragment.IndexFragment;
-import cn.wei.zslq.fragment.MenuFragment;
+import cn.wei.zslq.fragment.InformationListFragment;
+import cn.wei.zslq.fragment.JokeFragment;
 import cn.wei.zslq.support.BaseActivity;
 
 /**
  * Created by qinwei on 2015/11/3 22:44
  * email:qinwei_it@163.com
  */
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
+    private NavigationView mDrawerMenuNavigationView;
 
     @Override
     protected void setContentView() {
@@ -30,6 +34,8 @@ public class HomeActivity extends BaseActivity {
     protected void initializeView() {
         super.initializeView();
         UmengUpdateAgent.update(this);
+        mDrawerMenuNavigationView = (NavigationView) findViewById(R.id.mDrawerMenuNavigationView);
+        mDrawerMenuNavigationView.setNavigationItemSelectedListener(this);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open,
                 R.string.drawer_close);
@@ -40,8 +46,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void initializeData() {
         setTitle("首页");
-        getSupportFragmentManager().beginTransaction().replace(R.id.mContentContainer, new IndexFragment()).commit();
-        getSupportFragmentManager().beginTransaction().replace(R.id.drawer_menu, new MenuFragment(), "menu").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mContentContainer, JokeFragment.getInstance(false)).commit();
     }
 
     @Override
@@ -64,5 +69,31 @@ public class HomeActivity extends BaseActivity {
     public void protectApp() {
         startActivity(new Intent(this, SplashActivity.class));
         finish();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
+        if(menuItem.getTitle().equals(getTitle())){
+            mDrawerLayout.closeDrawer(Gravity.LEFT);
+            return false;
+        }
+        switch (menuItem.getItemId()) {
+            case R.id.nav_joke:
+                setTitle(menuItem.getTitle());
+                getSupportFragmentManager().beginTransaction().replace(R.id.mContentContainer, JokeFragment.getInstance(false)).commit();
+                break;
+            case R.id.nav_information:
+                setTitle(menuItem.getTitle());
+                getSupportFragmentManager().beginTransaction().replace(R.id.mContentContainer, new InformationListFragment()).commit();
+                break;
+            case R.id.nav_home:
+                setTitle(menuItem.getTitle());
+                getSupportFragmentManager().beginTransaction().replace(R.id.mContentContainer, new IndexFragment()).commit();
+                break;
+            default:
+                break;
+        }
+        mDrawerLayout.closeDrawer(Gravity.LEFT);
+        return false;
     }
 }

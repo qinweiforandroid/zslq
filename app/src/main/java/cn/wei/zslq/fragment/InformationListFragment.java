@@ -1,6 +1,5 @@
 package cn.wei.zslq.fragment;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,15 +32,10 @@ public class InformationListFragment extends BaseListFragment implements Control
     }
 
     @Override
-    protected void initializeArguments(Bundle args) {
-        super.initializeArguments(args);
-        model = new InformationModel(getContext());
-        model.setController(this);
-    }
-
-    @Override
     public void initializeView(View view) {
         super.initializeView(view);
+        model = new InformationModel(getContext());
+        model.setController(this);
         loadDataFromServer();
     }
 

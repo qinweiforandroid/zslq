@@ -38,12 +38,20 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     @Override
     protected void initializeView(View v) {
         mWidgetContainerView = (ContainerView) v.findViewById(R.id.mWidgetContainerView);
-        bindData();
     }
-    long lastStamp =0;
+
+    @Override
+    protected void lazyLoad() {
+        super.lazyLoad();
+        bindData();
+        showContent();
+    }
+
+    long lastStamp = 0;
+
     private void bindData() {
-        if(System.currentTimeMillis()- lastStamp <800){
-            this.lastStamp =System.currentTimeMillis();
+        if (System.currentTimeMillis() - lastStamp < 800) {
+            this.lastStamp = System.currentTimeMillis();
             return;
         }
         ArrayList<BaseRowDescriptor> rowDescriptor0s = new ArrayList<BaseRowDescriptor>();
@@ -103,7 +111,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                 doLoginOut();
                 break;
             case ACTION_ABOUT_ME:
-                Intent intent=new Intent(getActivity(), MessageActivity.class);
+                Intent intent = new Intent(getActivity(), MessageActivity.class);
                 startActivity(intent);
                 break;
             default:
@@ -137,6 +145,8 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-        bindData();
+        if (!isFirstLoad) {
+            bindData();
+        }
     }
 }

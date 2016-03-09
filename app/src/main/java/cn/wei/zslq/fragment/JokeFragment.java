@@ -3,6 +3,7 @@ package cn.wei.zslq.fragment;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.wei.library.adapter.QBaseViewHolder;
+import cn.wei.library.utils.TimeHelper;
 import cn.wei.library.widget.EmptyView;
 import cn.wei.library.widget.FooterView;
 import cn.wei.zslq.R;
@@ -26,9 +28,18 @@ import cn.wei.zslq.utils.Constants;
  * email:qinwei_it@163.com
  */
 public class JokeFragment extends BaseListFragment implements Controller {
+    public boolean isBindViewPager = true;
     private BaiduDataSupportApiModel viewModel;
     public int load_data_state = 1;
     private int pageNum = 1;
+
+    public static JokeFragment getInstance(boolean isBindViewPager) {
+        JokeFragment fragment = new JokeFragment();
+        Bundle args = new Bundle();
+        args.putBoolean("isBindViewPager", isBindViewPager);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected int getFragmentLayoutId() {
@@ -36,10 +47,19 @@ public class JokeFragment extends BaseListFragment implements Controller {
     }
 
     @Override
+    protected void initializeArguments(Bundle args) {
+        super.initializeArguments(args);
+        isBindViewPager = args.getBoolean("isBindViewPager");
+    }
+
+    @Override
     protected void initializeView(View v) {
         super.initializeView(v);
         viewModel = new BaiduDataSupportApiModel(getActivity());
         viewModel.setController(this);
+        if (!isBindViewPager) {
+            lazyLoad();
+        }
     }
 
 
@@ -182,7 +202,7 @@ public class JokeFragment extends BaseListFragment implements Controller {
             JokeBean joke = (JokeBean) modules.get(position);
             mJokeItemContentLabel.setText(Html.fromHtml(joke.getText()));
             mJokeItemTitleLabel.setText(joke.getTitle());
-            mJokeItemCreateDateLabel.setText(joke.getCt());
+            mJokeItemCreateDateLabel.setText(TimeHelper.getTimeRule2(joke.getCt()));
         }
     }
 
