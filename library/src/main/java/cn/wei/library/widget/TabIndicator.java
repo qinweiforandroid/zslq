@@ -1,6 +1,5 @@
 package cn.wei.library.widget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -9,9 +8,9 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
+import cn.wei.library.utils.TextUtil;
+
 /**
- * @author Stay
- * @version create time：Apr 11, 2015 8:44:21 PM
  */
 public class TabIndicator extends LinearLayout implements OnClickListener {
 	private int mTabSize;
@@ -38,14 +37,9 @@ public class TabIndicator extends LinearLayout implements OnClickListener {
 	public void setOnTabClickListener(OnTabClickListener listener) {
 		this.listener = listener;
 	}
-	public static boolean isValidate(ArrayList<?> list) {
-		if (list != null && list.size() > 0) {
-			return true;
-		}
-		return false;
-	}
+
 	public void initializeData(ArrayList<Tab> tabs) {
-		if (!isValidate(tabs)) {
+		if (!TextUtil.isValidate(tabs)) {
 			throw new IllegalArgumentException("the tabs should not be 0");
 		}
 		mTabSize = tabs.size();
@@ -60,10 +54,12 @@ public class TabIndicator extends LinearLayout implements OnClickListener {
 	}
 
 	public void onDataChanged(int index, int number) {
+		onDataChanged(index, number + "");
+	}
+	public void onDataChanged(int index, String number) {
 		((TabView) (findViewById(ID_PREFIX + index))).notifyDataChanged(number);
 	}
 
-	@TargetApi(19)
 	private void initializeView() {
 		setOrientation(LinearLayout.HORIZONTAL);
 		MarginLayoutParams param = (MarginLayoutParams) new LayoutParams(0, LayoutParams.WRAP_CONTENT);
@@ -75,18 +71,20 @@ public class TabIndicator extends LinearLayout implements OnClickListener {
 	public void onClick(View v) {
 		int index = v.getId() - ID_PREFIX;
 		if (listener != null && mTabIndex != index) {
-			v.setSelected(true);
-			if (mTabIndex != -1) {
-				View old = findViewById(ID_PREFIX + mTabIndex);
-				old.setSelected(false);
+			if(listener.onTabClick(v.getId() - ID_PREFIX)) {
+				v.setSelected(true);
+				if (mTabIndex != -1) {
+					View old = findViewById(ID_PREFIX + mTabIndex);
+					old.setSelected(false);
+				}
+				mTabIndex = index;
+//				listener.onTabClick(v.getId() - ID_PREFIX);
 			}
-			listener.onTabClick(v.getId() - ID_PREFIX);
-			mTabIndex = index;
 		}
 	}
 
 	public interface OnTabClickListener {
-		void onTabClick(int index);
+		boolean onTabClick(int index);
 	}
 
 	public void setCurrentTab(int i) {

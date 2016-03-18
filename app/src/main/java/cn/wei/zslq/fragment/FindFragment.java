@@ -1,6 +1,7 @@
 package cn.wei.zslq.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -25,12 +26,23 @@ import cn.wei.zslq.utils.BmobManager;
  */
 public class FindFragment extends BaseFragment implements View.OnClickListener, OnRowClickListener {
     private ContainerView mWidgetContainerView;
-
+    public boolean isBindViewPager = false;
+    public static FindFragment getInstance(boolean isBindViewPager) {
+        FindFragment fragment = new FindFragment();
+        Bundle args = new Bundle();
+        args.putBoolean("isBindViewPager", isBindViewPager);
+        fragment.setArguments(args);
+        return fragment;
+    }
     @Override
     protected int getFragmentLayoutId() {
         return R.layout.fragment_tab_find;
     }
-
+    @Override
+    protected void initializeArguments(Bundle args) {
+        super.initializeArguments(args);
+        isBindViewPager = args.getBoolean("isBindViewPager");
+    }
     @Override
     protected void initializeView(View v) {
         mEmptyView.notifyDataChanged(EmptyView.State.ing);
@@ -56,8 +68,10 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
         groupDescriptors.add(groupDescriptor3);
         ContainerDescriptor containerDescriptor = new ContainerDescriptor(groupDescriptors);
         mWidgetContainerView.initializeData(containerDescriptor, this);
+        if(!isBindViewPager){
+            lazyLoad();
+        }
     }
-
     @Override
     protected void lazyLoad() {
         super.lazyLoad();
@@ -68,10 +82,6 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
     @Override
     public void onClick(View v) {
         BmobManager.uploadXunLeiAccount(getActivity());
-    }
-
-    public void initializeView() {
-
     }
 
     @Override

@@ -146,6 +146,7 @@ public abstract class BaseListActivity extends BaseActivity implements OnItemCli
 
     /**
      * 由子类控制是否需要加载更多功能
+     *
      * @return true 需要加载更多 false 不要需要  默认false
      */
     public boolean isCanLoadMore() {

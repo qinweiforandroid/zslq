@@ -16,7 +16,7 @@ public class SellerDomain extends BmobObject {
     public String qq;
     public String phone;
     public String descriptor;
-
+    public boolean hasHot;
     public String getTitle() {
         return title;
     }
@@ -63,5 +63,13 @@ public class SellerDomain extends BmobObject {
 
     public void setDescriptor(String descriptor) {
         this.descriptor = descriptor;
+    }
+
+    public boolean isHasHot() {
+        return hasHot;
+    }
+
+    public void setHasHot(boolean hasHot) {
+        this.hasHot = hasHot;
     }
 }

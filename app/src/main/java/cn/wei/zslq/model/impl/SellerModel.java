@@ -42,4 +42,22 @@ public class SellerModel extends ViewModel implements ISellerModel {
             }
         });
     }
+    public void loadSellerInfoList(boolean hasHot) {
+        BmobQuery<SellerDomain> query = new BmobQuery<>();
+        query.order("-createdAt");
+        query.addWhereEqualTo("hasHot",hasHot);
+        query.findObjects(context, new FindListener<SellerDomain>() {
+            @Override
+            public void onSuccess(List<SellerDomain> list) {
+                sellers = (ArrayList<SellerDomain>) list;
+                onResponseSuccess(ACTION_LOAD_SELLER_INFO_LIST);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                onResponseError(ACTION_LOAD_SELLER_INFO_LIST, i, s);
+                Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

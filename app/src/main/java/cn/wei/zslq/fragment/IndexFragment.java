@@ -36,7 +36,7 @@ public class IndexFragment extends BaseFragment {
     }
 
     class DataAdapter extends FragmentStatePagerAdapter {
-        String[] titles = {"资讯", "会话", "发现", "个人"};
+        String[] titles = {"资讯", "服务", "发现", "个人"};
 
         public DataAdapter(FragmentManager fm) {
             super(fm);
@@ -48,11 +48,11 @@ public class IndexFragment extends BaseFragment {
                 case 0:
                     return new InformationListFragment();
                 case 1:
-                    return new JokeFragment();
+                    return new InformationServiceFragment();
                 case 2:
-                    return new FindFragment();
+                    return FindFragment.getInstance(true);
                 case 3:
-                    return new ProfileFragment();
+                    return ProfileFragment.getInstance(true);
             }
             return null;
         }

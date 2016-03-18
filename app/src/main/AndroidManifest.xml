@@ -39,6 +39,9 @@
             android:name=".controller.main.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".controller.main.HomeBottomActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.MessageActivity"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:screenOrientation="portrait" />

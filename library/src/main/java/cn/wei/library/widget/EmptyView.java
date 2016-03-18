@@ -13,7 +13,7 @@ import cn.wei.library.R;
 /**
  * emptyView解决了请求网络数据时ui显示的三种状态
  * 分别为加载中，加载失败，无数据
- *
+ * email: qinwei_it@163.com
  * @author qinwei create by 2015/10/28
  */
 public class EmptyView extends FrameLayout implements OnClickListener {

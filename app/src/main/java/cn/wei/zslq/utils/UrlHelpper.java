@@ -50,4 +50,7 @@ public class UrlHelpper {
     public static String loadJokeData(int page) {
         return "http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text?page="+page;
     }
+    public static String getApiBaiduDomain(){
+        return "http://apis.baidu.com";
+    }
 }

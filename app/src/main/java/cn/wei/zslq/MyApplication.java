@@ -10,7 +10,7 @@ import cn.wei.library.utils.ImageDisplay;
 import cn.wei.library.utils.Trace;
 import cn.wei.zslq.config.AppConfig;
 import cn.wei.zslq.domain.User;
-import cn.wei.zslq.utils.GlideDisplay;
+import cn.wei.zslq.utils.UniversalImageloaderDisplay;
 
 public class MyApplication extends Application implements Application.ActivityLifecycleCallbacks {
     public static final int APP_STATE_STARTED = 1;//app 开启
@@ -30,7 +30,7 @@ public class MyApplication extends Application implements Application.ActivityLi
         initializeDataTask();
         registerActivityLifecycleCallbacks(this);
         AppConfig config = AppConfig.getInstance();
-        config.isDevelopment = false;
+        config.isDevelopment = true;
         config.init(getApplicationContext());
         Trace.model = config.isDevelopment;
     }
@@ -47,7 +47,8 @@ public class MyApplication extends Application implements Application.ActivityLi
     }
 
     public void initializeImageloader() {
-        ImageDisplay.getInstance().init(new GlideDisplay(getApplicationContext()));
+//        ImageDisplay.getInstance().init(new GlideDisplay(getApplicationContext()));
+        ImageDisplay.getInstance().init(new UniversalImageloaderDisplay(getApplicationContext()));
     }
 
     public static MyApplication getInstance() {

@@ -3,7 +3,9 @@ package cn.wei.library.widget;
 
 import android.support.v4.app.Fragment;
 
-public class Tab {
+import java.io.Serializable;
+
+public class Tab implements Serializable{
 	private String label;
 	private int iconRes;
 	private Class<? extends Fragment> fragmentClass;

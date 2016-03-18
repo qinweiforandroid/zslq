@@ -68,13 +68,12 @@ public class LoginModel extends ViewModel implements ILoginModel, OnGlobalExcept
         return token;
     }
 
-
     @Override
     public void login(String username, String password) {
         HashMap<String, String> data = new HashMap<>();
         data.put("username", username);
 
-        User user=new User();
+        User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         User.loginByAccount(context, username, password, new LogInListener<User>() {
@@ -118,18 +117,18 @@ public class LoginModel extends ViewModel implements ILoginModel, OnGlobalExcept
     public void loginREST_API(String username, String password) {
         HashMap<String, String> data = new HashMap<>();
         data.put("username", username);
-        JSONObject loginParams=new JSONObject();
+        JSONObject loginParams = new JSONObject();
         try {
-            loginParams.put("username",username);
-            loginParams.put("password",password);
+            loginParams.put("username", username);
+            loginParams.put("password", password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Request request=new Request(DataServiceAPI.loadLogin(), Request.RequestMethod.POST);
-        request.addHeader("Content-Type","application/json");
-        request.addHeader("X-Bmob-Application-Id","23cef32eb5b6f7cf7c6dfb88d7def740");
-        request.addHeader("X-Bmob-REST-API-Key","c8ca055b8e8505f7dcbeb5482cc974d9");
-        request.postContent=loginParams.toString();
+        Request request = new Request(DataServiceAPI.loadLogin(), Request.RequestMethod.POST);
+        request.addHeader("Content-Type", "application/json");
+        request.addHeader("X-Bmob-Application-Id", "23cef32eb5b6f7cf7c6dfb88d7def740");
+        request.addHeader("X-Bmob-REST-API-Key", "c8ca055b8e8505f7dcbeb5482cc974d9");
+        request.postContent = loginParams.toString();
         request.setCallback(new StringCallback() {
             @Override
             public void onSuccess(String result) {
@@ -143,14 +142,14 @@ public class LoginModel extends ViewModel implements ILoginModel, OnGlobalExcept
                 Trace.e(e.toString());
             }
         });
-        RequestManager.getInstance().execute(ACTION_LOGIN,request);
+        RequestManager.getInstance().execute(ACTION_LOGIN, request);
     }
 
-    public void yuanchengdiao(String username,String password){
-        JSONObject loginParams=new JSONObject();
+    public void yuanchengdiao(String username, String password) {
+        JSONObject loginParams = new JSONObject();
         try {
-            loginParams.put("username",username);
-            loginParams.put("password",password);
+            loginParams.put("username", username);
+            loginParams.put("password", password);
         } catch (JSONException e) {
             e.printStackTrace();
         }

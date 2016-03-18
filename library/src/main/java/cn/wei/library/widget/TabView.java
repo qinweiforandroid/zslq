@@ -42,6 +42,12 @@ public class TabView extends LinearLayout {
     }
 
     public void notifyDataChanged(int number) {
+        notifyDataChanged(number + "");
+    }
 
+    public void notifyDataChanged(String number) {
+        BadgeView badgeView = new BadgeView(getContext());
+        badgeView.setTargetView(mTabIconImg);
+        badgeView.setBadgeCount(number);
     }
 }

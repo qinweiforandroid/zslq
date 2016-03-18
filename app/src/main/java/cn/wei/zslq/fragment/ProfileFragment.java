@@ -3,6 +3,7 @@ package cn.wei.zslq.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -29,6 +30,15 @@ import cn.wei.zslq.support.BaseFragment;
  */
 public class ProfileFragment extends BaseFragment implements View.OnClickListener, OnRowClickListener {
     private ContainerView mWidgetContainerView;
+    public boolean isBindViewPager = false;
+
+    public static ProfileFragment getInstance(boolean isBindViewPager) {
+        ProfileFragment fragment = new ProfileFragment();
+        Bundle args = new Bundle();
+        args.putBoolean("isBindViewPager", isBindViewPager);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     protected int getFragmentLayoutId() {
@@ -36,8 +46,17 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     }
 
     @Override
+    protected void initializeArguments(Bundle args) {
+        super.initializeArguments(args);
+        isBindViewPager = args.getBoolean("isBindViewPager");
+    }
+
+    @Override
     protected void initializeView(View v) {
         mWidgetContainerView = (ContainerView) v.findViewById(R.id.mWidgetContainerView);
+        if(!isBindViewPager){
+            lazyLoad();
+        }
     }
 
     @Override

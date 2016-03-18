@@ -10,10 +10,14 @@ import android.content.pm.PackageManager;
  * email:qinwei_it@163.com
  */
 public class AppConfig {
-    public static final String CONFIG_NAME = "appConfig";
+    public static final String CONFIG_NAME = "appConfig.xml";
     public static final String KEY_PUSH = "KEY_PUSH";
+    public static final String KEY_CURRENT_VERSION_CODE = "KEY_CURRENT_VERSION_CODE";
     public static final String ROOT_TEST_SERVER = "http://www.baidu.com/test";
     public static final String ROOT_SERVER = "http://www.baidu.com/";
+    public static final String ROOT_IMAGE = "http://www.baidu.com/image";
+    public static final String ROOT_TEST_IMAGE = "http://www.baidu.com/image";
+
     public static AppConfig mInstance;
     public boolean isDevelopment;
     private Context context;
@@ -33,31 +37,62 @@ public class AppConfig {
     }
 
     public boolean isFirstOpen() {
-        SharedPreferences sp = context.getSharedPreferences(CONFIG_NAME, Context.MODE_PRIVATE);
-        boolean isFirstOpen = sp.getBoolean("is_first_open", true);
-        if (isFirstOpen) {
-            sp.edit().putBoolean("is_first_open", false);
+        if (getSharedPreferences().getBoolean("key_is_first_open", true) || canNewShow()) {
+            put("key_is_first_open", false);
             return true;
         }
         return false;
     }
 
-    public boolean isOpenPush() {
-        return get(KEY_PUSH, false);
+    public void saveCurrentVersionCode() {
+        put(KEY_CURRENT_VERSION_CODE, getPackageInfo().versionCode);
     }
 
-    public void setPush(boolean push) {
-        put(KEY_PUSH, push);
+    /**
+     * 判断版本更新后显示更新轮播图
+     *
+     * @return
+     */
+    private boolean canNewShow() {
+        int code = get(KEY_CURRENT_VERSION_CODE);
+        if (code == 0) {
+            return true;
+        } else {
+            return code < getPackageInfo().versionCode;
+        }
+
     }
 
     public void put(String key, boolean value) {
-        SharedPreferences sp = context.getSharedPreferences(CONFIG_NAME, Context.MODE_PRIVATE);
-        sp.edit().putBoolean(key, value);
+        getEditor().putBoolean(key, value).commit();
+    }
+
+    public void put(String key, int value) {
+        getEditor().putInt(key, value).commit();
+    }
+
+    public int get(String key) {
+        return getSharedPreferences().getInt(key, 0);
     }
 
     public boolean get(String key, boolean defValue) {
-        SharedPreferences sp = context.getSharedPreferences(CONFIG_NAME, Context.MODE_PRIVATE);
-        return sp.getBoolean(key, defValue);
+        return getSharedPreferences().getBoolean(key, defValue);
+    }
+
+    public SharedPreferences getSharedPreferences() {
+        return context.getSharedPreferences(CONFIG_NAME, Context.MODE_PRIVATE);
+    }
+
+    public SharedPreferences.Editor getEditor() {
+        return getSharedPreferences().edit();
+    }
+
+    public boolean isCanPush() {
+        return get(KEY_PUSH, false);
+    }
+
+    public void pushEnable(boolean push) {
+        put(KEY_PUSH, push);
     }
 
     public PackageInfo getPackageInfo() {

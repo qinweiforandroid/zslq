@@ -6,11 +6,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
-import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -195,7 +192,6 @@ public class BitmapUtils {
             }
         }
     }
-
     public static int[] getBitmapScale(String path) {
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -207,14 +203,11 @@ public class BitmapUtils {
             return new int[]{0, 0};
         }
     }
-
     public static byte[] bitmap2Bytes(Bitmap bm) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
         return baos.toByteArray();
     }
-
-
     public static DisplayImageOptions getUserIconOptions() {
         DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder();
         builder.showImageOnLoading(R.drawable.ic_launcher);
@@ -224,25 +217,5 @@ public class BitmapUtils {
         builder.cacheOnDisk(true);
         builder.considerExifParams(true);
         return builder.build();
-    }
-
-    /**
-     * 显示图片
-     *
-     * @param uri       图片的uri
-     * @param imageView 图片控件
-     * @param options   图片的加载配置
-     */
-    public static void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
-        ImageLoader.getInstance().displayImage(uri, imageView, options);
-    }
-
-    public static void displayImage(String uri, ImageView imageView, DisplayImageOptions options, ImageLoadingListener listener) {
-        ImageLoader.getInstance().displayImage(uri, imageView, options, listener);
-    }
-
-
-    public static void clearMemoryCache() {
-        ImageLoader.getInstance().clearMemoryCache();
     }
 }

@@ -2,6 +2,7 @@ package cn.wei.zslq;
 
 import android.test.AndroidTestCase;
 
+import cn.wei.library.utils.Trace;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.model.impl.LoginModel;
 
@@ -17,13 +18,12 @@ public class LoginUnitTest extends AndroidTestCase {
 
     public void testLogin() {
         final LoginModel model = new LoginModel(getContext());
-        model.login("user", "password");
         model.setController(new Controller() {
             @Override
             public void onSuccess(String tag) {
                 if(tag.equals(LoginModel.ACTION_LOGIN)){
                     String user=model.user;
-                    Trace.d("login success userInfo:"+user);
+                    Trace.d("login success userInfo:" + user);
                 }
             }
             @Override
@@ -31,7 +31,10 @@ public class LoginUnitTest extends AndroidTestCase {
                 Trace.d("login err:"+errorMsg);
             }
         });
+        model.login("user", "password");
+        Trace.e("login Start");
     }
+
 
     @Override
     protected void tearDown() throws Exception {

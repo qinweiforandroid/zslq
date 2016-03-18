@@ -2,14 +2,12 @@ package cn.wei.zslq.model;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.widget.Toast;
 
+import cn.wei.library.utils.NetworkUtils;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.controller.OnProgressUpdatedListener;
-import cn.wei.zslq.utils.NativeProgressDialogUtils;
 import cn.wei.zslq.utils.ProgressDialogUtils;
+import cn.wei.zslq.utils.ToastUtil;
 import http.AppException;
 import http.OnGlobalExceptionListener;
 import http.RequestManager;
@@ -20,7 +18,6 @@ import http.RequestManager;
  */
 public abstract class ViewModel implements OnGlobalExceptionListener {
     protected Context context;
-    private Toast mToast;
     protected Controller controller;
     private OnProgressUpdatedListener listener;
 
@@ -56,39 +53,18 @@ public abstract class ViewModel implements OnGlobalExceptionListener {
         }
     }
 
-    protected boolean isNetworkConnected(Context context) {
-        if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
-            if (mNetworkInfo != null) {
-                return mNetworkInfo.isAvailable();
-            }
-        }
-        return false;
-    }
-
 
     public void showToast(String message) {
-        if (mToast == null) {
-            mToast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
-        }
-        mToast.setDuration(Toast.LENGTH_SHORT);
-        mToast.setText(message);
-        mToast.show();
+        ToastUtil.show(context, message);
     }
 
     public void showLong(String message) {
-        if (mToast == null) {
-            mToast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
-        }
-        mToast.setDuration(Toast.LENGTH_LONG);
-        mToast.setText(message);
-        mToast.show();
+        ToastUtil.showLong(context, message);
     }
 
     public void showProgress(String message) {
-        NativeProgressDialogUtils.showProgressDialog(context, message);
+//        NativeProgressDialogUtils.showProgressDialog(context, message);
+        ProgressDialogUtils.showProgressDialog(context, message);
     }
 
     public void showProgressCanCancel(final String tag, String message) {
@@ -101,11 +77,12 @@ public abstract class ViewModel implements OnGlobalExceptionListener {
     }
 
     public void closeProgress() {
-        NativeProgressDialogUtils.closeProgressDialog();
+//        NativeProgressDialogUtils.closeProgressDialog();
+        ProgressDialogUtils.closeProgressDialog();
     }
 
     public boolean checkNetworkConnected() {
-        if (isNetworkConnected(context)) {
+        if (NetworkUtils.isNetworkConnected(context)) {
             return true;
         } else {
             showToast("请检查网络连接!");

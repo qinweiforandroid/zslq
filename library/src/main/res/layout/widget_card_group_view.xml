@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/widgets_general_row_select"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/mGroupTitleContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/widget_general_row_padding" >
+
+            <ImageView
+                android:id="@+id/mCardGroupTitleIconImg"
+                android:layout_width="@dimen/widget_general_row_icon_size_width"
+                android:layout_height="@dimen/widget_general_row_icon_size_height"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/mCardGroupTitleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="生活"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#50000000" >
+        </View>
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/mTableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         >
+    </TableLayout>
+
+</LinearLayout>

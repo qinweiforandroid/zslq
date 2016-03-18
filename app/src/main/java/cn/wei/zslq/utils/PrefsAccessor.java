@@ -14,7 +14,7 @@ public class PrefsAccessor {
     /**
      * share preference file to save
      */
-    public static final String SHARE_DATA_FILE_NAME = "stay4it";
+    public static final String SHARE_DATA_FILE_NAME = "prefsAccessor";
 
     private static PrefsAccessor instance = null;
     private SharedPreferences mSharedPreferences;

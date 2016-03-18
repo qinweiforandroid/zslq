@@ -8,4 +8,6 @@ public class Constants {
     public static final int LOAD_DATA_STATE_LOAD_FIRST=1;
     public static final int LOAD_DATA_STATE_LOAD_REFRESH=2;
     public static final int LOAD_DATA_STATE_LOAD_MORE=3;
+    public static final String KEY_TAB_ENTITIES = "key_tab_entities";
+    public static final String KEY_CURRENT_TAB_INDEX = "key_current_tab_index";
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <cn.wei.library.widget.viewpager.AutoScrollViewPager
+        android:id="@+id/mServiceAutoScrollViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+         />
+
+    <cn.wei.library.widget.card.CardGroupView
+        android:id="@+id/mServiceCardGroupView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_activity_padding_8" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_activity_padding_8"
+        android:background="@color/white"
+        android:padding="@dimen/common_activity_padding_16"
+        android:text="热门商家" />
+</LinearLayout>
