@@ -43,8 +43,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MessageActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".activity.ViewPagerActivity"
             android:screenOrientation="portrait" />
@@ -73,14 +73,17 @@
             android:name=".controller.seller.SellerDetailActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".controller.seller.SellerShopGridViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".controller.zone.TalkPublishActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".controller.zone.TalkCommentActivity"
             android:label="@string/title_activity_talk_comment"
-            android:windowSoftInputMode="adjustResize"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.TalkCommentActivity"></activity>
+            android:theme="@style/AppTheme.TalkCommentActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
 
         <activity
             android:name=".activity.AActivity"

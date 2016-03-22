@@ -36,6 +36,7 @@ public abstract class BaseGridViewListActivity extends BaseActivity implements O
 
     @Override
     protected void initializeView() {
+        super.initializeView();
         mPullToRefreshGridView = (PullToRefreshGridView) findViewById(R.id.generalPullToRefreshGridView);
         if (mPullToRefreshGridView == null) {
             throw new IllegalArgumentException("you contentView must contains id:generalPullToRefreshLsv");

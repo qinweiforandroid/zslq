@@ -27,6 +27,7 @@ import cn.wei.zslq.utils.BmobManager;
 public class FindFragment extends BaseFragment implements View.OnClickListener, OnRowClickListener {
     private ContainerView mWidgetContainerView;
     public boolean isBindViewPager = false;
+
     public static FindFragment getInstance(boolean isBindViewPager) {
         FindFragment fragment = new FindFragment();
         Bundle args = new Bundle();
@@ -34,33 +35,36 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     protected int getFragmentLayoutId() {
         return R.layout.fragment_tab_find;
     }
+
     @Override
     protected void initializeArguments(Bundle args) {
         super.initializeArguments(args);
         isBindViewPager = args.getBoolean("isBindViewPager");
     }
+
     @Override
     protected void initializeView(View v) {
         mEmptyView.notifyDataChanged(EmptyView.State.ing);
         mWidgetContainerView = (ContainerView) v.findViewById(R.id.mWidgetContainerView);
         ArrayList<GroupDescriptor> groupDescriptors = new ArrayList<GroupDescriptor>();
         ArrayList<BaseRowDescriptor> rowDescriptors1 = new ArrayList<BaseRowDescriptor>();
-        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.more_my_album, "朋友圈", "20", RowActionEnum.ACTION_FRIEND));
+        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "朋友圈", "20", RowActionEnum.ACTION_FRIEND));
         GroupDescriptor groupDescriptor1 = new GroupDescriptor("", rowDescriptors1);
 
         ArrayList<BaseRowDescriptor> rowDescriptors2 = new ArrayList<BaseRowDescriptor>();
-        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "刘圩商家", RowActionEnum.ACTION_SELLER));
-        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_album, "扫一扫", RowActionEnum.MY_FIRST));
-        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_favorite, "摇一摇", RowActionEnum.MY_FIRST));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "商  家", RowActionEnum.ACTION_SELLER));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "入口一", RowActionEnum.MY_FIRST));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "入口二", RowActionEnum.MY_FIRST));
         GroupDescriptor groupDescriptor2 = new GroupDescriptor("", rowDescriptors2);
 
         ArrayList<BaseRowDescriptor> rowDescriptors3 = new ArrayList<BaseRowDescriptor>();
-        rowDescriptors3.add(new GeneralRowDescriptor(R.drawable.more_emoji_store, "附近的人", RowActionEnum.MY_FIRST));
-        rowDescriptors3.add(new GeneralRowDescriptor(R.drawable.more_my_bank_card, "漂流瓶", RowActionEnum.MY_FIRST));
+        rowDescriptors3.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "功能一", RowActionEnum.MY_FIRST));
+        rowDescriptors3.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "功能二", RowActionEnum.MY_FIRST));
         GroupDescriptor groupDescriptor3 = new GroupDescriptor("", rowDescriptors3);
 
         groupDescriptors.add(groupDescriptor1);
@@ -68,10 +72,11 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
         groupDescriptors.add(groupDescriptor3);
         ContainerDescriptor containerDescriptor = new ContainerDescriptor(groupDescriptors);
         mWidgetContainerView.initializeData(containerDescriptor, this);
-        if(!isBindViewPager){
+        if (!isBindViewPager) {
             lazyLoad();
         }
     }
+
     @Override
     protected void lazyLoad() {
         super.lazyLoad();

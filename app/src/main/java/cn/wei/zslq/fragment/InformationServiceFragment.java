@@ -1,5 +1,6 @@
 package cn.wei.zslq.fragment;
 
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import cn.wei.library.widget.card.CardGroupView;
 import cn.wei.library.widget.viewpager.AutoScrollViewPager;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
+import cn.wei.zslq.controller.seller.SellerDetailActivity;
 import cn.wei.zslq.domain.SellerDomain;
 import cn.wei.zslq.model.impl.SellerModel;
 import cn.wei.zslq.support.BaseListFragment;
@@ -99,7 +101,7 @@ public class InformationServiceFragment extends BaseListFragment implements Cont
 
     @Override
     public void onFailure(String action, int errorCode, String errorMsg) {
-        Toast.makeText(getActivity(),errorMsg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), errorMsg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -118,15 +120,23 @@ public class InformationServiceFragment extends BaseListFragment implements Cont
     }
 
 
-
     public class ViewHolder extends QBaseViewHolder {
         private TextView mSellerItemTitleLabel;
         private TextView mSellerItemDescriptorLabel;
         private ImageView mSellerItemIconImg;
         private TextView mSellerItemNameLabel;
+        private SellerDomain seller;
 
         @Override
         public void initializeView(View view) {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), SellerDetailActivity.class);
+                    intent.putExtra(SellerDetailActivity.KEY_SELLER_DOMAIN, seller);
+                    startActivity(intent);
+                }
+            });
             mSellerItemTitleLabel = (TextView) view.findViewById(R.id.mSellerItemTitleLabel);
             mSellerItemDescriptorLabel = (TextView) view.findViewById(R.id.mSellerItemDescriptorLabel);
             mSellerItemNameLabel = (TextView) view.findViewById(R.id.mSellerItemNameLabel);
@@ -135,7 +145,7 @@ public class InformationServiceFragment extends BaseListFragment implements Cont
 
         @Override
         public void initializeData(int position) {
-            SellerDomain seller = (SellerDomain) modules.get(position);
+            seller = (SellerDomain) modules.get(position);
             mSellerItemTitleLabel.setText(seller.getTitle());
             mSellerItemDescriptorLabel.setText(seller.descriptor);
             mSellerItemNameLabel.setText(seller.getSellerName());

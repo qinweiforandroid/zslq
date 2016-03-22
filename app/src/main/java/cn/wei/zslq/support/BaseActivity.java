@@ -16,6 +16,7 @@ import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.main.HomeActivity;
 import cn.wei.zslq.utils.Constants;
+import http.RequestManager;
 
 /**
  * 结构化activity的代码
@@ -67,6 +68,7 @@ public abstract class BaseActivity extends AppCompatActivity implements EmptyVie
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        RequestManager.getInstance().cancelRequests();
     }
 
     public void protectApp() {

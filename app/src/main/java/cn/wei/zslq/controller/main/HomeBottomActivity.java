@@ -1,5 +1,6 @@
 package cn.wei.zslq.controller.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
@@ -42,10 +43,10 @@ public class HomeBottomActivity extends BaseActivity implements TabIndicator.OnT
     protected void initializeData() {
         setTitle(getIntent().getStringExtra(Constants.KEY_TITLE));
         tabs = new ArrayList<Tab>();
-        tabs.add(new Tab("首页", R.drawable.selector_education_tab, InformationServiceFragment.class));
-        tabs.add(new Tab("资讯", R.drawable.selector_education_tab, InformationListFragment.class));
-        tabs.add(new Tab("发现", R.drawable.selector_education_tab, FindFragment.class));
-        tabs.add(new Tab("个人", R.drawable.selector_education_tab, ProfileFragment.class));
+        tabs.add(new Tab("首页", R.drawable.tab_inquiry_btn, InformationServiceFragment.class));
+        tabs.add(new Tab("资讯", R.drawable.tab_casehistory_btn, InformationListFragment.class));
+        tabs.add(new Tab("发现", R.drawable.tab_community_btn, FindFragment.class));
+        tabs.add(new Tab("个人", R.drawable.tab_mine_btn, ProfileFragment.class));
         mHomeIndicator.initializeData(tabs);
         switchTab(0);
     }
@@ -101,6 +102,7 @@ public class HomeBottomActivity extends BaseActivity implements TabIndicator.OnT
         outState.putInt(Constants.KEY_CURRENT_TAB_INDEX, currentIndex);
         outState.putSerializable(Constants.KEY_TAB_ENTITIES, tabs);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -111,8 +113,15 @@ public class HomeBottomActivity extends BaseActivity implements TabIndicator.OnT
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected boolean isCanBack() {
         return false;
+    }
+
+    @Override
+    public void protectApp() {
+        startActivity(new Intent(this, SplashActivity.class));
+        finish();
     }
 }

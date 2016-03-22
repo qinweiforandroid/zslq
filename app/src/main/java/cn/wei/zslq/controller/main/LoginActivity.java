@@ -113,7 +113,7 @@ public class LoginActivity extends BaseActivity implements Controller, OnClickLi
     }
 
     private void goHome() {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, HomeBottomActivity.class);
         startActivity(intent);
         finish();
     }
@@ -131,7 +131,7 @@ public class LoginActivity extends BaseActivity implements Controller, OnClickLi
     public void onFailure(String tag, int errorCode, String errorMsg) {
         if (tag.equals(LoginModel.ACTION_LOGIN)) {
             viewMode.closeProgress();
-            Toast.makeText(this, "errorCode-----" + errorMsg, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "" + errorMsg, Toast.LENGTH_LONG).show();
         }
     }
 

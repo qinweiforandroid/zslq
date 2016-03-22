@@ -3,23 +3,24 @@
     xmlns:wei="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:gravity="center"
     android:background="@color/white"
-    android:orientation="vertical" >
+    android:gravity="center"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/mTabIconImg"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:src="@drawable/selector_education_tab"
-        android:duplicateParentState="true" />
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:duplicateParentState="true"
+        android:src="@drawable/selector_education_tab" />
 
     <TextView
         android:id="@+id/mTabLabel"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
+        android:layout_height="wrap_content"
+        android:duplicateParentState="true"
         android:text="教育"
         android:textColor="@color/selector_tab"
-        android:duplicateParentState="true"/>
+        android:textSize="12sp" />
 
 </LinearLayout>

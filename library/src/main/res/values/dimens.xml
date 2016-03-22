@@ -49,7 +49,7 @@
     <dimen name="common_activity_padding_1">1dp</dimen>
 
     <!-- generalRowView start -->
-    <dimen name="widget_general_row_padding">12dp</dimen>
+    <dimen name="widget_general_row_padding">10dp</dimen>
     <dimen name="widget_general_row_icon_size_width">28dp</dimen>
     <dimen name="widget_general_row_icon_size_height">28dp</dimen>
     <dimen name="widget_general_row_lable_margin_left">16dp</dimen>

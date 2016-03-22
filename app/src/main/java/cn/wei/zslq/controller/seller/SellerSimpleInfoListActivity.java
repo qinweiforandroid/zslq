@@ -2,8 +2,6 @@ package cn.wei.zslq.controller.seller;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -71,25 +69,6 @@ public class SellerSimpleInfoListActivity extends BaseListActivity implements Co
         intent.putExtra(SellerDetailActivity.KEY_SELLER_DOMAIN, domain);
         startActivity(intent);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.seller_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.seller_action_add:
-                editor();
-                break;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void editor() {
         SellerDomain seller = new SellerDomain();
         seller.descriptor = "万达广场即将落户咱们刘圩镇啦，大家尽请期待吧！";

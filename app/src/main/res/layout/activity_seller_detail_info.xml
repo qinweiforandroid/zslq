@@ -6,60 +6,164 @@
 
     <include layout="@layout/layout_toolbar" />
 
-    <ImageView
-        android:id="@+id/mSellerIconImg"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:layout_marginLeft="@dimen/common_activity_padding_8"
-        android:layout_marginRight="@dimen/common_activity_padding_8"
-        android:src="@drawable/ic_launcher" />
-
-    <TextView
-        android:id="@+id/mSellerTitleLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:layout_marginLeft="@dimen/common_activity_padding_8"
-        android:layout_marginRight="@dimen/common_activity_padding_8"
-        android:layout_marginTop="16dp"
-        android:text="title"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/mSellerDescriptorLabel"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:lineSpacingExtra="2dp"
-        android:layout_marginLeft="@dimen/common_activity_padding_8"
-        android:layout_marginRight="@dimen/common_activity_padding_8"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:text="title" />
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/mSellerIconImg"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/white_06"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                style="@style/TextViewText_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_activity_padding_16"
+                android:background="@color/white_06"
+                android:padding="@dimen/common_activity_padding_16"
+                android:text="主营业务" />
+
+            <include layout="@layout/layout_line_black" />
+
+            <TextView
+                android:id="@+id/mSellerDescriptorLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                style="@style/TextViewText_14"
+                android:lineSpacingExtra="3dp"
+                android:padding="@dimen/common_activity_padding_8"
+                android:text="content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_activity_padding_16"
+                android:background="@drawable/widgets_general_row_select"
+                android:onClick="goSellerShops"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/common_activity_padding_16">
+
+                <TextView
+                    style="@style/TextViewText_16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="店内商品" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/action_row" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_activity_padding_16"
+                android:background="@drawable/widgets_general_row_select"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:onClick="goSellerComments"
+                android:padding="@dimen/common_activity_padding_16">
+
+                <TextView
+                    style="@style/TextViewText_16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="最新评价" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/common_activity_padding_8"
+                    android:text="12人评价" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/action_row" />
+            </LinearLayout>
+
+            <include layout="@layout/layout_line_black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/common_activity_padding_8">
+
+                    <TextView
+                        android:id="@+id/mSellerCommentNameLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="雨果" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/mSellerCommentNameLabel"
+                        android:layout_marginTop="4dp"
+                        android:text="商品满不错的以后还会再来" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="2016-10-10" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <include layout="@layout/layout_line_black" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_gravity="center"
-        android:background="@color/white"
-        android:padding="@dimen/common_activity_padding_8">
+        android:background="@color/white">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="QQ:" />
+            android:textSize="@dimen/text_size_14"
+            android:layout_marginLeft="@dimen/common_activity_padding_8"
+            android:text="电话:" />
 
         <TextView
             android:id="@+id/mSellerQQLabel"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_18"
             android:text="435231045" />
 
         <Button
+            style="@style/RedButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="联系我"/>
+            android:layout_height="match_parent"
+            android:text="联系商家" />
     </LinearLayout>
 </LinearLayout>

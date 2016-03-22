@@ -12,10 +12,7 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#000000" />
+    <include layout="@layout/layout_line_black" />
 
     <cn.wei.library.widget.TabIndicator
         android:id="@+id/mHomeIndicator"

@@ -7,7 +7,7 @@
     <!-- app title -->
     <color name="title_color">#DC143C</color>
     <color name="windowBg">#EBEBEB</color>
-
+    
     <color name="clarity">#00000000</color>
     <color name="transparent">#00000000</color>
     <color name="yellow">#FFFF00</color>
@@ -61,10 +61,12 @@
     <color name="selected_day_background">#E75F49</color>
     <color name="selected_day_text">#fff2f2f2</color>
     <!-- tab indicator color -->
-    <color name="tab_gray">#C8C7CC</color>
-    <color name="tab_green">#8FBC8F</color>
+    <color name="tab_gray">#6e6e6e</color>
+    <color name="tab_blue">#34b5cA</color>
     <color name="tab_indicator_gray">#fffcfcfc</color>
     <color name="widgets_general_row_pressed">#D9D9D9</color>
     <color name="widgets_general_row_normal">#ffffff</color>
     <color name="widgets_general_row_line">#e5e5e5</color>
+    <color name="button_pink_pressed">#ff4081</color>
+    <color name="button_pink">#e91e63</color>
 </resources>

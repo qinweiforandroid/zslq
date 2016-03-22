@@ -1,5 +1,7 @@
 package cn.wei.zslq.controller.seller;
 
+import android.content.Intent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +18,6 @@ public class SellerDetailActivity extends BaseActivity {
     public static final String KEY_SELLER_DOMAIN = "key_seller_domain";
     private SellerDomain seller;
     private ImageView mSellerIconImg;
-    private TextView mSellerTitleLabel;
     private TextView mSellerQQLabel;
     private TextView mSellerDescriptorLabel;
 
@@ -29,7 +30,6 @@ public class SellerDetailActivity extends BaseActivity {
     protected void initializeView() {
         super.initializeView();
         mSellerIconImg = (ImageView) findViewById(R.id.mSellerIconImg);
-        mSellerTitleLabel = (TextView) findViewById(R.id.mSellerTitleLabel);
         mSellerDescriptorLabel = (TextView) findViewById(R.id.mSellerDescriptorLabel);
         mSellerQQLabel = (TextView) findViewById(R.id.mSellerQQLabel);
     }
@@ -38,9 +38,17 @@ public class SellerDetailActivity extends BaseActivity {
     protected void initializeData() {
         seller = (SellerDomain) getIntent().getSerializableExtra(KEY_SELLER_DOMAIN);
         setTitle(seller.getSellerName());
-        mSellerTitleLabel.setText(seller.getTitle());
         mSellerDescriptorLabel.setText("\t\t\t" + seller.getDescriptor());
         mSellerQQLabel.setText(seller.qq);
         ImageDisplay.getInstance().displayImage(seller.image, mSellerIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
+    }
+
+    public void goSellerShops(View view) {
+        Intent intent = new Intent(this, SellerShopGridViewActivity.class);
+        startActivity(intent);
+    }
+
+    public void goSellerComments(View view) {
+
     }
 }

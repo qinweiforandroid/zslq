@@ -2,16 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <com.handmark.pulltorefresh.PullToRefreshListView
         android:id="@id/generalPullToRefreshLsv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="#e5e5e5"
+        android:dividerHeight="1px"
         android:fadingEdge="none"
         android:fastScrollEnabled="false"
         android:focusable="false"
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="false"
-        android:cacheColorHint="@android:color/transparent"
         android:smoothScrollbar="true" />
 </LinearLayout>

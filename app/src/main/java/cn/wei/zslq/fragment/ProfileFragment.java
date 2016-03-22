@@ -54,7 +54,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     @Override
     protected void initializeView(View v) {
         mWidgetContainerView = (ContainerView) v.findViewById(R.id.mWidgetContainerView);
-        if(!isBindViewPager){
+        if (!isBindViewPager) {
             lazyLoad();
         }
     }
@@ -84,17 +84,17 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         ArrayList<GroupDescriptor> groupDescriptors = new ArrayList<GroupDescriptor>();
         ArrayList<BaseRowDescriptor> rowDescriptors1 = new ArrayList<BaseRowDescriptor>();
-        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.more_my_album, "相册", "20", RowActionEnum.MY_FIRST));
-        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.more_my_album, "收藏", "20", RowActionEnum.MY_FIRST));
+        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "开心笑", "20", RowActionEnum.MY_FIRST));
+        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "说一说", "20", RowActionEnum.MY_FIRST));
         GroupDescriptor groupDescriptor1 = new GroupDescriptor("", rowDescriptors1);
 
         ArrayList<BaseRowDescriptor> rowDescriptors2 = new ArrayList<BaseRowDescriptor>();
-        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_album, "反馈", RowActionEnum.MY_FIRST));
-        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.more_my_album, "关于我", RowActionEnum.ACTION_ABOUT_ME));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "动漫讯", RowActionEnum.MY_FIRST));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "优惠券", RowActionEnum.ACTION_ABOUT_ME));
         GroupDescriptor groupDescriptor2 = new GroupDescriptor("", rowDescriptors2);
 
         ArrayList<BaseRowDescriptor> rowDescriptors3 = new ArrayList<BaseRowDescriptor>();
-        rowDescriptors3.add(new GeneralRowDescriptor(R.drawable.more_my_album, "退出登录", RowActionEnum.ACTION_LOGIN_OUT));
+        rowDescriptors3.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "退  出", RowActionEnum.ACTION_LOGIN_OUT));
         GroupDescriptor groupDescriptor3 = new GroupDescriptor("", rowDescriptors3);
 
         groupDescriptors.add(groupDescriptor0);
