@@ -42,14 +42,12 @@ public abstract class ViewModel implements OnGlobalExceptionListener {
     protected void onResponseSuccess(String tag) {
         if (controller != null) {
             controller.onSuccess(tag);
-            RequestManager.getInstance().removeRequest(tag);
         }
     }
 
     protected void onResponseError(String tag, int errorCode, String errorMsg) {
         if (controller != null) {
             controller.onFailure(tag, errorCode, errorMsg);
-            RequestManager.getInstance().removeRequest(tag);
         }
     }
 

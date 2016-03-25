@@ -53,8 +53,4 @@ public interface ICallback<T> {
      * 取消请求任务
      */
     void cancel();
-
-    void onCompleted();
-
-
 }

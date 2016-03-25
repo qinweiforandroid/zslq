@@ -15,7 +15,7 @@ public class Request {
 
 
     public RequestTask task;
-    public int delayTime=-1;
+    public int delayTime = -1;
 
     public enum RequestMethod {
         GET, POST, PUT, DELETE
@@ -30,8 +30,8 @@ public class Request {
     public ICallback callback;
     public Map<String, String> headers;
     private boolean enableProgressUpdated;
-    public OnGlobalExceptionListener onGlobalExceptionListener;
-
+    public OnGlobalExceptionListener onGlobalExceptionListener;//全局异常处理
+    public OnCompletedListener completedListener;//请求结束时回掉
     public volatile boolean isCancelled;
     public int maxRetryCount = 3;
     public String tag;
@@ -110,5 +110,9 @@ public class Request {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public void setOnCompletedListener(OnCompletedListener listener) {
+        this.completedListener = listener;
     }
 }

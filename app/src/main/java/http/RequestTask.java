@@ -38,7 +38,6 @@ public class RequestTask extends AsyncTask<Void, Long, Object> {
 
     public Object doRequest(int retry) {
         try {
-
             HttpURLConnection connection = HttpURLConnectionUtil.execute(request, request.isEnableProgressUpdated() ? new OnProgressUpdatedListener() {
                 @Override
                 public void onProgressUpdated(long curPos, long contentLength) {
@@ -69,6 +68,9 @@ public class RequestTask extends AsyncTask<Void, Long, Object> {
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
+        if (request.completedListener != null) {
+            request.completedListener.onCompleted(request.tag);
+        }
         if (o instanceof AppException) {
             AppException e = (AppException) o;
             if (request.onGlobalExceptionListener != null) {
@@ -81,7 +83,6 @@ public class RequestTask extends AsyncTask<Void, Long, Object> {
         } else {
             request.callback.onSuccess(o);
         }
-        request.callback.onCompleted();
     }
 
     @Override

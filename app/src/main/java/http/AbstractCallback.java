@@ -126,7 +126,4 @@ public abstract class AbstractCallback<T> implements ICallback<T> {
         return t;
     }
 
-    @Override
-    public void onCompleted() {
-    }
 }
