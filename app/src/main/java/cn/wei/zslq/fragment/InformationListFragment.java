@@ -139,7 +139,7 @@ public class InformationListFragment extends BaseListFragment implements Control
         @Override
         public void initializeData(int position) {
             InformationBean information = (InformationBean) modules.get(position);
-            ImageDisplay.getInstance().displayImage(information.getImages(), mNewsItemIconImg, cn.wei.library.R.drawable.ic_launcher, cn.wei.library.R.drawable.ic_launcher);
+            ImageDisplay.getInstance().displayImage(information.getImages(), mNewsItemIconImg);
             mNewsItemTitleLabel.setText(information.getTitle());
             mNewsItemAuthorLabel.setText("作者:" + information.getAuthor());
             mNewsItemCreateDateLabel.setText(information.getCreateTimeValue());

@@ -64,7 +64,7 @@ public class SimpleInfoRowView extends BaseRowView implements OnClickListener {
             if (TextUtils.isEmpty(rowDescriptor.iconUrl)) {
                 mInfoIconImg.setImageResource(rowDescriptor.iconResId);
             } else {
-                ImageDisplay.getInstance().displayImage(rowDescriptor.iconUrl, mInfoIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
+                ImageDisplay.getInstance().displayImage(rowDescriptor.iconUrl, mInfoIconImg);
             }
             mInfoAccountLabel.setText(rowDescriptor.account);
             mInfoNickLabel.setText(rowDescriptor.nick);

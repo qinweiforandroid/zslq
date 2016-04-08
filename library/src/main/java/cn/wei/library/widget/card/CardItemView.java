@@ -57,7 +57,7 @@ public class CardItemView extends BaseCardItemView implements OnClickListener {
         } else {
             // TODO set iconUrl
             // mCardItemIconImg.setImageResource(descriptor.getResIcon());
-            ImageDisplay.getInstance().displayImage(descriptor.getIconUrl(), mCardItemIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
+            ImageDisplay.getInstance().displayImage(descriptor.getIconUrl(), mCardItemIconImg);
         }
         mCardItemLabel.setText(descriptor.getLabel());
     }

@@ -63,7 +63,7 @@ public class SellerShopGridViewActivity extends BaseGridViewListActivity {
         @Override
         public void initializeData(int position) {
             Shop shop = (Shop) modules.get(position);
-            ImageDisplay.getInstance().displayImage(shop.getIcon(), mShopItemIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
+            ImageDisplay.getInstance().displayImage(shop.getIcon(), mShopItemIconImg);
             mShopItemPriceLabel.setText("￥" + shop.getPrice());
             mShopItemTitleLabel.setText(shop.getTitle());
         }

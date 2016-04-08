@@ -81,9 +81,14 @@
         <activity
             android:name=".controller.zone.TalkCommentActivity"
             android:label="@string/title_activity_talk_comment"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.TalkCommentActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TalkCommentActivity" />
+        <activity
+            android:name=".controller.main.JokeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.qinwei.photoselector.PhotoSelectorActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.AActivity"

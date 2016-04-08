@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,7 +10,6 @@
         android:id="@+id/mTalkContentEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
         android:layout_margin="@dimen/common_activity_padding_8"
         android:background="@drawable/round_white_bg"
         android:ems="10"
@@ -18,4 +17,13 @@
         android:inputType="textMultiLine"
         android:lines="5"
         android:padding="@dimen/common_activity_padding_8" />
-</RelativeLayout>
+
+    <com.handmark.pulltorefresh.PullToRefreshGridView
+        android:id="@id/generalPullToRefreshGridView"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_activity_padding_8"
+        android:horizontalSpacing="2dip"
+        android:numColumns="3"
+        android:verticalSpacing="2dip" />
+</LinearLayout>

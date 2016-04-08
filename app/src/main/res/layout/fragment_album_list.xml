@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <com.handmark.pulltorefresh.PullToRefreshGridView
+        android:id="@id/generalPullToRefreshGridView"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common_activity_padding_16"
+        android:horizontalSpacing="2dip"
+        android:numColumns="2"
+        android:verticalSpacing="2dip" />
+
+</LinearLayout>

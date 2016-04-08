@@ -9,19 +9,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.qinwei.photoselector.BasePublishPhotoActivity;
+
+import java.util.ArrayList;
+
 import cn.wei.library.utils.DensityUtil;
 import cn.wei.library.utils.Trace;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.model.impl.TalkModel;
-import cn.wei.zslq.support.BaseActivity;
 
 /**
  * Created by qinwei on 2016/1/27 11:09
  * email:qinwei_it@163.com
  */
-public class TalkPublishActivity extends BaseActivity implements View.OnClickListener, TextWatcher, Controller {
+public class TalkPublishActivity extends BasePublishPhotoActivity implements View.OnClickListener, TextWatcher, Controller {
     public static final String KEY_TALK_ENTITIES = "key_talk_entities";
     private EditText mTalkContentEdt;
     private TextView publish;
@@ -34,8 +37,9 @@ public class TalkPublishActivity extends BaseActivity implements View.OnClickLis
     }
 
     @Override
-    protected void initializeView() {
+    public void initializeView() {
         super.initializeView();
+        setTheme(R.style.ActionSheetStyleIOS7);
         mTalkContentEdt = (EditText) findViewById(R.id.mTalkContentEdt);
         mTalkContentEdt.addTextChangedListener(this);
     }
@@ -45,6 +49,8 @@ public class TalkPublishActivity extends BaseActivity implements View.OnClickLis
         setTitle(getString(R.string.title_talk_add));
         model = new TalkModel(this);
         model.setController(this);
+        modules.add("");
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -65,7 +71,11 @@ public class TalkPublishActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         model.showProgress("提交中...");
-        model.doPublishTalk(mTalkContentEdt.getText().toString().trim(), MyApplication.getLoginUser());
+        ArrayList<String> uploadPhotos = new ArrayList<>();
+        for (int i = 0; i < photos.size(); i++) {
+            uploadPhotos.add(photos.get(i).imagePath);
+        }
+        model.doPublishTalk(mTalkContentEdt.getText().toString().trim(), uploadPhotos, MyApplication.getLoginUser());
     }
 
     @Override

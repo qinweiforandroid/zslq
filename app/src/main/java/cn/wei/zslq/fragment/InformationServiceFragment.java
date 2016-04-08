@@ -149,7 +149,7 @@ public class InformationServiceFragment extends BaseListFragment implements Cont
             mSellerItemTitleLabel.setText(seller.getTitle());
             mSellerItemDescriptorLabel.setText(seller.descriptor);
             mSellerItemNameLabel.setText(seller.getSellerName());
-            ImageDisplay.getInstance().displayImage(seller.image, mSellerItemIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
+            ImageDisplay.getInstance().displayImage(seller.image, mSellerItemIconImg);
         }
     }
 
@@ -175,8 +175,7 @@ public class InformationServiceFragment extends BaseListFragment implements Cont
             ImageView photoView = new ImageView(container.getContext());
             photoView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-            ImageDisplay.getInstance().displayImage(imageIdList.get(position), photoView,
-                    R.drawable.ic_launcher, R.drawable.ic_launcher);
+            ImageDisplay.getInstance().displayImage(imageIdList.get(position), photoView);
             container.addView(photoView, ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT);
             Log.i("test", "实例化view位置pos:" + position);

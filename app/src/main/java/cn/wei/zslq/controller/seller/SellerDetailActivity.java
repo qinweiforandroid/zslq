@@ -40,7 +40,7 @@ public class SellerDetailActivity extends BaseActivity {
         setTitle(seller.getSellerName());
         mSellerDescriptorLabel.setText("\t\t\t" + seller.getDescriptor());
         mSellerQQLabel.setText(seller.qq);
-        ImageDisplay.getInstance().displayImage(seller.image, mSellerIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
+        ImageDisplay.getInstance().displayImage(seller.image, mSellerIconImg);
     }
 
     public void goSellerShops(View view) {

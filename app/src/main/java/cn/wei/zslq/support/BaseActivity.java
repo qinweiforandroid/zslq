@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import android.widget.ViewSwitcher;
 
 import com.umeng.analytics.MobclickAgent;
 
+import cn.wei.library.utils.Trace;
 import cn.wei.library.widget.EmptyView;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
@@ -26,10 +28,13 @@ public abstract class BaseActivity extends AppCompatActivity implements EmptyVie
     protected String TAG = this.getClass().getSimpleName();
     protected ViewSwitcher mViewSwitcher;
     protected EmptyView mEmptyView;
+    protected TextView mToolBarTitleLabel;
+    protected Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle saveInstance) {
         super.onCreate(saveInstance);
+        Trace.v(TAG + ":onCreate app state:" + MyApplication.getInstance().getAppState());
         if (!MyApplication.getInstance().isAppKilled()) {
             setContentView();
             initializeView();
@@ -45,34 +50,39 @@ public abstract class BaseActivity extends AppCompatActivity implements EmptyVie
 
     @Override
     protected void onStart() {
+        Trace.v(TAG + ":onStart");
         super.onStart();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        Trace.v(TAG + ":onResume");
         MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Trace.v(TAG + ":onPause");
         MobclickAgent.onPause(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Trace.v(TAG + ":onStop");
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        Trace.v(TAG + ":onDestroy");
         RequestManager.getInstance().cancelRequests();
+        super.onDestroy();
     }
 
     public void protectApp() {
-        Log.e(TAG, "protectApp:class=" + this.getClass().getSimpleName());
+        Log.e(TAG, "protectApp:class=" + TAG);
         Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra(Constants.KEY_PROTECT_APP, true);
         startActivity(intent);
@@ -108,10 +118,13 @@ public abstract class BaseActivity extends AppCompatActivity implements EmptyVie
                 mViewSwitcher.setDisplayedChild(0);
             }
         }
+        if (!TextUtils.isEmpty(getIntent().getStringExtra(Constants.KEY_TITLE)))
+            setTitle(getIntent().getStringExtra(Constants.KEY_TITLE));
     }
-   public void load(){
-       mViewSwitcher.setDisplayedChild(0);
-   }
+
+    public void load() {
+        mViewSwitcher.setDisplayedChild(0);
+    }
 
     public void showContent() {
         mEmptyView.notifyDataChanged(EmptyView.State.done);
@@ -124,9 +137,6 @@ public abstract class BaseActivity extends AppCompatActivity implements EmptyVie
      * @param saveInstance 状态数据
      */
     protected void recoveryState(Bundle saveInstance) {
-        if (findViewById(R.id.toolbar) != null) {
-            setTitle(saveInstance.getString(Constants.KEY_TITLE));
-        }
     }
 
     /**
@@ -134,28 +144,14 @@ public abstract class BaseActivity extends AppCompatActivity implements EmptyVie
      */
     protected abstract void initializeData();
 
-    protected TextView mToolBarTitleLabel;
-    protected Toolbar toolbar;
-    private CharSequence title;
-
-
     @Override
     public void setTitle(CharSequence title) {
-        this.title = title;
         if (mToolBarTitleLabel != null && isCenter()) {
             mToolBarTitleLabel.setText(title);
             super.setTitle("");
         } else {
             super.setTitle(title);
         }
-    }
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        if (title != null)
-            outState.putString(Constants.KEY_TITLE, title.toString());
-        super.onSaveInstanceState(outState);
     }
 
 

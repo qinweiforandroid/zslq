@@ -2,6 +2,7 @@ package cn.wei.zslq.controller.zone;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 
 import com.handmark.pulltorefresh.PullToRefreshBase;
 
+import java.util.List;
+
 import cn.wei.library.adapter.QBaseViewHolder;
 import cn.wei.library.utils.CommonUtil;
 import cn.wei.library.utils.ImageDisplay;
@@ -31,6 +34,8 @@ import cn.wei.zslq.domain.TalkComment;
 import cn.wei.zslq.model.impl.TalkCommentModel;
 import cn.wei.zslq.support.BaseListActivity;
 import cn.wei.zslq.utils.Constants;
+import cn.wei.zslq.widget.ninegrid.NineGridImageView;
+import cn.wei.zslq.widget.ninegrid.NineGridImageViewAdapter;
 
 public class TalkCommentActivity extends BaseListActivity implements View.OnClickListener, Controller {
     public static final String KEY_TALK_ENTITIES = "key_talk_entities";
@@ -40,7 +45,6 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
     private int startLocation;
     private int pageNum = 1;
     public int load_data_state = 1;
-    public boolean isFirstLoad = true;
     private TalkCommentModel model;
 
     @Override
@@ -58,6 +62,28 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
     }
 
     @Override
+    protected void addRefreshHeaderView(ListView refreshableView) {
+        View view = LayoutInflater.from(this).inflate(R.layout.list_zone_talk_content_header, null);
+        ImageView mTalkItemUserIconImg = (ImageView) view.findViewById(R.id.mTalkItemUserIconImg);
+        TextView mTalkItemUserNickLabel = (TextView) view.findViewById(R.id.mTalkItemUserNickLabel);
+        TextView mTalkItemCreateTimeLabel = (TextView) view.findViewById(R.id.mTalkItemCreateTimeLabel);
+        TextView mTalkContentLabel = (TextView) view.findViewById(R.id.mTalkContentLabel);
+        TextView mTalkItemLookNumLabel = (TextView) view.findViewById(R.id.mTalkItemLookNumLabel);
+        TextView mTalkItemCommentNumLabel = (TextView) view.findViewById(R.id.mTalkItemCommentNumLabel);
+        NineGridImageView mTalkItemImgsGridImageView = (NineGridImageView) view.findViewById(R.id.mTalkItemImgsGridImageView);
+        mTalkItemImgsGridImageView.setAdapter(mAdapter);
+        mTalkItemImgsGridImageView.setImagesData(talk.getImages());
+        ImageDisplay.getInstance().displayImage(talk.getCreateUser().getIcon(), mTalkItemUserIconImg);
+        mTalkItemUserNickLabel.setText(talk.getCreateUser().getNick());
+        mTalkItemCreateTimeLabel.setText(TimeHelper.getTimeRule2(talk.getCreatedAt()));
+        mTalkContentLabel.setText(talk.getContent());
+        mTalkItemLookNumLabel.setText(talk.getLookNum() + "");
+        mTalkItemCommentNumLabel.setText(talk.getCommentNum() + "");
+        refreshableView.addHeaderView(view);
+        super.addRefreshHeaderView(refreshableView);
+    }
+
+    @Override
     protected void initializeData() {
         setTitle("说说详情");
         mPullToRefreshLsv.setMode(PullToRefreshBase.Mode.DISABLED);
@@ -65,6 +91,7 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
         model.setController(this);
         findViewById(R.id.mTalkCommentLayout).setTranslationY(100);
         startIntroAnimation();
+        load_data_state = Constants.LOAD_DATA_STATE_LOAD_FIRST;
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 loadDataFromServer();
@@ -94,7 +121,6 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
                 .start();
     }
 
-
     @Override
     public void onClick(View v) {
         final String content = mCommentContentEdt.getText().toString().trim();
@@ -111,27 +137,16 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
         }, 500);
     }
 
-    @Override
-    protected void addRefreshHeaderView(ListView refreshableView) {
-        View view = LayoutInflater.from(this).inflate(R.layout.list_zone_talk_content_header, null);
-        ImageView mTalkItemUserIconImg = (ImageView) view.findViewById(R.id.mTalkItemUserIconImg);
-        TextView mTalkItemUserNickLabel = (TextView) view.findViewById(R.id.mTalkItemUserNickLabel);
-        TextView mTalkItemCreateTimeLabel = (TextView) view.findViewById(R.id.mTalkItemCreateTimeLabel);
-        TextView mTalkContentLabel = (TextView) view.findViewById(R.id.mTalkContentLabel);
-        TextView mTalkItemLookNumLabel = (TextView) view.findViewById(R.id.mTalkItemLookNumLabel);
-        TextView mTalkItemCommentNumLabel = (TextView) view.findViewById(R.id.mTalkItemCommentNumLabel);
-        ImageDisplay.getInstance().displayImage(talk.getCreateUser().getIcon(), mTalkItemUserIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
-        mTalkItemUserNickLabel.setText(talk.getCreateUser().getNick());
-        mTalkItemCreateTimeLabel.setText(TimeHelper.getTimeRule2(talk.getCreatedAt()));
-        mTalkContentLabel.setText(talk.getContent());
-        mTalkItemLookNumLabel.setText(talk.getLookNum() + "");
-        mTalkItemCommentNumLabel.setText(talk.getCommentNum() + "");
-        refreshableView.addHeaderView(view);
-        super.addRefreshHeaderView(refreshableView);
-    }
 
     @Override
     public void loadMore() {
+        load_data_state = Constants.LOAD_DATA_STATE_LOAD_MORE;
+        loadDataFromServer();
+    }
+
+    @Override
+    public void onRetry() {
+        mEmptyView.notifyDataChanged(EmptyView.State.ing);
         loadDataFromServer();
     }
 
@@ -139,26 +154,28 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
     public void onSuccess(String action) {
         switch (action) {
             case TalkCommentModel.ACTION_LOAD_TALK_COMMENT_LIST:
-                if (model.comments.size() < TalkCommentModel.PAGE_SIZE) {
-                    footerView.notifyDataChanged(FooterView.State.no_data);
-                } else {
-                    footerView.notifyDataChanged(FooterView.State.done);
-                }
-                modules.addAll(model.comments);
-                pageNum++;
-                adapter.notifyDataSetChanged();
-                if (isFirstLoad) {
+                if (load_data_state == Constants.LOAD_DATA_STATE_LOAD_FIRST) {
+                    pageNum++;
+                    modules.addAll(model.comments);
                     findViewById(R.id.content).setVisibility(View.VISIBLE);
-                    mEmptyView.notifyDataChanged(EmptyView.State.done);
                     animateContent();
-                    isFirstLoad = false;
+                    mEmptyView.notifyDataChanged(EmptyView.State.done);
+                } else if (load_data_state == Constants.LOAD_DATA_STATE_LOAD_MORE) {
+                    pageNum++;
+                    modules.addAll(model.comments);
+                }
+                adapter.notifyDataSetChanged();
+                if (model.comments.size() != 0) {
+                    footerView.notifyDataChanged(FooterView.State.done);
+                } else {
+                    footerView.notifyDataChanged(FooterView.State.no_data);
                 }
                 break;
             case TalkCommentModel.ACTION_DO_TALK_COMMENT:
                 mCommentContentEdt.setText("");
                 modules.add(0, model.comment);
+                mPullToRefreshLsv.getRefreshableView().smoothScrollToPosition(0);
                 adapter.notifyDataSetChanged();
-                mPullToRefreshLsv.getRefreshableView().setSelection(0);
                 model.closeProgress();
                 Toast.makeText(TalkCommentActivity.this, "评论成功!", Toast.LENGTH_SHORT).show();
                 break;
@@ -169,12 +186,13 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
 
     @Override
     public void onFailure(String action, int errorCode, String errorMsg) {
+        model.showToast(errorMsg);
         switch (action) {
             case TalkCommentModel.ACTION_LOAD_TALK_COMMENT_LIST:
                 if (load_data_state == Constants.LOAD_DATA_STATE_LOAD_MORE) {
                     footerView.notifyDataChanged(FooterView.State.error);
-                } else if (load_data_state == Constants.LOAD_DATA_STATE_LOAD_REFRESH) {
-                    mPullToRefreshLsv.onRefreshComplete();
+                } else if (load_data_state == Constants.LOAD_DATA_STATE_LOAD_FIRST) {
+                    mEmptyView.notifyDataChanged(EmptyView.State.error);
                 }
                 break;
             default:
@@ -216,7 +234,7 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
         @Override
         public void initializeData(int position) {
             comment = (TalkComment) modules.get(position);
-            ImageDisplay.getInstance().displayImage(comment.getFromUser().getIcon(), mTalkItemUserIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
+            ImageDisplay.getInstance().displayImage(comment.getFromUser().getIcon(), mTalkItemUserIconImg);
             mTalkItemUserNickLabel.setText(comment.getFromUser().getNick());
             mTalkItemCreateTimeLabel.setText(TimeHelper.getTimeRule2(comment.getCreatedAt()));
             mTalkContentLabel.setText(comment.getContent());
@@ -248,4 +266,22 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
                 })
                 .start();
     }
+
+
+    private NineGridImageViewAdapter<String> mAdapter = new NineGridImageViewAdapter<String>() {
+        @Override
+        protected void onDisplayImage(Context context, ImageView imageView, String s) {
+            ImageDisplay.getInstance().displayImage(s, imageView);
+        }
+
+        @Override
+        protected ImageView generateImageView(Context context) {
+            return super.generateImageView(context);
+        }
+
+        @Override
+        protected void onItemImageClick(Context context, int index, List<String> list) {
+            Toast.makeText(context, "image position is " + index, Toast.LENGTH_SHORT).show();
+        }
+    };
 }

@@ -11,7 +11,7 @@ public class Talk extends BmobObject {
     private long timestamp;
     private Integer lookNum;
     private Integer commentNum;
-
+    private ArrayList<String> images;
     public Talk() {
         lookNum = 0;
         commentNum = 0;
@@ -109,6 +109,15 @@ public class Talk extends BmobObject {
     }
 
     public void setCommentNum(Integer commentNum) {
+
         this.commentNum = commentNum;
+    }
+
+    public ArrayList<String> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<String> images) {
+        this.images = images;
     }
 }

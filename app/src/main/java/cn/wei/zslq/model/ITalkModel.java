@@ -1,5 +1,7 @@
 package cn.wei.zslq.model;
 
+import java.util.ArrayList;
+
 import cn.wei.zslq.domain.User;
 
 /**
@@ -11,7 +13,7 @@ public interface ITalkModel {
     String ACTION_DO_PUBLISH_TALK="action_do_publish_talk";
     void loadTalkList(int pageNum);
 
-    void doPublishTalk(String text,User user);
+    void doPublishTalk(String text,ArrayList<String> imagePaths,User user);
 
     void doTalkLookNumAdd(String id);
 }

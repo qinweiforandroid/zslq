@@ -46,13 +46,24 @@
             android:textColor="@color/black_04"
             android:textSize="14sp" />
 
-        <LinearLayout
+        <cn.wei.zslq.widget.ninegrid.NineGridImageView
+            android:id="@+id/mTalkItemImgsGridImageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/mTalkContentLabel"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@id/mTalkItemUserIconImg"
+            app:imgGap="3dp"
+            app:showStyle="fill"
+            app:singleImgSize="160dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mTalkItemImgsGridImageView"
             android:layout_marginTop="@dimen/common_activity_padding_8"
-            android:gravity="center_vertical"
-            android:layout_toRightOf="@id/mTalkItemUserIconImg">
+            android:layout_toRightOf="@id/mTalkItemUserIconImg"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/mTalkItemCreateTimeLabel"
@@ -67,9 +78,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/im_ic_qq_comment_zan"
+                android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="查看"
-                android:drawablePadding="5dp"
                 android:textSize="12sp" />
 
             <TextView

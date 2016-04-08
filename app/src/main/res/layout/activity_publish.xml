@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+
+    <com.handmark.pulltorefresh.PullToRefreshGridView
+        android:id="@id/generalPullToRefreshGridView"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="2dip"
+        android:numColumns="3"
+        android:verticalSpacing="2dip" />
+
+    <Button
+        android:id="@+id/mPublishCommitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="上传图片" />
+
+</LinearLayout>

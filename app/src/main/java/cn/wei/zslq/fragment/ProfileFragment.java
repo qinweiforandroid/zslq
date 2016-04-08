@@ -19,6 +19,7 @@ import cn.wei.library.widget.row.SimpleInfoRowDescriptor;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
 import cn.wei.zslq.activity.MessageActivity;
+import cn.wei.zslq.controller.main.JokeActivity;
 import cn.wei.zslq.controller.main.LoginActivity;
 import cn.wei.zslq.controller.profile.ProfileEditorActivity;
 import cn.wei.zslq.domain.User;
@@ -84,7 +85,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
 
         ArrayList<GroupDescriptor> groupDescriptors = new ArrayList<GroupDescriptor>();
         ArrayList<BaseRowDescriptor> rowDescriptors1 = new ArrayList<BaseRowDescriptor>();
-        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "开心笑", "20", RowActionEnum.MY_FIRST));
+        rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "开心笑", "20", RowActionEnum.ACTION_JOKE));
         rowDescriptors1.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "说一说", "20", RowActionEnum.MY_FIRST));
         GroupDescriptor groupDescriptor1 = new GroupDescriptor("", rowDescriptors1);
 
@@ -122,6 +123,9 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
                 goProfileEditor();
 //                Intent intent1=new Intent(getActivity(), AActivity.class);
 //                startActivity(intent1);
+                break;
+            case ACTION_JOKE:
+                startActivity(new Intent(getActivity(), JokeActivity.class));
                 break;
             case ACTION_GO_LOGIN:
                 goLogin();

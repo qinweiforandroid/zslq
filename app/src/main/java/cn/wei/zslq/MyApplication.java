@@ -42,7 +42,7 @@ public class MyApplication extends Application implements Application.ActivityLi
     private void initializeDataTask() {
         if (User.getCurrentUser(getApplicationContext()) != null) {
             currentUser = BmobUser.getCurrentUser(getApplicationContext(), User.class);
-            app_state = APP_STATE_LOGINED;
+//            app_state = APP_STATE_LOGINED;
         }
     }
 
@@ -75,24 +75,24 @@ public class MyApplication extends Application implements Application.ActivityLi
     @Override
     public void onActivityStarted(Activity activity) {
         activityCount++;
-        Trace.d(activity.getClass().getSimpleName() + ":onActivityStarted");
+//        Trace.d(activity.getClass().getSimpleName() + ":onActivityStarted");
     }
 
     @Override
     public void onActivityResumed(Activity activity) {
         isForeground = true;
-        Trace.d(activity.getClass().getSimpleName() + ":onActivityResumed");
+//        Trace.d(activity.getClass().getSimpleName() + ":onActivityResumed");
     }
 
     @Override
     public void onActivityPaused(Activity activity) {
-        Trace.d(activity.getClass().getSimpleName() + ":onActivityPaused");
+//        Trace.d(activity.getClass().getSimpleName() + ":onActivityPaused");
     }
 
     @Override
     public void onActivityStopped(Activity activity) {
         activityCount--;
-        Trace.d(activity.getClass().getSimpleName() + ":onActivityStopped，" + activityCount);
+//        Trace.d(activity.getClass().getSimpleName() + ":onActivityStopped，" + activityCount);
         if (activityCount == 0) {
             isForeground = false;
         }

@@ -1,0 +1,26 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_gray_boder_white_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="3dp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/mPhotoItemIconImg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/mPhotoItemCheckedStateImg"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="right|top"
+        android:src="@drawable/icon_data_select" />
+
+</FrameLayout>

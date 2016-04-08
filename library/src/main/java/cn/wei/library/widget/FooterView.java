@@ -89,6 +89,8 @@ public class FooterView extends LinearLayout implements OnClickListener {
         setVisibility(View.VISIBLE);
         switch (status) {
             case done:
+                setVisibility(GONE);
+                break;
             case ing:
                 mFooterLabel.setText("正在加载");
                 mProgressBar.setVisibility(View.VISIBLE);

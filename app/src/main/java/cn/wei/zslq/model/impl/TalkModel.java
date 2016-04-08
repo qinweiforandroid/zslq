@@ -9,10 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.AsyncCustomEndpoints;
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.CloudCodeListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UploadBatchListener;
+import cn.wei.library.utils.TextUtil;
 import cn.wei.library.utils.Trace;
 import cn.wei.zslq.domain.Talk;
 import cn.wei.zslq.domain.User;
@@ -56,22 +60,64 @@ public class TalkModel extends ViewModel implements ITalkModel {
     }
 
     @Override
-    public void doPublishTalk(String text, User user) {
-        talk = new Talk();
-        talk.setContent(text);
-        talk.setCreateUser(user);
-        talk.setTimestamp(System.currentTimeMillis());
-        talk.save(context, new SaveListener() {
-            @Override
-            public void onSuccess() {
-                onResponseSuccess(ACTION_DO_PUBLISH_TALK);
-            }
+    public void doPublishTalk(final String text, final ArrayList<String> imagePaths, final User user) {
+        if (TextUtil.isValidate(imagePaths)) {
+            Bmob.uploadBatch(context, imagePaths.toArray(new String[imagePaths.size()]), new UploadBatchListener() {
+                @Override
+                public void onSuccess(List<BmobFile> files, List<String> urls) {
+                    // TODO Auto-generated method stub
+                    //1、files-上传完成后的BmobFile集合，是为了方便大家对其上传后的数据进行操作，例如你可以将该文件保存到表中
+                    //2、urls-上传文件的服务器地址
+                    if (urls.size() != imagePaths.size()) return;
+                    talk = new Talk();
+                    talk.setContent(text);
+                    talk.setCreateUser(user);
+                    talk.setImages((ArrayList<String>) urls);
+                    talk.setTimestamp(System.currentTimeMillis());
+                    talk.save(context, new SaveListener() {
+                        @Override
+                        public void onSuccess() {
+                            onResponseSuccess(ACTION_DO_PUBLISH_TALK);
+                        }
 
-            @Override
-            public void onFailure(int i, String s) {
-                onResponseError(ACTION_DO_PUBLISH_TALK, i, s);
-            }
-        });
+                        @Override
+                        public void onFailure(int i, String s) {
+                            onResponseError(ACTION_DO_PUBLISH_TALK, i, s);
+                        }
+                    });
+                }
+
+                @Override
+                public void onError(int statuscode, String errormsg) {
+                    onResponseError(ACTION_DO_PUBLISH_TALK, statuscode, errormsg);
+                }
+
+                @Override
+                public void onProgress(int curIndex, int curPercent, int total, int totalPercent) {
+                    // TODO Auto-generated method stub
+                    //1、curIndex--表示当前第几个文件正在上传
+                    //2、curPercent--表示当前上传文件的进度值（百分比）
+                    //3、total--表示总的上传文件数
+                    //4、totalPercent--表示总的上传进度（百分比）
+                }
+            });
+        } else {
+            talk = new Talk();
+            talk.setContent(text);
+            talk.setCreateUser(user);
+            talk.setTimestamp(System.currentTimeMillis());
+            talk.save(context, new SaveListener() {
+                @Override
+                public void onSuccess() {
+                    onResponseSuccess(ACTION_DO_PUBLISH_TALK);
+                }
+
+                @Override
+                public void onFailure(int i, String s) {
+                    onResponseError(ACTION_DO_PUBLISH_TALK, i, s);
+                }
+            });
+        }
     }
 
     @Override

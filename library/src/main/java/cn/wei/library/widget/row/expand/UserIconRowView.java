@@ -79,7 +79,7 @@ public class UserIconRowView extends BaseRowView implements OnClickListener {
                 mWidgetRowIconImg.setBackgroundResource(rowDescriptor.iconResId);
             }
             mWidgetRowLabel.setText(rowDescriptor.label);
-            ImageDisplay.getInstance().displayImage(rowDescriptor.iconUrl,mUserIconImg,R.drawable.ic_launcher,R.drawable.ic_launcher);
+            ImageDisplay.getInstance().displayImage(rowDescriptor.iconUrl,mUserIconImg);
             if (rowDescriptor.action != null) {
                 setBackgroundResource(R.drawable.widgets_general_row_select);
                 mWidgetRowActionImg.setBackgroundResource(R.drawable.action_row);

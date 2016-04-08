@@ -22,15 +22,15 @@ public class AActivity extends BaseActivity {
 
     }
 
-    public void goB(View v){
-        Intent intent=new Intent(this,BActivity.class);
-        startActivityForResult(intent,200);
+    public void goB(View v) {
+        Intent intent = new Intent(this, BActivity.class);
+        startActivityForResult(intent, 200);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK){
+        if (resultCode == RESULT_OK) {
             TextView mLabel = (TextView) findViewById(R.id.mLabel);
             mLabel.setText(data.getStringExtra("data"));
         }

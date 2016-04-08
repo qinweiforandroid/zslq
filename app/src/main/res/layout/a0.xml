@@ -2,15 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/mLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="label" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="goB"
         android:text="跳转b" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:orientation="horizontal"
+        android:rowCount="5">
+
+        <Button
+            android:id="@+id/one"
+            android:text="1" />
+        　　
+
+        <Button
+            android:id="@+id/two"
+            android:layout_rowSpan="3"
+            android:layout_gravity="fill"
+            android:text="2" />
+        　　　
+        <Button
+            android:text="1" />
+        <Button
+            android:text="1" />
+        　　<Button
+        android:text="1" />
+        　　
+        <Button
+            android:text="1" />
+        <Button
+            android:id="@+id/equal"
+            android:layout_gravity="fill"
+            android:text="=" />
+    </GridLayout>
+
 </LinearLayout>

@@ -6,6 +6,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 import cn.wei.library.utils.IImageDisplay;
+import cn.wei.library.utils.ImageDisplay;
+
 
 /**
  * Created by qinwei on 2016/2/26 13:21
@@ -24,10 +26,11 @@ public class GlideDisplay implements IImageDisplay {
     }
 
     @Override
-    public void displayImage(String uri, ImageView imageView, int placeId, int errorId) {
+    public void displayImage(String uri, ImageView imageView, ImageDisplay.DisplayOptions options) {
         Glide.with(context).load(uri)
                 .centerCrop()
-                .placeholder(placeId)
+                .placeholder(options.ingId)
+                .error(options.errorId)
                 .crossFade()
                 .into(imageView);
     }

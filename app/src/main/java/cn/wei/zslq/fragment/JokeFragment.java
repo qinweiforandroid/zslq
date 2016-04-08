@@ -205,6 +205,4 @@ public class JokeFragment extends BaseListFragment implements Controller {
             mJokeItemCreateDateLabel.setText(TimeHelper.getTimeRule2(joke.getCt()));
         }
     }
-
-
 }

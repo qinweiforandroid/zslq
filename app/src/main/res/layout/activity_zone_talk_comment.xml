@@ -7,30 +7,27 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/layout_toolbar" />
+
     <LinearLayout
         android:id="@+id/content"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
-        android:background="@color/windowBg"
-        android:orientation="vertical">
+        android:background="@color/white_06"
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <com.handmark.pulltorefresh.PullToRefreshListView
             android:id="@id/generalPullToRefreshLsv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_below="@id/toolbar"
-            android:transcriptMode="normal"
             android:layout_weight="1"
-            android:divider="@color/default_line_color"
+            android:divider="#e5e5e5"
             android:dividerHeight="1px"
-            android:fadingEdge="none"
-            android:fastScrollEnabled="false"
-            android:focusable="false"
-            android:footerDividersEnabled="false"
-            android:headerDividersEnabled="false"
-            android:smoothScrollbar="true" />
+            android:footerDividersEnabled="false" />
+
+        <include layout="@layout/layout_line_black" />
 
         <LinearLayout
             android:id="@+id/mTalkCommentLayout"

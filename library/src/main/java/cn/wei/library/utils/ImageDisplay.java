@@ -2,6 +2,9 @@ package cn.wei.library.utils;
 
 import android.widget.ImageView;
 
+import cn.wei.library.R;
+
+
 /**
  * @author qinwei email:qinwei_it@163.com
  * @version 1.0
@@ -29,18 +32,14 @@ public class ImageDisplay {
     }
 
     public void displayImage(String uri, ImageView imageView) {
-        displayImage(uri, imageView, -1, -1);
+        displayImage(uri, imageView, getDefaultOptions());
     }
 
-    public void displayImage(String uri, ImageView imageView, int placeId, int errorId) {
+    public void displayImage(String uri, ImageView imageView, DisplayOptions options) {
         if (display == null) {
             throw new IllegalArgumentException("IImageDisplay can't null");
         }
-        if (placeId == -1 && errorId == -1) {
-            display.displayImage(uri, imageView);
-        } else {
-            display.displayImage(uri, imageView, placeId, errorId);
-        }
+        display.displayImage(uri, imageView, options);
     }
 
     public void displayImage(int id, ImageView imageView) {
@@ -48,6 +47,18 @@ public class ImageDisplay {
             throw new IllegalArgumentException("IImageDisplay can't null");
         }
         display.displayImage(id, imageView);
+    }
+
+    public static class DisplayOptions {
+        public int ingId;//加载中
+        public int errorId;//加载失败
+    }
+
+    public DisplayOptions getDefaultOptions() {
+        DisplayOptions options = new DisplayOptions();
+        options.ingId = R.drawable.ic_launcher;
+        options.errorId = R.drawable.ic_load_err;
+        return options;
     }
 
     public void clearMemoryCache() {

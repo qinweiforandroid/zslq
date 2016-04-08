@@ -131,7 +131,7 @@ public class SellerSimpleInfoListActivity extends BaseListActivity implements Co
             mSellerItemTitleLabel.setText(seller.getTitle());
             mSellerItemDescriptorLabel.setText(seller.descriptor);
             mSellerItemTimeLabel.setText(seller.getCreatedAt());
-            ImageDisplay.getInstance().displayImage(seller.image, mSellerItemIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
+            ImageDisplay.getInstance().displayImage(seller.image, mSellerItemIconImg);
         }
     }
 

@@ -1,5 +1,6 @@
 package cn.wei.zslq.controller.zone;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 import cn.wei.library.adapter.QBaseViewHolder;
 import cn.wei.library.utils.ImageDisplay;
@@ -24,6 +27,8 @@ import cn.wei.zslq.domain.Talk;
 import cn.wei.zslq.model.impl.TalkModel;
 import cn.wei.zslq.support.BaseListActivity;
 import cn.wei.zslq.utils.Constants;
+import cn.wei.zslq.widget.ninegrid.NineGridImageView;
+import cn.wei.zslq.widget.ninegrid.NineGridImageViewAdapter;
 
 /**
  * 类描述:
@@ -230,6 +235,7 @@ public class TalkListActivity extends BaseListActivity implements Controller, Vi
         private TextView mTalkItemCreateTimeLabel;
         private TextView mTalkItemLookNumLabel;
         private TextView mTalkItemCommentNumLabel;
+        private NineGridImageView mTalkItemImgsGridImageView;
 
         @Override
         public void initializeView(View view) {
@@ -239,21 +245,39 @@ public class TalkListActivity extends BaseListActivity implements Controller, Vi
             mTalkContentLabel = (TextView) view.findViewById(R.id.mTalkContentLabel);
             mTalkItemLookNumLabel = (TextView) view.findViewById(R.id.mTalkItemLookNumLabel);
             mTalkItemCommentNumLabel = (TextView) view.findViewById(R.id.mTalkItemCommentNumLabel);
+            mTalkItemImgsGridImageView = (NineGridImageView) view.findViewById(R.id.mTalkItemImgsGridImageView);
+            mTalkItemImgsGridImageView.setAdapter(mAdapter);
         }
 
+        private NineGridImageViewAdapter<String> mAdapter = new NineGridImageViewAdapter<String>() {
+            @Override
+            protected void onDisplayImage(Context context, ImageView imageView, String s) {
+                ImageDisplay.getInstance().displayImage(s, imageView);
+            }
+
+            @Override
+            protected ImageView generateImageView(Context context) {
+                return super.generateImageView(context);
+            }
+
+            @Override
+            protected void onItemImageClick(Context context, int index, List<String> list) {
+                Toast.makeText(context, "image position is " + index, Toast.LENGTH_SHORT).show();
+            }
+        };
 
         @Override
         public void initializeData(int position) {
             talk = (Talk) modules.get(position);
-            ImageDisplay.getInstance().displayImage(talk.getCreateUser().getIcon(), mTalkItemUserIconImg, R.drawable.ic_launcher, R.drawable.ic_launcher);
+            ImageDisplay.getInstance().displayImage(talk.getCreateUser().getIcon(), mTalkItemUserIconImg);
             mTalkItemUserNickLabel.setText(talk.getCreateUser().getNick());
             mTalkItemCreateTimeLabel.setText(TimeHelper.getTimeRule2(talk.getCreatedAt()));
             mTalkContentLabel.setText(talk.getContent());
             mTalkItemLookNumLabel.setText(talk.getLookNum() + "");
             mTalkItemCommentNumLabel.setText(talk.getCommentNum() + "");
+            mTalkItemImgsGridImageView.setImagesData(talk.getImages());
         }
     }
-
 
     @Override
     public boolean isCanLoadMore() {
