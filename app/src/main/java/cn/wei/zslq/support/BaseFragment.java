@@ -26,6 +26,7 @@ public abstract class BaseFragment extends Fragment implements EmptyView.OnRetry
     protected ViewSwitcher mViewSwitcher;
     protected EmptyView mEmptyView;
     protected boolean isFirstLoad = true;
+    protected boolean isOnViewCreated = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,7 @@ public abstract class BaseFragment extends Fragment implements EmptyView.OnRetry
             load();
         }
         initializeView(view);
+        isOnViewCreated = true;
     }
 
     protected abstract int getFragmentLayoutId();
@@ -101,7 +103,7 @@ public abstract class BaseFragment extends Fragment implements EmptyView.OnRetry
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isFirstLoad && isVisibleToUser) {
+        if (isFirstLoad && isVisibleToUser && isOnViewCreated) {
             lazyLoad();
             isFirstLoad = false;
         }
@@ -110,8 +112,6 @@ public abstract class BaseFragment extends Fragment implements EmptyView.OnRetry
 
     protected void lazyLoad() {
     }
-
-    ;
 
     @Override
     public void onDestroyView() {

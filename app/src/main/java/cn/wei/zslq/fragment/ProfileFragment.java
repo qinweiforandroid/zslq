@@ -168,8 +168,6 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-        if (!isFirstLoad) {
-            bindData();
-        }
+        bindData();
     }
 }

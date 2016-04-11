@@ -21,7 +21,9 @@ import cn.wei.library.widget.card.CardClickListener;
 import cn.wei.library.widget.card.CardDescriptor;
 import cn.wei.library.widget.card.CardGroupDescriptor;
 import cn.wei.library.widget.card.CardGroupView;
+import cn.wei.library.widget.indicator.CirclePageIndicator;
 import cn.wei.library.widget.viewpager.AutoScrollViewPager;
+import cn.wei.library.widget.viewpager.LoopViewPager;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.controller.seller.SellerDetailActivity;
@@ -47,8 +49,9 @@ public class InformationServiceFragment extends BaseListFragment implements Cont
     @Override
     protected void addRefreshHeaderView(ListView refreshableView) {
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_information_service_header, null);
-        AutoScrollViewPager viewPager = (AutoScrollViewPager) v.findViewById(R.id.mServiceAutoScrollViewPager);
-        initializeViewPager(viewPager);
+        LoopViewPager viewPager = (LoopViewPager) v.findViewById(R.id.mServiceLoopViewPager);
+        CirclePageIndicator mCirclePageIndicator = (CirclePageIndicator) v.findViewById(R.id.mCirclePageIndicator);
+        initializeViewPager(mCirclePageIndicator, viewPager);
         CardGroupView cardGroupView = (CardGroupView) v.findViewById(R.id.mServiceCardGroupView);
         cardGroupView.configColumnSize(3);
         ArrayList<CardDescriptor> cards = new ArrayList<>();
@@ -69,7 +72,7 @@ public class InformationServiceFragment extends BaseListFragment implements Cont
         refreshableView.addHeaderView(v);
     }
 
-    private void initializeViewPager(AutoScrollViewPager viewPager) {
+    private void initializeViewPager(CirclePageIndicator mCirclePageIndicator, AutoScrollViewPager viewPager) {
         this.viewPager = viewPager;
         imageIdList = new ArrayList<>();
         imageIdList.add("http://c.hiphotos.baidu.com/image/pic/item/3b292df5e0fe99257602967631a85edf8db1718e.jpg");
@@ -78,6 +81,8 @@ public class InformationServiceFragment extends BaseListFragment implements Cont
         imageIdList.add("http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e9258370a0ac89982d158ccbf4ede.jpg");
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(new MyAdapter());
+        viewPager.setBorderAnimation(false);
+        mCirclePageIndicator.setViewPager(viewPager);
         viewPager.setInterval(3000);
         viewPager.startAutoScroll();
 //        indicator.setViewPager(viewPager);
