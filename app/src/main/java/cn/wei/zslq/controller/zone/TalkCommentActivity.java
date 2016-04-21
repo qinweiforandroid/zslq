@@ -32,7 +32,7 @@ import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.domain.Talk;
 import cn.wei.zslq.domain.TalkComment;
 import cn.wei.zslq.model.impl.TalkCommentModel;
-import cn.wei.zslq.support.BaseListActivity;
+import cn.wei.zslq.core.BaseListActivity;
 import cn.wei.zslq.utils.Constants;
 import cn.wei.zslq.widget.ninegrid.NineGridImageView;
 import cn.wei.zslq.widget.ninegrid.NineGridImageViewAdapter;
@@ -266,7 +266,6 @@ public class TalkCommentActivity extends BaseListActivity implements View.OnClic
                 })
                 .start();
     }
-
 
     private NineGridImageViewAdapter<String> mAdapter = new NineGridImageViewAdapter<String>() {
         @Override

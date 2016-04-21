@@ -1,7 +1,8 @@
-package cn.wei.zslq.support;
+package cn.wei.zslq.core;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -13,16 +14,16 @@ import cn.wei.library.adapter.QBaseRecyclerViewHolder;
  * Created by qinwei on 2015/10/22 23:04
  * email:qinwei_it@163.com
  */
-public abstract class BaseRecyclerViewActivity extends BaseActivity {
+public abstract class BaseRecyclerViewFragment extends BaseFragment {
     private RecyclerView mRecyclerView;
     protected ArrayList<Object> modules = new ArrayList<>();
     protected DataAdapter adapter;
 
     @Override
-    protected void initializeView() {
-        mRecyclerView = (RecyclerView) findViewById(R.id.generalRecyclerView);
+    protected void initializeView(View v) {
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.generalRecyclerView);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         adapter = new DataAdapter();
         mRecyclerView.setAdapter(adapter);
     }
@@ -36,7 +37,7 @@ public abstract class BaseRecyclerViewActivity extends BaseActivity {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return BaseRecyclerViewActivity.this.onCreateViewHolder(parent, viewType);
+            return BaseRecyclerViewFragment.this.onCreateViewHolder(parent, viewType);
         }
 
         @Override

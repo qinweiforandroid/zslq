@@ -14,7 +14,7 @@ import java.util.List;
 import cn.wei.library.widget.chat.KeyboardUtil;
 import cn.wei.library.widget.chat.PanelLayout;
 import cn.wei.zslq.R;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 
 /**
  * @author Nana

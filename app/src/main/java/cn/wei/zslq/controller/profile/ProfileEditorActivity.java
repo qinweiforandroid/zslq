@@ -16,7 +16,7 @@ import cn.wei.library.widget.row.expand.UserIconRowDescriptor;
 import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
 import cn.wei.zslq.domain.User;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 
 /**
  * Created by qinwei on 2016/1/21 17:43

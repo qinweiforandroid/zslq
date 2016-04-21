@@ -1,4 +1,4 @@
-package cn.wei.zslq.support;
+package cn.wei.zslq.core;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;

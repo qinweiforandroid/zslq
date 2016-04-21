@@ -22,7 +22,7 @@ import java.io.File;
 
 import cn.wei.library.adapter.QBaseViewHolder;
 import cn.wei.zslq.R;
-import cn.wei.zslq.support.BaseListActivity;
+import cn.wei.zslq.core.BaseListActivity;
 import cn.wei.zslq.utils.FileUtil;
 
 public class ChatActivity extends BaseListActivity {

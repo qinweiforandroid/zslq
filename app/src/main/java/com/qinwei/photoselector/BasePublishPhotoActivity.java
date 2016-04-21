@@ -24,7 +24,7 @@ import java.util.UUID;
 
 import cn.wei.library.utils.ImageDisplay;
 import cn.wei.zslq.R;
-import cn.wei.zslq.support.BaseGridViewListActivity;
+import cn.wei.zslq.core.BaseGridViewListActivity;
 
 /**
  * 图片选择器入口基类

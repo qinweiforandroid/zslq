@@ -5,7 +5,7 @@ import android.support.design.widget.NavigationView;
 import android.view.View;
 
 import cn.wei.zslq.R;
-import cn.wei.zslq.support.BaseFragment;
+import cn.wei.zslq.core.BaseFragment;
 
 /**
  * Created by qinwei on 2015/11/3 23:30

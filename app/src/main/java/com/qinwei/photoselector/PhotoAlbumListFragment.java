@@ -14,7 +14,7 @@ import java.util.List;
 
 import cn.wei.library.utils.ImageDisplay;
 import cn.wei.zslq.R;
-import cn.wei.zslq.support.BaseGridViewFragment;
+import cn.wei.zslq.core.BaseGridViewFragment;
 
 public class PhotoAlbumListFragment extends BaseGridViewFragment {
     public interface OnPhotoAlbumItemClickListener {

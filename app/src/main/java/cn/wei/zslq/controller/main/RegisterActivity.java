@@ -8,7 +8,7 @@ import cn.wei.library.widget.input.AccountView;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.model.impl.RegisterModel;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 
 /**
  * Created by qinwei on 2016/1/11 10:18

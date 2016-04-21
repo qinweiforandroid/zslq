@@ -21,7 +21,7 @@ import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.domain.SellerDomain;
 import cn.wei.zslq.model.impl.SellerModel;
-import cn.wei.zslq.support.BaseListActivity;
+import cn.wei.zslq.core.BaseListActivity;
 
 /**
  * Created by qinwei on 2016/1/24 20:58

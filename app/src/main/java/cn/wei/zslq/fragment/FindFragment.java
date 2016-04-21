@@ -15,9 +15,10 @@ import cn.wei.library.widget.row.GroupDescriptor;
 import cn.wei.library.widget.row.OnRowClickListener;
 import cn.wei.library.widget.row.RowActionEnum;
 import cn.wei.zslq.R;
+import cn.wei.zslq.controller.main.PictureListActivity;
 import cn.wei.zslq.controller.zone.TalkListActivity;
 import cn.wei.zslq.controller.seller.SellerSimpleInfoListActivity;
-import cn.wei.zslq.support.BaseFragment;
+import cn.wei.zslq.core.BaseFragment;
 import cn.wei.zslq.utils.BmobManager;
 
 /**
@@ -58,7 +59,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
 
         ArrayList<BaseRowDescriptor> rowDescriptors2 = new ArrayList<BaseRowDescriptor>();
         rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "商  家", RowActionEnum.ACTION_SELLER));
-        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "入口一", RowActionEnum.MY_FIRST));
+        rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "妹纸图", RowActionEnum.ACTION_PICTURE));
         rowDescriptors2.add(new GeneralRowDescriptor(R.drawable.ic_launcher, "入口二", RowActionEnum.MY_FIRST));
         GroupDescriptor groupDescriptor2 = new GroupDescriptor("", rowDescriptors2);
 
@@ -98,9 +99,17 @@ public class FindFragment extends BaseFragment implements View.OnClickListener, 
             case ACTION_SELLER:
                 goSeller();
                 break;
+            case ACTION_PICTURE:
+                goPictureList();
+                break;
             default:
                 break;
         }
+    }
+
+    private void goPictureList() {
+        Intent intent = new Intent(getActivity(), PictureListActivity.class);
+        startActivity(intent);
     }
 
     private void goSeller() {

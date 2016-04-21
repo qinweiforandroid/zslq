@@ -13,7 +13,7 @@ import cn.wei.zslq.MyApplication;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.model.impl.ProfileModel;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 
 /**
  * Created by qinwei on 2016/1/26 11:48

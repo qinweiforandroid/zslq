@@ -8,7 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import cn.wei.zslq.R;
-import cn.wei.zslq.support.BaseFragment;
+import cn.wei.zslq.core.BaseFragment;
 
 
 /**

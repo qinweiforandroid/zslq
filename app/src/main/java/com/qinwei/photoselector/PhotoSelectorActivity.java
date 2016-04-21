@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import java.util.ArrayList;
 
 import cn.wei.zslq.R;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 
 /**
  * @author qinwei email:qinwei_it@163.com

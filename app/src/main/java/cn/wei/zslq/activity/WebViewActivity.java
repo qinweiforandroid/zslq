@@ -11,7 +11,7 @@ import cn.wei.library.utils.Trace;
 import cn.wei.library.widget.EmptyView;
 import cn.wei.zslq.R;
 import cn.wei.zslq.domain.InformationBean;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 import http.HaoXinCallBack;
 import cn.wei.zslq.utils.UrlHelpper;
 import http.AppException;

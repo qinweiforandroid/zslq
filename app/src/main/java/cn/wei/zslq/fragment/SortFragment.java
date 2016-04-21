@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import cn.wei.library.adapter.QBaseAdapter;
 import cn.wei.zslq.R;
-import cn.wei.zslq.support.BaseFragment;
+import cn.wei.zslq.core.BaseFragment;
 
 /**
  * Created by qinwei on 2016/2/19 10:15

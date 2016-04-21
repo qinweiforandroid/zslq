@@ -15,7 +15,7 @@ import cn.wei.zslq.fragment.FindFragment;
 import cn.wei.zslq.fragment.InformationListFragment;
 import cn.wei.zslq.fragment.InformationServiceFragment;
 import cn.wei.zslq.fragment.ProfileFragment;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 import cn.wei.zslq.utils.Constants;
 
 /**

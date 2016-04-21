@@ -16,7 +16,7 @@ import cn.wei.zslq.activity.WebViewActivity;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.domain.InformationBean;
 import cn.wei.zslq.model.impl.InformationModel;
-import cn.wei.zslq.support.BaseListFragment;
+import cn.wei.zslq.core.BaseListFragment;
 import cn.wei.zslq.utils.ActionClickUtils;
 
 /**

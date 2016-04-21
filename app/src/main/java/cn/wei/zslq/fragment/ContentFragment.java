@@ -2,7 +2,7 @@ package cn.wei.zslq.fragment;
 
 import android.view.View;
 
-import cn.wei.zslq.support.BaseFragment;
+import cn.wei.zslq.core.BaseFragment;
 import cn.wei.zslq.R;
 
 /**

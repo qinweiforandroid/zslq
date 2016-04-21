@@ -23,7 +23,7 @@ import cn.wei.zslq.controller.main.JokeActivity;
 import cn.wei.zslq.controller.main.LoginActivity;
 import cn.wei.zslq.controller.profile.ProfileEditorActivity;
 import cn.wei.zslq.domain.User;
-import cn.wei.zslq.support.BaseFragment;
+import cn.wei.zslq.core.BaseFragment;
 
 /**
  * Created by qinwei on 2015/11/3 23:30

@@ -14,7 +14,7 @@ import cn.wei.zslq.R;
 import cn.wei.zslq.fragment.IndexFragment;
 import cn.wei.zslq.fragment.InformationListFragment;
 import cn.wei.zslq.fragment.JokeFragment;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 
 /**
  * Created by qinwei on 2015/11/3 22:44

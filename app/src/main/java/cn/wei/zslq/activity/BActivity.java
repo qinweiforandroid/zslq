@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.view.View;
 
 import cn.wei.zslq.R;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 
 /**
  * Created by qinwei on 2016/3/3 17:44

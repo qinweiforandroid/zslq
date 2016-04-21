@@ -25,7 +25,7 @@ import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.domain.Talk;
 import cn.wei.zslq.model.impl.TalkModel;
-import cn.wei.zslq.support.BaseListActivity;
+import cn.wei.zslq.core.BaseListActivity;
 import cn.wei.zslq.utils.Constants;
 import cn.wei.zslq.widget.ninegrid.NineGridImageView;
 import cn.wei.zslq.widget.ninegrid.NineGridImageViewAdapter;
@@ -100,10 +100,14 @@ public class TalkListActivity extends BaseListActivity implements Controller, Vi
     public void onSuccess(String action) {
         switch (load_data_state) {
             case Constants.LOAD_DATA_STATE_LOAD_FIRST:
-                pageNum++;
-                modules.addAll(model.talks);
-                adapter.notifyDataSetChanged();
-                showContent();
+                if (model.talks.size() == 0) {
+                    showEmpty();
+                } else {
+                    pageNum++;
+                    modules.addAll(model.talks);
+                    adapter.notifyDataSetChanged();
+                    showContent();
+                }
                 animateTalkAddBtn();
                 break;
             case Constants.LOAD_DATA_STATE_LOAD_REFRESH:

@@ -29,15 +29,18 @@ public class GlideDisplay implements IImageDisplay {
     public void displayImage(String uri, ImageView imageView, ImageDisplay.DisplayOptions options) {
         Glide.with(context).load(uri)
                 .centerCrop()
-                .placeholder(options.ingId)
-                .error(options.errorId)
+//                .placeholder(options.ingId)
+//                .error(options.errorId)
                 .crossFade()
                 .into(imageView);
     }
 
     @Override
     public void displayImage(int id, ImageView imageView) {
-        imageView.setImageResource(id);
+        Glide.with(context).load(id)
+                .centerCrop()
+                .crossFade()
+                .into(imageView);
     }
 
     @Override

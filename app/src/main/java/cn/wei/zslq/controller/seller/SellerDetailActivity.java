@@ -8,7 +8,7 @@ import android.widget.TextView;
 import cn.wei.library.utils.ImageDisplay;
 import cn.wei.zslq.R;
 import cn.wei.zslq.domain.SellerDomain;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 
 /**
  * Created by qinwei on 2016/1/24 21:48

@@ -1,4 +1,4 @@
-package cn.wei.zslq.support;
+package cn.wei.zslq.core;
 
 import android.content.Context;
 import android.os.Bundle;

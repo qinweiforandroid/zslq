@@ -12,7 +12,7 @@ import cn.wei.library.adapter.QBaseViewHolder;
 import cn.wei.library.utils.ImageDisplay;
 import cn.wei.zslq.R;
 import cn.wei.zslq.domain.Shop;
-import cn.wei.zslq.support.BaseGridViewListActivity;
+import cn.wei.zslq.core.BaseGridViewListActivity;
 
 /**
  * Created by qinwei on 2016/3/22 11:42

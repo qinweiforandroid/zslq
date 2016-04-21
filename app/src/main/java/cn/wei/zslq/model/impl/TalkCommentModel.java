@@ -2,11 +2,16 @@ package cn.wei.zslq.model.impl;
 
 import android.content.Context;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bmob.v3.AsyncCustomEndpoints;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobPointer;
+import cn.bmob.v3.listener.CloudCodeListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.wei.library.utils.Trace;
@@ -32,7 +37,7 @@ public class TalkCommentModel extends ViewModel implements ITalkCommentModel {
     }
 
     @Override
-    public void doTalkComment(Talk talk, User fromUser, String content, int type) {
+    public void doTalkComment(final Talk talk, User fromUser, String content, int type) {
         comment = new TalkComment();
         comment.setReplyType(type);
         comment.setFromUser(fromUser);
@@ -42,12 +47,34 @@ public class TalkCommentModel extends ViewModel implements ITalkCommentModel {
             @Override
             public void onSuccess() {
                 Trace.e("onSuccess");
+                doCommentNumAdd(talk.getObjectId());
                 onResponseSuccess(ACTION_DO_TALK_COMMENT);
             }
 
             @Override
             public void onFailure(int i, String s) {
                 onResponseError(ACTION_DO_TALK_COMMENT, i, s);
+            }
+        });
+    }
+
+    public void doCommentNumAdd(String id) {
+        JSONObject commentParams = new JSONObject();
+        try {
+            commentParams.put("objectId", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
+        ace.callEndpoint(context, "commentNumAdd", commentParams, new CloudCodeListener() {
+            @Override
+            public void onSuccess(Object object) {
+                Trace.d("说说评论+1:" + object.toString());
+            }
+
+            @Override
+            public void onFailure(int code, String msg) {
+                Trace.d("说说评论+1:" + msg);
             }
         });
     }
@@ -74,4 +101,5 @@ public class TalkCommentModel extends ViewModel implements ITalkCommentModel {
             }
         });
     }
+
 }

@@ -1,4 +1,4 @@
-package cn.wei.zslq.support;
+package cn.wei.zslq.core;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -128,6 +128,11 @@ public abstract class BaseActivity extends AppCompatActivity implements EmptyVie
 
     public void showContent() {
         mEmptyView.notifyDataChanged(EmptyView.State.done);
+        mViewSwitcher.setDisplayedChild(1);
+    }
+
+    public void showEmpty() {
+        mEmptyView.notifyDataChanged(EmptyView.State.empty);
         mViewSwitcher.setDisplayedChild(1);
     }
 

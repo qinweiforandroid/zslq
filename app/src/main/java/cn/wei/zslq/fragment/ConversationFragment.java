@@ -14,7 +14,7 @@ import com.handmark.pulltorefresh.PullToRefreshBase;
 import cn.wei.library.adapter.QBaseViewHolder;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.im.ChatActivity;
-import cn.wei.zslq.support.BaseListFragment;
+import cn.wei.zslq.core.BaseListFragment;
 
 /**
  */

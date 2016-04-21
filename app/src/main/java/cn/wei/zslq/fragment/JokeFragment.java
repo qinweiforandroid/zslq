@@ -20,7 +20,7 @@ import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.domain.JokeBean;
 import cn.wei.zslq.model.impl.BaiduDataSupportApiModel;
-import cn.wei.zslq.support.BaseListFragment;
+import cn.wei.zslq.core.BaseListFragment;
 import cn.wei.zslq.utils.Constants;
 
 /**

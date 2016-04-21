@@ -14,7 +14,7 @@ import cn.wei.library.widget.input.AccountView;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.model.impl.LoginModel;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 
 /**
  * A login screen that offers login via email/password.

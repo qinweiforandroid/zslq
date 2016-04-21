@@ -18,7 +18,7 @@ import cn.wei.library.adapter.QBaseRecyclerViewHolder;
 import cn.wei.library.utils.Trace;
 import cn.wei.zslq.R;
 import cn.wei.zslq.domain.ThunderAccount;
-import cn.wei.zslq.support.BaseRecyclerRefreshViewFragment;
+import cn.wei.zslq.core.BaseRecyclerRefreshViewFragment;
 
 /**
  * Created by qinwei on 2016/1/6 11:12

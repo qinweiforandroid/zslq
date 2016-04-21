@@ -11,7 +11,7 @@ import cn.wei.library.widget.row.OnRowClickListener;
 import cn.wei.library.widget.row.RowActionEnum;
 import cn.wei.library.widget.row.expand.IOSRowDescriptor;
 import cn.wei.zslq.R;
-import cn.wei.zslq.support.BaseActivity;
+import cn.wei.zslq.core.BaseActivity;
 
 /**
  * Created by qinwei on 2016/1/22 14:23
