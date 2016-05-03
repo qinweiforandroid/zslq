@@ -8,5 +8,4 @@ public interface Controller {
     void onSuccess(String action);
 
     void onFailure(String action, int errorCode, String errorMsg);
-
 }

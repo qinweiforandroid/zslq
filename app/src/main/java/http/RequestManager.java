@@ -53,14 +53,15 @@ public class RequestManager implements OnCompletedListener {
     }
 
     public void cancelRequests() {
-        Trace.e(HttpContants.TAG_HTTP,"cancelAllRequests");
+        Trace.e(HttpContants.TAG_HTTP, "cancelAllRequests");
         if (requests == null) {
             return;
         }
         for (int i = 0; i < requests.size(); i++) {
-            if (requests.get(i) != null)
-                Trace.e(HttpContants.TAG_HTTP, "tag:"+requests.get(i).tag);
+            if (requests.get(i) != null) {
+                Trace.e(HttpContants.TAG_HTTP, "tag:" + requests.get(i).tag);
                 requests.get(i).cancel(false);
+            }
         }
         requests.clear();
     }

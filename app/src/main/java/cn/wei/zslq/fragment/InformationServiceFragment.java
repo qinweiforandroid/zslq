@@ -2,7 +2,6 @@ package cn.wei.zslq.fragment;
 
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +26,9 @@ import cn.wei.library.widget.viewpager.LoopViewPager;
 import cn.wei.zslq.R;
 import cn.wei.zslq.controller.Controller;
 import cn.wei.zslq.controller.seller.SellerDetailActivity;
+import cn.wei.zslq.core.BaseListFragment;
 import cn.wei.zslq.domain.SellerDomain;
 import cn.wei.zslq.model.impl.SellerModel;
-import cn.wei.zslq.core.BaseListFragment;
 
 /**
  * Created by qinwei on 2016/3/18 11:35
@@ -79,7 +78,7 @@ public class InformationServiceFragment extends BaseListFragment implements Cont
         imageIdList.add("http://img2.imgtn.bdimg.com/it/u=2975698972,223282072&fm=21&gp=0.jpg");
         imageIdList.add("http://img2.imgtn.bdimg.com/it/u=4089870815,3809127247&fm=21&gp=0.jpg");
         imageIdList.add("http://img4.imgtn.bdimg.com/it/u=1476950651,525278639&fm=21&gp=0.jpg");
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(new MyAdapter());
         viewPager.setBorderAnimation(false);
         mCirclePageIndicator.setViewPager(viewPager);
@@ -171,7 +170,6 @@ public class InformationServiceFragment extends BaseListFragment implements Cont
          */
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            Log.i("test", "销毁view位置:" + position);
             container.removeView((View) object); // 删除页卡
         }
 
@@ -183,7 +181,6 @@ public class InformationServiceFragment extends BaseListFragment implements Cont
             ImageDisplay.getInstance().displayImage(imageIdList.get(position), photoView);
             container.addView(photoView, ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT);
-            Log.i("test", "实例化view位置pos:" + position);
             return photoView; // 返回该view对象，作为key
         }
 
