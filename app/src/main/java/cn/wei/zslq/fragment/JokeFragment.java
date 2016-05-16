@@ -115,39 +115,51 @@ public class JokeFragment extends BaseListFragment implements Controller {
     public void onSuccess(String action) {
         switch (load_data_state) {
             case Constants.LOAD_DATA_STATE_LOAD_FIRST:
-                if (viewModel.jokes.size() == 0) {
-                    mEmptyView.notifyDataChanged(EmptyView.State.empty);
-                } else {
-                    pageNum++;
-                    modules.addAll(viewModel.jokes);
-                    adapter.notifyDataSetChanged();
-                    mEmptyView.notifyDataChanged(EmptyView.State.done);
-                    showContent();
-                }
+                displayFirst();
                 break;
             case Constants.LOAD_DATA_STATE_LOAD_REFRESH:
-                if (viewModel.jokes.size() == 0) {
-                    mEmptyView.notifyDataChanged(EmptyView.State.empty);
-                } else {
-                    pageNum++;
-                    modules.clear();
-                    modules.addAll(viewModel.jokes);
-                    adapter.notifyDataSetChanged();
-                }
-                mPullToRefreshLsv.onRefreshComplete();
+                displayRefresh();
                 break;
             case Constants.LOAD_DATA_STATE_LOAD_MORE:
-                if (viewModel.jokes.size() == 0) {
-                    footerView.notifyDataChanged(FooterView.State.no_data);
-                } else {
-                    pageNum++;
-                    modules.addAll(viewModel.jokes);
-                    adapter.notifyDataSetChanged();
-                    footerView.notifyDataChanged(FooterView.State.done);
-                }
+                displayLoadMore();
                 break;
             default:
                 break;
+        }
+    }
+
+    private void displayLoadMore() {
+        if (viewModel.jokes.size() == 0) {
+            footerView.notifyDataChanged(FooterView.State.no_data);
+        } else {
+            pageNum++;
+            modules.addAll(viewModel.jokes);
+            adapter.notifyDataSetChanged();
+            footerView.notifyDataChanged(FooterView.State.done);
+        }
+    }
+
+    private void displayRefresh() {
+        if (viewModel.jokes.size() == 0) {
+            mEmptyView.notifyDataChanged(EmptyView.State.empty);
+        } else {
+            pageNum++;
+            modules.clear();
+            modules.addAll(viewModel.jokes);
+            adapter.notifyDataSetChanged();
+        }
+        mPullToRefreshLsv.onRefreshComplete();
+    }
+
+    private void displayFirst() {
+        if (viewModel.jokes.size() == 0) {
+            mEmptyView.notifyDataChanged(EmptyView.State.empty);
+        } else {
+            pageNum++;
+            modules.addAll(viewModel.jokes);
+            adapter.notifyDataSetChanged();
+            mEmptyView.notifyDataChanged(EmptyView.State.done);
+            showContent();
         }
     }
 
